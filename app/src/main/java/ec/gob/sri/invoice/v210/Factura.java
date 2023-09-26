@@ -2485,6 +2485,7 @@ public class Factura {
             return placa;
         }
 
+
         /**
          * Sets the value of the placa property.
          * 

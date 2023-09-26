@@ -1,28 +1,28 @@
-package dev.mestizos;
+package dev.mestizos.serialize;
 
-import ec.gob.sri.note.delivery.v110.GuiaRemision;
+import ec.gob.sri.note.credit.v110.NotaCredito;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 
 import java.io.File;
 
-public class DeliveryNote {
+public class CreditNote {
 
-    private String pathXmlFile;
+    private final String pathXmlFile;
 
-    public DeliveryNote(String pathXmlFile) {
+    public CreditNote(String pathXmlFile) {
         this.pathXmlFile = pathXmlFile;
     }
 
-    public GuiaRemision xmlToObject() {
+    public NotaCredito xmlToObject() {
         File file = new File(pathXmlFile);
 
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(GuiaRemision.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(NotaCredito.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-            return (GuiaRemision) jaxbUnmarshaller.unmarshal(file);
+            return (NotaCredito) jaxbUnmarshaller.unmarshal(file);
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }

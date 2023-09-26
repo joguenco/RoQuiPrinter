@@ -1,4 +1,4 @@
-package dev.mestizos;
+package dev.mestizos.serialize;
 
 import ec.gob.sri.invoice.v210.Factura;
 import jakarta.xml.bind.JAXBContext;
@@ -9,7 +9,7 @@ import java.io.File;
 
 public class Invoice {
 
-    private String pathXmlFile;
+    private final String pathXmlFile;
 
     public Invoice(String pathXmlFile) {
         this.pathXmlFile = pathXmlFile;

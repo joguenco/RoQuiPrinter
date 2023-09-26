@@ -1,20 +1,25 @@
 package roquiprinter;
 
-import dev.mestizos.Invoice;
+import dev.mestizos.pdf.InvoiceReport;
+import dev.mestizos.serialize.Invoice;
 
 public class App {
     public String getGreeting() {
         return "Hello RoquiPrinter !!!";
     }
 
-    void getInvoice(){
-        var invoice = new Invoice("/app/quijotelui/comprobante/generado/2023/8/"
-                + "0708202301100245687700110014010000000011234567818.xml");
-        invoice.xmlToObject();
+    void pdf(){
+        InvoiceReport report;
+        report = new InvoiceReport(
+                "/home/jorgeluis/JaspersoftWorkspace/RoquiPrinter/sri",
+                "/home/jorgeluis/Projects/QuijoteLuiPrinter/recursos/imagenes/logo.jpeg",
+                "/app/quijotelui/comprobante/pdf");
+
+        report.pdf();
     }
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
-        new App().getInvoice();
+        new App().pdf();
     }
 }

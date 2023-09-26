@@ -1,28 +1,28 @@
-package dev.mestizos;
+package dev.mestizos.serialize;
 
-import ec.gob.sri.withhold.v200.ComprobanteRetencion;
+import ec.gob.sri.note.delivery.v110.GuiaRemision;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 
 import java.io.File;
 
-public class Withhold {
+public class DeliveryNote {
 
-    private String pathXmlFile;
+    private final String pathXmlFile;
 
-    public Withhold(String pathXmlFile) {
+    public DeliveryNote(String pathXmlFile) {
         this.pathXmlFile = pathXmlFile;
     }
 
-    public ComprobanteRetencion xmlToObject() {
+    public GuiaRemision xmlToObject() {
         File file = new File(pathXmlFile);
 
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(ComprobanteRetencion.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(GuiaRemision.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-            return (ComprobanteRetencion) jaxbUnmarshaller.unmarshal(file);
+            return (GuiaRemision) jaxbUnmarshaller.unmarshal(file);
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }

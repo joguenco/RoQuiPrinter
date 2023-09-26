@@ -17,6 +17,15 @@ repositories {
 
 dependencies {
     implementation("com.sun.xml.ws:jaxws-rt:4.0.0")
+    // https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports
+    implementation("net.sf.jasperreports:jasperreports:6.20.6")
+    // https://mvnrepository.com/artifact/net.sf.barcode4j/barcode4j
+    implementation("net.sf.barcode4j:barcode4j:2.1")
+    // https://mvnrepository.com/artifact/org.apache.xmlgraphics/batik-all
+    implementation("org.apache.xmlgraphics:batik-all:1.17")
+    // https://mvnrepository.com/artifact/com.github.librepdf/openpdf
+    implementation("com.github.librepdf:openpdf:1.3.30")
+
     // Use JUnit Jupiter for testing.
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
 

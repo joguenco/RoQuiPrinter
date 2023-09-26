@@ -1,28 +1,28 @@
-package dev.mestizos;
+package dev.mestizos.serialize;
 
-import ec.gob.sri.liquidation.v110.LiquidacionCompra;
+import ec.gob.sri.note.debit.v100.NotaDebito;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 
 import java.io.File;
 
-public class Liquidation {
+public class DebitNote {
 
-    private String pathXmlFile;
+    private final String pathXmlFile;
 
-    public Liquidation(String pathXmlFile) {
+    public DebitNote(String pathXmlFile) {
         this.pathXmlFile = pathXmlFile;
     }
 
-    public LiquidacionCompra xmlToObject() {
+    public NotaDebito xmlToObject() {
         File file = new File(pathXmlFile);
 
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(LiquidacionCompra.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(NotaDebito.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-            return (LiquidacionCompra) jaxbUnmarshaller.unmarshal(file);
+            return (NotaDebito) jaxbUnmarshaller.unmarshal(file);
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }
