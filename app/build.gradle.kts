@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    implementation("com.sun.xml.ws:jaxws-rt:4.0.0")
     // Use JUnit Jupiter for testing.
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")
 
