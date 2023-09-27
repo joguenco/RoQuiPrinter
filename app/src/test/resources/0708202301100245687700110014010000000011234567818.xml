@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<factura id="comprobante" version="2.1.0">
+    <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>Jorge Luis</razonSocial>
+        <nombreComercial>Mestizos.dev</nombreComercial>
+        <ruc>123456789001</ruc>
+        <claveAcceso>0708202301123456789000110014010000000011234567818</claveAcceso>
+        <codDoc>01</codDoc>
+        <estab>001</estab>
+        <ptoEmi>401</ptoEmi>
+        <secuencial>000000001</secuencial>
+        <dirMatriz>Mi dirección principal</dirMatriz>
+    </infoTributaria>
+    <infoFactura>
+        <fechaEmision>07/08/2023</fechaEmision>
+        <dirEstablecimiento>Mi dirección principal</dirEstablecimiento>
+        <obligadoContabilidad>NO</obligadoContabilidad>
+        <tipoIdentificacionComprador>07</tipoIdentificacionComprador>
+        <razonSocialComprador>Consumidor Final</razonSocialComprador>
+        <identificacionComprador>9999999999999</identificacionComprador>
+        <totalSinImpuestos>9.25</totalSinImpuestos>
+        <totalDescuento>0.00</totalDescuento>
+        <totalConImpuestos>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>0</codigoPorcentaje>
+                <baseImponible>9.25</baseImponible>
+                <tarifa>0.00</tarifa>
+                <valor>0.00</valor>
+            </totalImpuesto>
+        </totalConImpuestos>
+        <propina>0.00</propina>
+        <importeTotal>9.25</importeTotal>
+        <moneda>DOLAR</moneda>
+        <pagos>
+            <pago>
+                <formaPago>01</formaPago>
+                <total>9.25</total>
+            </pago>
+        </pagos>
+    </infoFactura>
+    <detalles>
+        <detalle>
+            <codigoPrincipal>84</codigoPrincipal>
+            <descripcion>CALZONE DE CARNE MOLIDA Y MOZZARELLA</descripcion>
+            <unidadMedida>UN</unidadMedida>
+            <cantidad>1.00</cantidad>
+            <precioUnitario>4.5000</precioUnitario>
+            <descuento>0.00</descuento>
+            <precioTotalSinImpuesto>4.50</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>0</codigoPorcentaje>
+                    <tarifa>0.00</tarifa>
+                    <baseImponible>4.50</baseImponible>
+                    <valor>0.00</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+        <detalle>
+            <codigoPrincipal>83</codigoPrincipal>
+            <descripcion>CALZONE DE CHORIZO Y MOZZARELLA</descripcion>
+            <unidadMedida>UN</unidadMedida>
+            <cantidad>1.00</cantidad>
+            <precioUnitario>4.7500</precioUnitario>
+            <descuento>0.00</descuento>
+            <precioTotalSinImpuesto>4.75</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>0</codigoPorcentaje>
+                    <tarifa>0.00</tarifa>
+                    <baseImponible>4.75</baseImponible>
+                    <valor>0.00</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+    </detalles>
+    <infoAdicional>
+        <campoAdicional nombre="Pago">SIN UTILIZACION DEL SISTEMA FINANCIERO</campoAdicional>
+        <campoAdicional nombre="Total">9.25</campoAdicional>
+    </infoAdicional>
+</factura>

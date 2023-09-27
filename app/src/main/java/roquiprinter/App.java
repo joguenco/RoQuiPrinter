@@ -8,18 +8,7 @@ public class App {
         return "Hello RoquiPrinter !!!";
     }
 
-    void pdf(){
-        InvoiceReport report;
-        report = new InvoiceReport(
-                "/home/jorgeluis/JaspersoftWorkspace/RoquiPrinter/sri",
-                "/home/jorgeluis/Projects/QuijoteLuiPrinter/recursos/imagenes/logo.jpeg",
-                "/app/quijotelui/comprobante/pdf");
-
-        report.pdf();
-    }
-
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
-        new App().pdf();
     }
 }

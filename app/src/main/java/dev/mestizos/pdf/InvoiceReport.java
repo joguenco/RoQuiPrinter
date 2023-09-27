@@ -11,23 +11,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class InvoiceReport {
+    String rutaArchivo;
     String directorioReportes;
     String directorioLogo;
     String directorioDestino;
 
-    public InvoiceReport(String directorioReportes, String directorioLogo, String directorioDestino) {
+    public InvoiceReport(String rutaArchivo,String directorioReportes, String directorioLogo, String directorioDestino) {
+        this.rutaArchivo = rutaArchivo;
         this.directorioReportes = directorioReportes;
         this.directorioLogo = directorioLogo;
         this.directorioDestino = directorioDestino;
     }
 
-    public void pdf() {
-        var invoice = new Invoice("/app/quijotelui/comprobante/generado/2023/8/"
-                + "0708202301100245687700110014010000000011234567818.xml");
-
+    public Boolean pdf() {
+        var invoice = new Invoice(rutaArchivo);
 
         FacturaReporte fr = new FacturaReporte(invoice.xmlToObject());
         generarReporte(fr, "numeroAutorizacion", "fechaAutorizacion");
+        return true;
     }
 
     private void generarReporte(FacturaReporte xml, String numAut, String fechaAut) {
