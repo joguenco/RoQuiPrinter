@@ -12,14 +12,18 @@
         <ptoEmi>401</ptoEmi>
         <secuencial>000000001</secuencial>
         <dirMatriz>Mi dirección principal</dirMatriz>
+        <agenteRetencion>1</agenteRetencion>
+        <contribuyenteRimpe>CONTRIBUYENTE RÉGIMEN RIMPE</contribuyenteRimpe>
     </infoTributaria>
     <infoFactura>
         <fechaEmision>07/08/2023</fechaEmision>
         <dirEstablecimiento>Mi dirección principal</dirEstablecimiento>
+        <contribuyenteEspecial>636</contribuyenteEspecial>
         <obligadoContabilidad>NO</obligadoContabilidad>
         <tipoIdentificacionComprador>07</tipoIdentificacionComprador>
         <razonSocialComprador>Consumidor Final</razonSocialComprador>
         <identificacionComprador>9999999999999</identificacionComprador>
+        <direccionComprador>Mi Casita</direccionComprador>
         <totalSinImpuestos>9.25</totalSinImpuestos>
         <totalDescuento>0.00</totalDescuento>
         <totalConImpuestos>
@@ -80,7 +84,6 @@
         </detalle>
     </detalles>
     <infoAdicional>
-        <campoAdicional nombre="Pago">SIN UTILIZACION DEL SISTEMA FINANCIERO</campoAdicional>
-        <campoAdicional nombre="Total">9.25</campoAdicional>
+        <campoAdicional nombre="Ciudad">Quito</campoAdicional>
     </infoAdicional>
 </factura>

@@ -1,103 +1,112 @@
 package dev.mestizos.pdf;
 
 import java.math.BigDecimal;
+import java.util.List;
+
 
 public class TotalComprobante
 {
-    private String subtotal12;
-    private String subtotal0;
-    private String subtotalNoSujetoIva;
+    private BigDecimal subtotal0;
+    private BigDecimal subtotalNoSujetoIva;
     private BigDecimal subtotal;
-    private String iva12;
-    private String totalIce;
+    private List<IvaDiferenteCeroReporte> ivaDistintoCero;
+    private List<IvaDiferenteCeroReporte> ivaDiferenciado;
+    private BigDecimal totalIce;
+    private BigDecimal totalIRBPNR;
+    private BigDecimal subtotalExentoIVA;
 
-    private String totalIRBPNR;
-
-    private String subtotalExentoIVA;
-
-    private String ivaPorcentaje;
-
-    public String getSubtotal12()
-    {
-        return this.subtotal12;
+    public List<IvaDiferenteCeroReporte> getIvaDistintoCero() {
+        return this.ivaDistintoCero;
     }
 
-    public void setSubtotal12(String subtotal12)
-    {
-        this.subtotal12 = subtotal12;
+
+
+
+    public void setIvaDistintoCero(List<IvaDiferenteCeroReporte> ivaDistintoCero) {
+        this.ivaDistintoCero = ivaDistintoCero;
     }
 
-    public String getSubtotal0()
-    {
+
+
+
+    public BigDecimal getSubtotal0() {
         return this.subtotal0;
     }
 
-    public void setSubtotal0(String subtotal0)
-    {
+
+
+
+    public void setSubtotal0(BigDecimal subtotal0) {
         this.subtotal0 = subtotal0;
     }
 
-    public BigDecimal getSubtotal()
-    {
+
+
+
+    public BigDecimal getSubtotal() {
         return this.subtotal;
     }
 
-    public void setSubtotal(BigDecimal subtotal)
-    {
+
+
+
+    public void setSubtotal(BigDecimal subtotal) {
         this.subtotal = subtotal;
     }
 
-    public String getIva12()
-    {
-        return this.iva12;
-    }
 
-    public void setIva12(String iva12)
-    {
-        this.iva12 = iva12;
-    }
 
-    public String getTotalIce()
-    {
+
+
+
+
+
+    public BigDecimal getTotalIce() {
         return this.totalIce;
     }
 
-    public void setTotalIce(String totalIce)
-    {
+
+
+
+    public void setTotalIce(BigDecimal totalIce) {
         this.totalIce = totalIce;
     }
 
-    public String getSubtotalNoSujetoIva()
-    {
+
+
+
+    public BigDecimal getSubtotalNoSujetoIva() {
         return this.subtotalNoSujetoIva;
     }
 
-    public void setSubtotalNoSujetoIva(String subtotalNoSujetoIva)
-    {
+
+
+
+    public void setSubtotalNoSujetoIva(BigDecimal subtotalNoSujetoIva) {
         this.subtotalNoSujetoIva = subtotalNoSujetoIva;
     }
 
-    public String getTotalIRBPNR() {
-        return totalIRBPNR;
+    public BigDecimal getTotalIRBPNR() {
+        return this.totalIRBPNR;
     }
 
-    public void setTotalIRBPNR(String totalIRBPNR) {
+    public void setTotalIRBPNR(BigDecimal totalIRBPNR) {
         this.totalIRBPNR = totalIRBPNR;
     }
 
-    public String getSubtotalExentoIVA() {
-        return subtotalExentoIVA;
+    public BigDecimal getSubtotalExentoIVA() {
+        return this.subtotalExentoIVA;
     }
 
-    public void setSubtotalExentoIVA(String subtotalExentoIVA) {
+    public void setSubtotalExentoIVA(BigDecimal subtotalExentoIVA) {
         this.subtotalExentoIVA = subtotalExentoIVA;
     }
 
-    public String getIvaPorcentaje() {
-        return ivaPorcentaje;
+    public List<IvaDiferenteCeroReporte> getIvaDiferenciado() {
+        return this.ivaDiferenciado;
     }
 
-    public void setIvaPorcentaje(String ivaPorcentaje) {
-        this.ivaPorcentaje = ivaPorcentaje;
+    public void setIvaDiferenciado(List<IvaDiferenteCeroReporte> ivaDiferenciado) {
+        this.ivaDiferenciado = ivaDiferenciado;
     }
 }
