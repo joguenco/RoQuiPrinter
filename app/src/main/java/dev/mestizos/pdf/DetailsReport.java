@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 
-public class AdditionalDetailsReport
+public class DetailsReport
 {
     @Getter
     @Setter
@@ -75,7 +75,7 @@ public class AdditionalDetailsReport
 
     @Getter
     @Setter
-    private List<TotalesComprobante> totalesComprobante;
+    private List<TotalReceipts> totalesComprobante;
 
     @Getter
     @Setter

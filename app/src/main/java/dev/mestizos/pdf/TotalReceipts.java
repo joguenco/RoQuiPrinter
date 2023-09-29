@@ -1,44 +1,28 @@
 package dev.mestizos.pdf;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
-public class TotalesComprobante
+public class TotalReceipts
 {
+    @Getter
+    @Setter
     private String descripcion;
+
+    @Getter
+    @Setter
     private BigDecimal valor;
+
+    @Getter
+    @Setter
     private boolean esNegativo;
 
-    public TotalesComprobante(String descripcion, BigDecimal valor, boolean esNegativo) {
+    public TotalReceipts(String descripcion, BigDecimal valor, boolean esNegativo) {
         this.descripcion = descripcion;
         this.valor = valor;
         this.esNegativo = esNegativo;
-    }
-
-    public String getDescripcion() {
-        return this.descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public BigDecimal getValor() {
-        return this.valor;
-    }
-
-
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
-    }
-
-
-    public void setEsNegativo(boolean esNegativo) {
-        this.esNegativo = esNegativo;
-    }
-
-
-    public boolean getEsNegativo() {
-        return this.esNegativo;
     }
 }

@@ -8,6 +8,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    id("io.freefair.lombok") version "8.3"
 }
 
 repositories {
@@ -25,6 +26,7 @@ dependencies {
     implementation("org.apache.xmlgraphics:batik-all:1.17")
     // https://mvnrepository.com/artifact/com.github.librepdf/openpdf
     implementation("com.github.librepdf:openpdf:1.3.30")
+    compileOnly("org.projectlombok:lombok:1.18.30")
 
     // Use JUnit Jupiter for testing.
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")

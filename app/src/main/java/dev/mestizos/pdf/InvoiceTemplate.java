@@ -11,7 +11,7 @@ import java.util.List;
 import java.math.BigDecimal;
 
 
-public class invoice {
+public class InvoiceTemplate {
 
     @Getter
     private Factura factura;
@@ -23,7 +23,7 @@ public class invoice {
     private List<PayMethod> formasPago;
     private List<TotalReceipts> totalesComprobante;
 
-    public invoice(Factura factura) {
+    public InvoiceTemplate(Factura factura) {
         this.factura = factura;
     }
 

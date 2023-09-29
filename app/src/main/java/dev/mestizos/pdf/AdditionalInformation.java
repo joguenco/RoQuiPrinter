@@ -1,37 +1,21 @@
 package dev.mestizos.pdf;
 
-public class InformacionAdicional
+import lombok.Getter;
+import lombok.Setter;
+
+public class AdditionalInformation
 {
+    @Getter
+    @Setter
     private String valor;
+
+    @Getter
+    @Setter
     private String nombre;
 
-    public InformacionAdicional(String valor, String nombre)
+    public AdditionalInformation(String valor, String nombre)
     {
         this.valor = valor;
-        this.nombre = nombre;
-    }
-
-    public InformacionAdicional()
-    {
-    }
-
-    public String getValor()
-    {
-        return this.valor;
-    }
-
-    public void setValor(String valor)
-    {
-        this.valor = valor;
-    }
-
-    public String getNombre()
-    {
-        return this.nombre;
-    }
-
-    public void setNombre(String nombre)
-    {
         this.nombre = nombre;
     }
 }

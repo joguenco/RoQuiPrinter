@@ -6,7 +6,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class TotalComprobante {
+public class TotalReceipt {
     @Getter
     @Setter
     private BigDecimal subtotal0;
@@ -21,11 +21,11 @@ public class TotalComprobante {
 
     @Getter
     @Setter
-    private List<IvaDiferenteCeroReporte> ivaDistintoCero;
+    private List<TaxIvaNotZero> ivaDistintoCero;
 
     @Getter
     @Setter
-    private List<IvaDiferenteCeroReporte> ivaDiferenciado;
+    private List<TaxIvaNotZero> ivaDiferenciado;
 
     @Getter
     @Setter

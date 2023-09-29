@@ -1,6 +1,6 @@
 package dev.mestizos.pdf;
 
-public enum TipoImpuestoIvaEnum
+public enum TypeTaxIvaEnum
 {
     IVA_VENTA_0("0"),
     IVA_VENTA_12("2"),
@@ -12,7 +12,7 @@ public enum TipoImpuestoIvaEnum
 
     private String code;
 
-    private TipoImpuestoIvaEnum(String code) {
+    private TypeTaxIvaEnum(String code) {
         this.code = code;
     }
 

@@ -3,6 +3,7 @@ package dev.mestizos.pdf;
 import dev.mestizos.serialize.Invoice;
 import ec.gob.sri.invoice.v210.Factura;
 import ec.gob.sri.invoice.v210.Impuesto;
+import ec.gob.sri.invoice.v210.InfoTributaria;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
@@ -14,41 +15,39 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class InvoiceReport {
-    String rutaArchivo;
-    String directorioReportes;
-    String directorioLogo;
-    String directorioDestino;
+    String pathXmlFile;
+    String reportFolder;
+    String pathLogo;
+    String pdfFolder;
+
 
     public InvoiceReport(String rutaArchivo, String directorioReportes, String directorioLogo, String directorioDestino) {
-        this.rutaArchivo = rutaArchivo;
-        this.directorioReportes = directorioReportes;
-        this.directorioLogo = directorioLogo;
-        this.directorioDestino = directorioDestino;
+        this.pathXmlFile = rutaArchivo;
+        this.reportFolder = directorioReportes;
+        this.pathLogo = directorioLogo;
+        this.pdfFolder = directorioDestino;
     }
 
-    public Boolean pdf() {
-        var invoice = new Invoice(rutaArchivo);
+    public Boolean pdf(String authorization, String authorizationDate) {
+        var invoice = new Invoice(pathXmlFile);
 
-        FacturaReporte fr = new FacturaReporte(invoice.xmlToObject());
-        generarReporte(fr, "numeroAutorizacion", "fechaAutorizacion");
+        InvoiceTemplate fr = new InvoiceTemplate(invoice.xmlToObject());
+        generarReporte(fr, authorization, authorizationDate);
         return true;
     }
 
-    private void generarReporte(FacturaReporte xml, String numAut, String fechaAut) {
-
-        generarReporte(this.directorioReportes + File.separator + "factura.jasper", xml, numAut, fechaAut);
-
+    private void generarReporte(InvoiceTemplate xml, String numAut, String fechaAut) {
+        generarReporte(this.reportFolder + File.separator + "factura.jasper", xml, numAut, fechaAut);
     }
 
-    private void generarReporte(String urlReporte, FacturaReporte fact, String numAut, String fechaAut) {
-        Parametros p = new Parametros(this.directorioReportes, this.directorioLogo);
+    private void generarReporte(String urlReporte, InvoiceTemplate fact, String numAut, String fechaAut) {
         FileInputStream is = null;
         try {
             JRDataSource dataSource = new JRBeanCollectionDataSource(fact.getDetallesAdiciones());
             is = new FileInputStream(urlReporte);
             JasperPrint reporte_view = JasperFillManager.fillReport(is,
                     obtenerMapaParametrosReportes(
-                            p.obtenerParametrosInfoTriobutaria(fact.getFactura().getInfoTributaria(),
+                            obtenerParametrosInfoTriobutaria(fact.getFactura().getInfoTributaria(),
                                     numAut,
                                     fechaAut),
                             obtenerInfoFactura(fact.getFactura().getInfoFactura(),
@@ -71,10 +70,10 @@ public class InvoiceReport {
 
     private void savePdfReport(JasperPrint jp, String nombrePDF) {
         try {
-            OutputStream output = new FileOutputStream(new File(this.directorioDestino + File.separatorChar + nombrePDF + ".pdf"));
+            OutputStream output = new FileOutputStream(new File(this.pdfFolder + File.separatorChar + nombrePDF + ".pdf"));
             JasperExportManager.exportReportToPdfStream(jp, output);
             output.close();
-            System.out.println("PDF: Guardado en " + this.directorioDestino + File.separatorChar + nombrePDF + ".pdf");
+            System.out.println("PDF: Guardado en " + this.pdfFolder + File.separatorChar + nombrePDF + ".pdf");
         } catch (JRException | FileNotFoundException ex) {
             System.out.println("Error");
         } catch (IOException ex) {
@@ -82,12 +81,50 @@ public class InvoiceReport {
         }
     }
 
+    public Map<String, Object> obtenerParametrosInfoTriobutaria(InfoTributaria infoTributaria, String numAut, String fechaAut) {
+        Map param = new HashMap();
+        param.put("RUC", infoTributaria.getRuc());
+        param.put("CLAVE_ACC", infoTributaria.getClaveAcceso());
+        param.put("RAZON_SOCIAL", infoTributaria.getRazonSocial());
+        param.put("DIR_MATRIZ", infoTributaria.getDirMatriz());
+        param.put("AGENTE_RETENCION", infoTributaria.getAgenteRetencion());
+        param.put("REGIMEN_RIMPE", infoTributaria.getContribuyenteRimpe());
+        try {
+            param.put("LOGO", new FileInputStream(pathLogo));
+//            param.put("LOGO", new FileInputStream("resources/images/logo.jpeg"));
+
+        } catch (FileNotFoundException ex) {
+            System.out.println("Error");
+        }
+//        param.put("SUBREPORT_DIR", "./resources/reportes/");
+
+        param.put("SUBREPORT_DIR", reportFolder + File.separator);
+        param.put("SUBREPORT_PAGOS", reportFolder + File.separator);
+        param.put("SUBREPORT_TOTALES", reportFolder + File.separator);
+        if (infoTributaria.getTipoEmision().equals("1")) {
+            param.put("TIPO_EMISION", "Normal");
+        } else {
+            param.put("TIPO_EMISION", "Indisponibilidad del Sistema");
+        }
+        param.put("NUM_AUT", numAut);
+        param.put("FECHA_AUT", fechaAut);
+        param.put("MARCA_AGUA", "");
+        param.put("NUM_FACT", infoTributaria.getEstab() + "-" + infoTributaria.getPtoEmi() + "-" + infoTributaria.getSecuencial());
+        if (infoTributaria.getAmbiente().equals("1")) {
+            param.put("AMBIENTE", "Pruebas");
+        } else {
+            param.put("AMBIENTE", "Producción");
+        }
+        param.put("NOM_COMERCIAL", infoTributaria.getNombreComercial());
+        return param;
+    }
+
     private Map<String, Object> obtenerMapaParametrosReportes(Map<String, Object> mapa1, Map<String, Object> mapa2) {
         mapa1.putAll(mapa2);
         return mapa1;
     }
 
-    private Map<String, Object> obtenerInfoFactura(Factura.InfoFactura infoFactura, FacturaReporte fact) {
+    private Map<String, Object> obtenerInfoFactura(Factura.InfoFactura infoFactura, InvoiceTemplate fact) {
         BigDecimal TotalSinSubsidio = BigDecimal.ZERO;
         BigDecimal TotalSinDescuento = BigDecimal.ZERO;
         BigDecimal TotalSubsidio = BigDecimal.ZERO;
@@ -100,7 +137,7 @@ public class InvoiceReport {
         param.put("DIRECCION_CLIENTE", infoFactura.getDireccionComprador());
         param.put("FECHA_EMISION", infoFactura.getFechaEmision());
         param.put("GUIA", infoFactura.getGuiaRemision());
-        TotalComprobante tc = getTotales(infoFactura);
+        TotalReceipt tc = getTotals(infoFactura);
         if (infoFactura.getTotalSubsidio() != null) {
             TotalSinSubsidio = obtenerTotalSinSubsidio(fact);
             TotalSinDescuento = obtenerTotalSinDescuento(fact);
@@ -119,7 +156,7 @@ public class InvoiceReport {
         return param;
     }
 
-    private BigDecimal obtenerTotalSinSubsidio(FacturaReporte fact) {
+    private BigDecimal obtenerTotalSinSubsidio(InvoiceTemplate fact) {
         BigDecimal totalSinSubsidio = BigDecimal.ZERO;
         BigDecimal ivaDistintoCero = BigDecimal.ZERO;
         BigDecimal iva0 = BigDecimal.ZERO;
@@ -137,7 +174,7 @@ public class InvoiceReport {
             List<Impuesto> impuesto = ((Factura.Detalles.Detalle) detalles.get(i)).getImpuestos().getImpuesto();
             double iva1 = 0.0D;
             for (int c = 0; c < impuesto.size(); c++) {
-                if (((Impuesto) impuesto.get(c)).getCodigo().equals(String.valueOf(TipoImpuestoEnum.IVA.getCode())) && !((Impuesto) impuesto.get(c)).getTarifa().equals(BigDecimal.ZERO)) {
+                if (((Impuesto) impuesto.get(c)).getCodigo().equals(String.valueOf(TypeTaxEnum.IVA.getCode())) && !((Impuesto) impuesto.get(c)).getTarifa().equals(BigDecimal.ZERO)) {
                     iva = Double.valueOf(((Impuesto) impuesto.get(c)).getTarifa().toString()).doubleValue();
                     iva1 = Double.valueOf(((Impuesto) impuesto.get(c)).getTarifa().toString()).doubleValue();
                 }
@@ -157,7 +194,7 @@ public class InvoiceReport {
         return totalSinSubsidio.setScale(2, RoundingMode.HALF_UP);
     }
 
-    private BigDecimal obtenerTotalSinDescuento(FacturaReporte fact) {
+    private BigDecimal obtenerTotalSinDescuento(InvoiceTemplate fact) {
         BigDecimal totalConSubsidio = BigDecimal.ZERO;
         BigDecimal ivaDistintoCero = BigDecimal.ZERO;
         BigDecimal iva0 = BigDecimal.ZERO;
@@ -169,7 +206,7 @@ public class InvoiceReport {
             List<Impuesto> impuesto = ((Factura.Detalles.Detalle) detalles.get(i)).getImpuestos().getImpuesto();
             double iva1 = 0.0D;
             for (int c = 0; c < impuesto.size(); c++) {
-                if (((Impuesto) impuesto.get(c)).getCodigo().equals(String.valueOf(TipoImpuestoEnum.IVA.getCode())) && !((Impuesto) impuesto.get(c)).getTarifa().equals(BigDecimal.ZERO)) {
+                if (((Impuesto) impuesto.get(c)).getCodigo().equals(String.valueOf(TypeTaxEnum.IVA.getCode())) && !((Impuesto) impuesto.get(c)).getTarifa().equals(BigDecimal.ZERO)) {
                     iva = Double.valueOf(((Impuesto) impuesto.get(c)).getTarifa().toString()).doubleValue();
                     iva1 = Double.valueOf(((Impuesto) impuesto.get(c)).getTarifa().toString()).doubleValue();
                 }
@@ -189,8 +226,8 @@ public class InvoiceReport {
         return totalConSubsidio.setScale(2, RoundingMode.HALF_UP);
     }
 
-    private TotalComprobante getTotales(Factura.InfoFactura infoFactura) {
-        List<IvaDiferenteCeroReporte> ivaDiferenteCero = new ArrayList<>();
+    private TotalReceipt getTotals(Factura.InfoFactura infoFactura) {
+        List<TaxIvaNotZero> ivaDiferenteCero = new ArrayList<>();
 
         BigDecimal totalIva = new BigDecimal(0.0D);
         BigDecimal totalIva0 = new BigDecimal(0.0D);
@@ -198,35 +235,35 @@ public class InvoiceReport {
         BigDecimal totalICE = new BigDecimal(0.0D);
         BigDecimal totalIRBPNR = new BigDecimal(0.0D);
         BigDecimal totalSinImpuesto = new BigDecimal(0.0D);
-        TotalComprobante tc = new TotalComprobante();
+        TotalReceipt tc = new TotalReceipt();
         for (Factura.InfoFactura.TotalConImpuestos.TotalImpuesto ti : infoFactura.getTotalConImpuestos().getTotalImpuesto()) {
             Integer cod = Integer.valueOf(ti.getCodigo());
 
-            if (TipoImpuestoEnum.IVA.getCode() == cod.intValue() && ti.getValor().doubleValue() > 0.0D) {
-                if (ti.getCodigoPorcentaje().equals(TipoImpuestoIvaEnum.IVA_DIFERENCIADO.getCode())) {
+            if (TypeTaxEnum.IVA.getCode() == cod.intValue() && ti.getValor().doubleValue() > 0.0D) {
+                if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_DIFERENCIADO.getCode())) {
                     String codigoPorcentaje = "TARIFA ESPECIAL " + ti.getCodigoPorcentaje();
-                    IvaDiferenteCeroReporte iva = new IvaDiferenteCeroReporte(ti.getBaseImponible(), codigoPorcentaje, ti.getValor());
+                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), codigoPorcentaje, ti.getValor());
                     ivaDiferenteCero.add(iva);
                 } else {
                     String codigoPorcentaje = obtenerPorcentajeIvaVigente(ti.getCodigoPorcentaje());
-                    IvaDiferenteCeroReporte iva = new IvaDiferenteCeroReporte(ti.getBaseImponible(), codigoPorcentaje, ti.getValor());
+                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), codigoPorcentaje, ti.getValor());
                     ivaDiferenteCero.add(iva);
                 }
             }
 
-            if (TipoImpuestoEnum.IVA.getCode() == cod.intValue() && TipoImpuestoIvaEnum.IVA_VENTA_0.getCode().equals(ti.getCodigoPorcentaje())) {
+            if (TypeTaxEnum.IVA.getCode() == cod.intValue() && TypeTaxIvaEnum.IVA_VENTA_0.getCode().equals(ti.getCodigoPorcentaje())) {
                 totalIva0 = totalIva0.add(ti.getBaseImponible());
             }
-            if (TipoImpuestoEnum.IVA.getCode() == cod.intValue() && TipoImpuestoIvaEnum.IVA_NO_OBJETO.getCode().equals(ti.getCodigoPorcentaje())) {
+            if (TypeTaxEnum.IVA.getCode() == cod.intValue() && TypeTaxIvaEnum.IVA_NO_OBJETO.getCode().equals(ti.getCodigoPorcentaje())) {
                 totalSinImpuesto = totalSinImpuesto.add(ti.getBaseImponible());
             }
-            if (TipoImpuestoEnum.IVA.getCode() == cod.intValue() && TipoImpuestoIvaEnum.IVA_EXCENTO.getCode().equals(ti.getCodigoPorcentaje())) {
+            if (TypeTaxEnum.IVA.getCode() == cod.intValue() && TypeTaxIvaEnum.IVA_EXCENTO.getCode().equals(ti.getCodigoPorcentaje())) {
                 totalExentoIVA = totalExentoIVA.add(ti.getBaseImponible());
             }
-            if (TipoImpuestoEnum.ICE.getCode() == cod.intValue()) {
+            if (TypeTaxEnum.ICE.getCode() == cod.intValue()) {
                 totalICE = totalICE.add(ti.getValor());
             }
-            if (TipoImpuestoEnum.IRBPNR.getCode() == cod.intValue()) {
+            if (TypeTaxEnum.IRBPNR.getCode() == cod.intValue()) {
                 totalIRBPNR = totalIRBPNR.add(ti.getValor());
             }
         }
@@ -245,17 +282,17 @@ public class InvoiceReport {
     }
 
     private String obtenerPorcentajeIvaVigente(String cod) {
-        return "12 %";
+        return "12";
     }
 
     private String obtenerPorcentajeIvaVigente(Date fechaEmision) {
-        return "12 %";
+        return "12";
     }
 
-    private IvaDiferenteCeroReporte LlenaIvaDiferenteCero(Factura.InfoFactura infoFactura) {
+    private TaxIvaNotZero LlenaIvaDiferenteCero(Factura.InfoFactura infoFactura) {
         BigDecimal valor = BigDecimal.ZERO.setScale(2);
         String porcentajeIva = obtenerPorcentajeIvaVigente(DeStringADate(infoFactura.getFechaEmision()));
-        return new IvaDiferenteCeroReporte(valor, porcentajeIva, valor);
+        return new TaxIvaNotZero(valor, porcentajeIva, valor);
     }
 
     public Date DeStringADate(String fecha) {
@@ -269,6 +306,5 @@ public class InvoiceReport {
             throw new RuntimeException(e);
         }
         return fechaDate;
-
     }
 }
