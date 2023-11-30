@@ -8,8 +8,10 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
-    id("io.freefair.lombok") version "8.3"
+    id("io.freefair.lombok") version "8.4"
 }
+
+version = "1.0.0"
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -17,14 +19,10 @@ repositories {
 }
 
 dependencies {
-    implementation("com.sun.xml.ws:jaxws-rt:4.0.0")
-    // https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports
+    implementation("com.sun.xml.ws:jaxws-rt:4.0.1")
     implementation("net.sf.jasperreports:jasperreports:6.20.6")
-    // https://mvnrepository.com/artifact/net.sf.barcode4j/barcode4j
     implementation("net.sf.barcode4j:barcode4j:2.1")
-    // https://mvnrepository.com/artifact/org.apache.xmlgraphics/batik-all
     implementation("org.apache.xmlgraphics:batik-all:1.17")
-    // https://mvnrepository.com/artifact/com.github.librepdf/openpdf
     implementation("com.github.librepdf:openpdf:1.3.30")
     compileOnly("org.projectlombok:lombok:1.18.30")
 
@@ -37,7 +35,7 @@ dependencies {
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+        languageVersion.set(JavaLanguageVersion.of(21))
     }
 }
 
@@ -49,4 +47,9 @@ application {
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+tasks.jar {
+    // Customize the JAR file name
+    archiveFileName.set("RoquiPrinter-$version.jar")
 }
