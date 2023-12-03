@@ -15,3 +15,8 @@ gradle test
 ```
 gradle build
 ```
+
+## Publish in local maven repository
+```
+mvn install:install-file -Dfile=./app/build/libs/RoquiPrinter-1.0.0.jar -DgroupId=dev.mestizos.printer -DartifactId=RoquiPrinter -Dversion=1.0.0 -Dpackaging=jar
+```
