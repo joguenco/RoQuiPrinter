@@ -25,10 +25,6 @@ public class TotalReceipt {
 
     @Getter
     @Setter
-    private List<TaxIvaNotZero> ivaDiferenciado;
-
-    @Getter
-    @Setter
     private BigDecimal totalIce;
 
     @Getter
