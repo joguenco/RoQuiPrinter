@@ -71,16 +71,8 @@ public class InvoiceTemplate {
         TotalReceipt tc = getTotales(this.factura.getInfoFactura());
 
         for (TaxIvaNotZero iva : tc.getIvaDistintoCero()) {
-            var ivaValue = "";
-            if (iva.getValor().compareTo(BigDecimal.ZERO) > 0) {
-                ivaValue = iva.getValor().multiply(oneHundred).setScale(0).toString();
-            } else {
-                ivaValue = iva.getTarifa();
-            }
-
             this.totalesComprobante.add(new TotalReceipts("SUBTOTAL " +
-                    ivaValue
-                    + "%", iva.getSubtotal(), false));
+                    iva.getTarifa() + "%", iva.getSubtotal(), false));
         }
 
         this.totalesComprobante.add(new TotalReceipts("SUBTOTAL IVA 0%", tc.getSubtotal0(), false));
@@ -93,8 +85,7 @@ public class InvoiceTemplate {
         for (TaxIvaNotZero iva : tc.getIvaDistintoCero()) {
             if (iva.getValor().compareTo(BigDecimal.ZERO) > 0) {
                 this.totalesComprobante.add(new TotalReceipts("IVA " +
-                        iva.getValor().multiply(oneHundred).setScale(0)
-                        + "%", iva.getValor(), false));
+                        iva.getTarifa() + "%", iva.getValor(), false));
             }else {
                 this.totalesComprobante.add(new TotalReceipts("IVA " , iva.getValor(), false));
             }
@@ -150,23 +141,23 @@ public class InvoiceTemplate {
 
             if (TypeTaxEnum.IVA.getCode() == cod.intValue() && ti.getValor().doubleValue() > 0.0D) {
                 if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_DIFERENCIADO.getCode())) {
-                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), ti.getCodigoPorcentaje(), ti.getValor());
+                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), ti.getTarifa().setScale(0).toString(), ti.getValor());
                     ivaDiferenteCero.add(iva);
                 }
                 else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_12.getCode())) {
-                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), ti.getCodigoPorcentaje(), ti.getValor());
+                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), ti.getTarifa().setScale(0).toString(), ti.getValor());
                     ivaDiferenteCero.add(iva);
                 }
                 else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_13.getCode())) {
-                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), ti.getCodigoPorcentaje(), ti.getValor());
+                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), ti.getTarifa().setScale(0).toString(), ti.getValor());
                     ivaDiferenteCero.add(iva);
                 }
                 else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_15.getCode())) {
-                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), ti.getCodigoPorcentaje(), ti.getValor());
+                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), ti.getTarifa().setScale(0).toString(), ti.getValor());
                     ivaDiferenteCero.add(iva);
                 }
                 else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_5.getCode())) {
-                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), ti.getCodigoPorcentaje(), ti.getValor());
+                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), ti.getTarifa().setScale(0).toString(), ti.getValor());
                     ivaDiferenteCero.add(iva);
                 }
                 else {
