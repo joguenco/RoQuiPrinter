@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     implementation("com.sun.xml.ws:jaxws-rt:4.0.1")
-    implementation("net.sf.jasperreports:jasperreports:6.20.6")
+    implementation("net.sf.jasperreports:jasperreports:6.21.2")
     implementation("net.sf.barcode4j:barcode4j:2.1")
     implementation("org.apache.xmlgraphics:batik-all:1.17")
     implementation("com.github.librepdf:openpdf:1.3.30")

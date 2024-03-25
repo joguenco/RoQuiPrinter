@@ -21,8 +21,8 @@ class AppTest {
         final var xml = "0708202301100245687700110014010000000011234567818.xml";
         final var logo = "logo.jpeg";
         final var reportFolder = classLoader.getResource("./report").getPath();
-        final var pdfFolder = classLoader.getResource(".").getPath().concat("pdf");
-        createDirectory(pdfFolder);
+        final var pdfOutFolder = classLoader.getResource(".").getPath().concat("pdf");
+        createDirectory(pdfOutFolder);
 
         final var pathXmlFile = classLoader.getResource(xml).getPath();
         final var pathLogo = classLoader.getResource(logo).getPath();
@@ -31,7 +31,7 @@ class AppTest {
                 pathXmlFile,
                 reportFolder,
                 pathLogo,
-                pdfFolder
+                pdfOutFolder
         );
         assertTrue(report.pdf(
                 "0708202301100245687700110014010000000011234567818",

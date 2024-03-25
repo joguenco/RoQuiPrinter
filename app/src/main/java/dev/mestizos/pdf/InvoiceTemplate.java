@@ -3,10 +3,7 @@ package dev.mestizos.pdf;
 import ec.gob.sri.invoice.v210.Factura;
 import lombok.Getter;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.math.BigDecimal;
 

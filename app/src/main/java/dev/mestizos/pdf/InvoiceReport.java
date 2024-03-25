@@ -10,52 +10,49 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import java.io.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class InvoiceReport {
     String pathXmlFile;
     String reportFolder;
     String pathLogo;
-    String pdfFolder;
+    String pdfOutFolder;
 
 
-    public InvoiceReport(String rutaArchivo, String directorioReportes, String directorioLogo, String directorioDestino) {
-        this.pathXmlFile = rutaArchivo;
-        this.reportFolder = directorioReportes;
-        this.pathLogo = directorioLogo;
-        this.pdfFolder = directorioDestino;
+    public InvoiceReport(String pathXmlFile, String reportFolder, String pathLogo, String pdfOutFolder) {
+        this.pathXmlFile = pathXmlFile;
+        this.reportFolder = reportFolder;
+        this.pathLogo = pathLogo;
+        this.pdfOutFolder = pdfOutFolder;
     }
 
     public Boolean pdf(String authorization, String authorizationDate) {
         var invoice = new Invoice(pathXmlFile);
 
         InvoiceTemplate fr = new InvoiceTemplate(invoice.xmlToObject());
-        generarReporte(fr, authorization, authorizationDate);
+        generateReport(fr, authorization, authorizationDate);
         return true;
     }
 
-    private void generarReporte(InvoiceTemplate xml, String numAut, String fechaAut) {
-        generarReporte(this.reportFolder + File.separator + "factura.jasper", xml, numAut, fechaAut);
+    private void generateReport(InvoiceTemplate xml, String numAut, String fechaAut) {
+        generateReport(this.reportFolder + File.separator + "factura.jasper", xml, numAut, fechaAut);
     }
 
-    private void generarReporte(String urlReporte, InvoiceTemplate fact, String numAut, String fechaAut) {
+    private void generateReport(String urlReport, InvoiceTemplate fact, String numAut, String dateAut) {
         FileInputStream is = null;
         try {
             JRDataSource dataSource = new JRBeanCollectionDataSource(fact.getDetallesAdiciones());
-            is = new FileInputStream(urlReporte);
-            JasperPrint reporte_view = JasperFillManager.fillReport(is,
+            is = new FileInputStream(urlReport);
+            JasperPrint reportView = JasperFillManager.fillReport(is,
                     obtenerMapaParametrosReportes(
                             obtenerParametrosInfoTriobutaria(fact.getFactura().getInfoTributaria(),
                                     numAut,
-                                    fechaAut),
+                                    dateAut),
                             obtenerInfoFactura(fact.getFactura().getInfoFactura(),
                                     fact)),
                     dataSource);
-            savePdfReport(reporte_view, fact.getFactura().getInfoTributaria().getClaveAcceso());
+            savePdfReport(reportView, fact.getFactura().getInfoTributaria().getClaveAcceso());
         } catch (FileNotFoundException | JRException ex) {
-            System.out.println(ex.toString());
             System.out.println(ex.getMessage());
         } finally {
             try {
@@ -68,16 +65,14 @@ public class InvoiceReport {
         }
     }
 
-    private void savePdfReport(JasperPrint jp, String nombrePDF) {
+    private void savePdfReport(JasperPrint jp, String pdfName) {
         try {
-            OutputStream output = new FileOutputStream(new File(this.pdfFolder + File.separatorChar + nombrePDF + ".pdf"));
+            OutputStream output = new FileOutputStream(new File(this.pdfOutFolder + File.separatorChar + pdfName + ".pdf"));
             JasperExportManager.exportReportToPdfStream(jp, output);
             output.close();
-            System.out.println("PDF: Guardado en " + this.pdfFolder + File.separatorChar + nombrePDF + ".pdf");
-        } catch (JRException | FileNotFoundException ex) {
-            System.out.println("Error");
-        } catch (IOException ex) {
-            System.out.println("Error");
+            System.out.println("PDF: Saved in " + this.pdfOutFolder + File.separatorChar + pdfName + ".pdf");
+        } catch (JRException | IOException ex) {
+            System.out.println("Error " + ex.getMessage());
         }
     }
 
@@ -91,10 +86,8 @@ public class InvoiceReport {
         param.put("REGIMEN_RIMPE", infoTributaria.getContribuyenteRimpe());
         try {
             param.put("LOGO", new FileInputStream(pathLogo));
-//            param.put("LOGO", new FileInputStream("resources/images/logo.jpeg"));
-
         } catch (FileNotFoundException ex) {
-            System.out.println("Error");
+            System.out.println("Error " + ex.getMessage());
         }
 //        param.put("SUBREPORT_DIR", "./resources/reportes/");
 
@@ -285,26 +278,13 @@ public class InvoiceReport {
         return "12";
     }
 
-    private String obtenerPorcentajeIvaVigente(Date fechaEmision) {
+    private String obtenerPorcentajeIvaVigente() {
         return "12";
     }
 
     private TaxIvaNotZero LlenaIvaDiferenteCero(Factura.InfoFactura infoFactura) {
         BigDecimal valor = BigDecimal.ZERO.setScale(2);
-        String porcentajeIva = obtenerPorcentajeIvaVigente(DeStringADate(infoFactura.getFechaEmision()));
+        String porcentajeIva = obtenerPorcentajeIvaVigente();
         return new TaxIvaNotZero(valor, porcentajeIva, valor);
-    }
-
-    public Date DeStringADate(String fecha) {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        String strFecha = fecha;
-        Date fechaDate = null;
-
-        try {
-            fechaDate = formato.parse(strFecha);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        return fechaDate;
     }
 }
