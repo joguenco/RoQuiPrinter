@@ -18,7 +18,7 @@ class AppTest {
     void createInvoicePdf() {
         ClassLoader classLoader = AppTest.class.getClassLoader();
 
-        final var xml = "0708202301100245687700110014010000000011234567818.xml";
+        final var xml = "2403202401999999999900110012010000000581234567812.xml";
         final var logo = "logo.jpeg";
         final var reportFolder = classLoader.getResource("./report").getPath();
         final var pdfOutFolder = classLoader.getResource(".").getPath().concat("pdf");
@@ -34,7 +34,7 @@ class AppTest {
                 pdfOutFolder
         );
         assertTrue(report.pdf(
-                "0708202301100245687700110014010000000011234567818",
+                "2403202401999999999900110012010000000581234567812",
                 "1901-01-01"));
     }
 

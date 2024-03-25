@@ -2,14 +2,11 @@ package dev.mestizos.pdf;
 
 import dev.mestizos.serialize.Invoice;
 import ec.gob.sri.invoice.v210.Factura;
-import ec.gob.sri.invoice.v210.Impuesto;
 import ec.gob.sri.invoice.v210.InfoTributaria;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 import java.io.*;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.*;
 
 public class InvoiceReport {
@@ -34,8 +31,8 @@ public class InvoiceReport {
         return true;
     }
 
-    private void generateReport(InvoiceTemplate xml, String numAut, String fechaAut) {
-        generateReport(this.reportFolder + File.separator + "factura.jasper", xml, numAut, fechaAut);
+    private void generateReport(InvoiceTemplate xml, String numAut, String dateAut) {
+        generateReport(this.reportFolder + File.separator + "factura.jasper", xml, numAut, dateAut);
     }
 
     private void generateReport(String urlReport, InvoiceTemplate fact, String numAut, String dateAut) {
@@ -45,12 +42,10 @@ public class InvoiceReport {
             is = new FileInputStream(urlReport);
             JasperPrint reportView = JasperFillManager.fillReport(is,
                     obtenerMapaParametrosReportes(
-                            obtenerParametrosInfoTriobutaria(fact.getFactura().getInfoTributaria(),
+                            getParametersInfoTriobutaria(fact.getFactura().getInfoTributaria(),
                                     numAut,
                                     dateAut),
-                            obtenerInfoFactura(fact.getFactura().getInfoFactura(),
-                                    fact)),
-                    dataSource);
+                            getInfoFactura(fact.getFactura().getInfoFactura())), dataSource);
             savePdfReport(reportView, fact.getFactura().getInfoTributaria().getClaveAcceso());
         } catch (FileNotFoundException | JRException ex) {
             System.out.println(ex.getMessage());
@@ -76,7 +71,7 @@ public class InvoiceReport {
         }
     }
 
-    public Map<String, Object> obtenerParametrosInfoTriobutaria(InfoTributaria infoTributaria, String numAut, String fechaAut) {
+    public Map<String, Object> getParametersInfoTriobutaria(InfoTributaria infoTributaria, String numAut, String fechaAut) {
         Map param = new HashMap();
         param.put("RUC", infoTributaria.getRuc());
         param.put("CLAVE_ACC", infoTributaria.getClaveAcceso());
@@ -117,10 +112,7 @@ public class InvoiceReport {
         return mapa1;
     }
 
-    private Map<String, Object> obtenerInfoFactura(Factura.InfoFactura infoFactura, InvoiceTemplate fact) {
-        BigDecimal TotalSinSubsidio = BigDecimal.ZERO;
-        BigDecimal TotalSinDescuento = BigDecimal.ZERO;
-        BigDecimal TotalSubsidio = BigDecimal.ZERO;
+    private Map<String, Object> getInfoFactura(Factura.InfoFactura infoFactura) {
         Map<String, Object> param = new HashMap<>();
         param.put("DIR_SUCURSAL", infoFactura.getDirEstablecimiento());
         param.put("CONT_ESPECIAL", infoFactura.getContribuyenteEspecial());
@@ -130,161 +122,7 @@ public class InvoiceReport {
         param.put("DIRECCION_CLIENTE", infoFactura.getDireccionComprador());
         param.put("FECHA_EMISION", infoFactura.getFechaEmision());
         param.put("GUIA", infoFactura.getGuiaRemision());
-        TotalReceipt tc = getTotals(infoFactura);
-        if (infoFactura.getTotalSubsidio() != null) {
-            TotalSinSubsidio = obtenerTotalSinSubsidio(fact);
-            TotalSinDescuento = obtenerTotalSinDescuento(fact);
-            TotalSubsidio = TotalSinSubsidio.subtract(TotalSinDescuento).setScale(2, RoundingMode.UP);
-            if (Double.valueOf(tc.getTotalIRBPNR().toString()).doubleValue() < 0.0D) {
-                TotalSinSubsidio = TotalSinSubsidio.add(tc.getTotalIRBPNR());
-            }
-            if (infoFactura.getPropina() != null) {
-                TotalSinSubsidio = TotalSinSubsidio.add(infoFactura.getPropina());
-            }
-        }
-        param.put("TOTAL_SIN_SUBSIDIO", TotalSinSubsidio.setScale(2, RoundingMode.UP));
-        param.put("AHORRO_POR_SUBSIDIO", TotalSubsidio.setScale(2, RoundingMode.UP));
-
 
         return param;
-    }
-
-    private BigDecimal obtenerTotalSinSubsidio(InvoiceTemplate fact) {
-        BigDecimal totalSinSubsidio = BigDecimal.ZERO;
-        BigDecimal ivaDistintoCero = BigDecimal.ZERO;
-        BigDecimal iva0 = BigDecimal.ZERO;
-        double iva = 0.0D;
-        List<Factura.Detalles.Detalle> detalles = fact.getFactura().getDetalles().getDetalle();
-        for (int i = 0; i < detalles.size(); i++) {
-            BigDecimal sinSubsidio = BigDecimal.ZERO.setScale(2, RoundingMode.UP);
-            if (((Factura.Detalles.Detalle) detalles.get(i)).getPrecioSinSubsidio() != null) {
-                sinSubsidio = BigDecimal.valueOf(Double.valueOf(((Factura.Detalles.Detalle) detalles.get(i)).getPrecioSinSubsidio().toString()).doubleValue());
-            }
-            BigDecimal cantidad = BigDecimal.valueOf(Double.valueOf(((Factura.Detalles.Detalle) detalles.get(i)).getCantidad().toString()).doubleValue());
-            if (Double.valueOf(sinSubsidio.toString()).doubleValue() <= 0.0D) {
-                sinSubsidio = BigDecimal.valueOf(Double.valueOf(((Factura.Detalles.Detalle) detalles.get(i)).getPrecioUnitario().toString()).doubleValue());
-            }
-            List<Impuesto> impuesto = ((Factura.Detalles.Detalle) detalles.get(i)).getImpuestos().getImpuesto();
-            double iva1 = 0.0D;
-            for (int c = 0; c < impuesto.size(); c++) {
-                if (((Impuesto) impuesto.get(c)).getCodigo().equals(String.valueOf(TypeTaxEnum.IVA.getCode())) && !((Impuesto) impuesto.get(c)).getTarifa().equals(BigDecimal.ZERO)) {
-                    iva = Double.valueOf(((Impuesto) impuesto.get(c)).getTarifa().toString()).doubleValue();
-                    iva1 = Double.valueOf(((Impuesto) impuesto.get(c)).getTarifa().toString()).doubleValue();
-                }
-            }
-            if (iva1 > 0.0D) {
-                ivaDistintoCero = ivaDistintoCero.add(sinSubsidio.multiply(cantidad));
-            } else {
-
-                iva0 = iva0.add(sinSubsidio.multiply(cantidad));
-            }
-        }
-        if (iva > 0.0D) {
-            iva = iva / 100.0D + 1.0D;
-            ivaDistintoCero = ivaDistintoCero.multiply(BigDecimal.valueOf(iva));
-        }
-        totalSinSubsidio = totalSinSubsidio.add(ivaDistintoCero).add(iva0);
-        return totalSinSubsidio.setScale(2, RoundingMode.HALF_UP);
-    }
-
-    private BigDecimal obtenerTotalSinDescuento(InvoiceTemplate fact) {
-        BigDecimal totalConSubsidio = BigDecimal.ZERO;
-        BigDecimal ivaDistintoCero = BigDecimal.ZERO;
-        BigDecimal iva0 = BigDecimal.ZERO;
-        double iva = 0.0D;
-        List<Factura.Detalles.Detalle> detalles = fact.getFactura().getDetalles().getDetalle();
-        for (int i = 0; i < detalles.size(); i++) {
-            BigDecimal sinSubsidio = BigDecimal.valueOf(Double.valueOf(((Factura.Detalles.Detalle) detalles.get(i)).getPrecioUnitario().toString()).doubleValue());
-            BigDecimal cantidad = BigDecimal.valueOf(Double.valueOf(((Factura.Detalles.Detalle) detalles.get(i)).getCantidad().toString()).doubleValue());
-            List<Impuesto> impuesto = ((Factura.Detalles.Detalle) detalles.get(i)).getImpuestos().getImpuesto();
-            double iva1 = 0.0D;
-            for (int c = 0; c < impuesto.size(); c++) {
-                if (((Impuesto) impuesto.get(c)).getCodigo().equals(String.valueOf(TypeTaxEnum.IVA.getCode())) && !((Impuesto) impuesto.get(c)).getTarifa().equals(BigDecimal.ZERO)) {
-                    iva = Double.valueOf(((Impuesto) impuesto.get(c)).getTarifa().toString()).doubleValue();
-                    iva1 = Double.valueOf(((Impuesto) impuesto.get(c)).getTarifa().toString()).doubleValue();
-                }
-            }
-            if (iva1 > 0.0D) {
-                ivaDistintoCero = ivaDistintoCero.add(sinSubsidio.multiply(cantidad));
-            } else {
-
-                iva0 = iva0.add(sinSubsidio.multiply(cantidad));
-            }
-        }
-        if (iva > 0.0D) {
-            iva = iva / 100.0D + 1.0D;
-            ivaDistintoCero = ivaDistintoCero.multiply(BigDecimal.valueOf(iva));
-        }
-        totalConSubsidio = totalConSubsidio.add(ivaDistintoCero).add(iva0);
-        return totalConSubsidio.setScale(2, RoundingMode.HALF_UP);
-    }
-
-    private TotalReceipt getTotals(Factura.InfoFactura infoFactura) {
-        List<TaxIvaNotZero> ivaDiferenteCero = new ArrayList<>();
-
-        BigDecimal totalIva = new BigDecimal(0.0D);
-        BigDecimal totalIva0 = new BigDecimal(0.0D);
-        BigDecimal totalExentoIVA = new BigDecimal(0.0D);
-        BigDecimal totalICE = new BigDecimal(0.0D);
-        BigDecimal totalIRBPNR = new BigDecimal(0.0D);
-        BigDecimal totalSinImpuesto = new BigDecimal(0.0D);
-        TotalReceipt tc = new TotalReceipt();
-        for (Factura.InfoFactura.TotalConImpuestos.TotalImpuesto ti : infoFactura.getTotalConImpuestos().getTotalImpuesto()) {
-            Integer cod = Integer.valueOf(ti.getCodigo());
-
-            if (TypeTaxEnum.IVA.getCode() == cod.intValue() && ti.getValor().doubleValue() > 0.0D) {
-                if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_DIFERENCIADO.getCode())) {
-                    String codigoPorcentaje = "TARIFA ESPECIAL " + ti.getCodigoPorcentaje();
-                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), codigoPorcentaje, ti.getValor());
-                    ivaDiferenteCero.add(iva);
-                } else {
-                    String codigoPorcentaje = obtenerPorcentajeIvaVigente(ti.getCodigoPorcentaje());
-                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), codigoPorcentaje, ti.getValor());
-                    ivaDiferenteCero.add(iva);
-                }
-            }
-
-            if (TypeTaxEnum.IVA.getCode() == cod.intValue() && TypeTaxIvaEnum.IVA_VENTA_0.getCode().equals(ti.getCodigoPorcentaje())) {
-                totalIva0 = totalIva0.add(ti.getBaseImponible());
-            }
-            if (TypeTaxEnum.IVA.getCode() == cod.intValue() && TypeTaxIvaEnum.IVA_NO_OBJETO.getCode().equals(ti.getCodigoPorcentaje())) {
-                totalSinImpuesto = totalSinImpuesto.add(ti.getBaseImponible());
-            }
-            if (TypeTaxEnum.IVA.getCode() == cod.intValue() && TypeTaxIvaEnum.IVA_EXCENTO.getCode().equals(ti.getCodigoPorcentaje())) {
-                totalExentoIVA = totalExentoIVA.add(ti.getBaseImponible());
-            }
-            if (TypeTaxEnum.ICE.getCode() == cod.intValue()) {
-                totalICE = totalICE.add(ti.getValor());
-            }
-            if (TypeTaxEnum.IRBPNR.getCode() == cod.intValue()) {
-                totalIRBPNR = totalIRBPNR.add(ti.getValor());
-            }
-        }
-        if (ivaDiferenteCero.isEmpty()) {
-            ivaDiferenteCero.add(LlenaIvaDiferenteCero(infoFactura));
-        }
-        tc.setIvaDistintoCero(ivaDiferenteCero);
-
-        tc.setSubtotal0(totalIva0);
-        tc.setTotalIce(totalICE);
-        tc.setSubtotal(totalIva0.add(totalIva));
-        tc.setSubtotalExentoIVA(totalExentoIVA);
-        tc.setTotalIRBPNR(totalIRBPNR);
-        tc.setSubtotalNoSujetoIva(totalSinImpuesto);
-        return tc;
-    }
-
-    private String obtenerPorcentajeIvaVigente(String cod) {
-        return "12";
-    }
-
-    private String obtenerPorcentajeIvaVigente() {
-        return "12";
-    }
-
-    private TaxIvaNotZero LlenaIvaDiferenteCero(Factura.InfoFactura infoFactura) {
-        BigDecimal valor = BigDecimal.ZERO.setScale(2);
-        String porcentajeIva = obtenerPorcentajeIvaVigente();
-        return new TaxIvaNotZero(valor, porcentajeIva, valor);
     }
 }

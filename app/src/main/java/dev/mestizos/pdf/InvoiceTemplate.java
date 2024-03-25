@@ -12,9 +12,6 @@ public class InvoiceTemplate {
 
     @Getter
     private Factura factura;
-    private String detalle1;
-    private String detalle2;
-    private String detalle3;
     private List<DetailsReport> detallesAdiciones;
     private List<AdditionalInformation> infoAdicional;
     private List<PayMethod> formasPago;
@@ -125,12 +122,7 @@ public class InvoiceTemplate {
         return this.totalesComprobante;
     }
 
-    public void setDetallesAdiciones(List<DetailsReport> detallesAdiciones) {
-        this.detallesAdiciones = detallesAdiciones;
-    }
-
     public List<AdditionalInformation> getInfoAdicional() {
-//        System.out.println("--->" + getFactura());
         if (getFactura().getInfoAdicional() != null) {
             this.infoAdicional = new ArrayList();
             if ((getFactura().getInfoAdicional().getCampoAdicional() != null) && (!this.factura.getInfoAdicional().getCampoAdicional().isEmpty())) {
@@ -228,7 +220,6 @@ public class InvoiceTemplate {
     }
 
     public List<PayMethod> getFormasPago() {
-//        System.out.println("--->" + getFactura());
         if (getFactura().getInfoFactura().getPagos() != null) {
             this.formasPago = new ArrayList();
             if ((getFactura().getInfoFactura().getPagos().getPago() != null) && (!this.factura.getInfoFactura().getPagos().getPago().isEmpty())) {
