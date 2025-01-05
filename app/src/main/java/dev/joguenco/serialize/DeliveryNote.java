@@ -1,28 +1,28 @@
-package dev.mestizos.serialize;
+package dev.joguenco.serialize;
 
-import ec.gob.sri.invoice.v210.Factura;
+import ec.gob.sri.note.delivery.v110.GuiaRemision;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 
 import java.io.File;
 
-public class Invoice {
+public class DeliveryNote {
 
     private final String pathXmlFile;
 
-    public Invoice(String pathXmlFile) {
+    public DeliveryNote(String pathXmlFile) {
         this.pathXmlFile = pathXmlFile;
     }
 
-    public Factura xmlToObject() {
+    public GuiaRemision xmlToObject() {
         File file = new File(pathXmlFile);
 
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(Factura.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(GuiaRemision.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-            return (Factura) jaxbUnmarshaller.unmarshal(file);
+            return (GuiaRemision) jaxbUnmarshaller.unmarshal(file);
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }

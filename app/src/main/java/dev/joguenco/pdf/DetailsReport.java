@@ -1,4 +1,4 @@
-package dev.mestizos.pdf;
+package dev.joguenco.pdf;
 
 import lombok.Getter;
 import lombok.Setter;

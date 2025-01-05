@@ -1,28 +1,28 @@
-package dev.mestizos.serialize;
+package dev.joguenco.serialize;
 
-import ec.gob.sri.liquidation.v110.LiquidacionCompra;
+import ec.gob.sri.withhold.v200.ComprobanteRetencion;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 
 import java.io.File;
 
-public class Liquidation {
+public class Withhold {
 
     private final String pathXmlFile;
 
-    public Liquidation(String pathXmlFile) {
+    public Withhold(String pathXmlFile) {
         this.pathXmlFile = pathXmlFile;
     }
 
-    public LiquidacionCompra xmlToObject() {
+    public ComprobanteRetencion xmlToObject() {
         File file = new File(pathXmlFile);
 
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(LiquidacionCompra.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(ComprobanteRetencion.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-            return (LiquidacionCompra) jaxbUnmarshaller.unmarshal(file);
+            return (ComprobanteRetencion) jaxbUnmarshaller.unmarshal(file);
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }

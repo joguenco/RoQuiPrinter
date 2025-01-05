@@ -1,4 +1,4 @@
-package dev.mestizos.serialize;
+package dev.joguenco.serialize;
 
 import ec.gob.sri.note.debit.v100.NotaDebito;
 import jakarta.xml.bind.JAXBContext;

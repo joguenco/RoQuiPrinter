@@ -1,6 +1,6 @@
 package roquiprinter;
 
-import dev.mestizos.pdf.InvoiceReport;
+import dev.joguenco.pdf.InvoiceReport;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

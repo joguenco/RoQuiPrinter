@@ -1,28 +1,28 @@
-package dev.mestizos.serialize;
+package dev.joguenco.serialize;
 
-import ec.gob.sri.withhold.v200.ComprobanteRetencion;
+import ec.gob.sri.note.credit.v110.NotaCredito;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 
 import java.io.File;
 
-public class Withhold {
+public class CreditNote {
 
     private final String pathXmlFile;
 
-    public Withhold(String pathXmlFile) {
+    public CreditNote(String pathXmlFile) {
         this.pathXmlFile = pathXmlFile;
     }
 
-    public ComprobanteRetencion xmlToObject() {
+    public NotaCredito xmlToObject() {
         File file = new File(pathXmlFile);
 
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(ComprobanteRetencion.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(NotaCredito.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-            return (ComprobanteRetencion) jaxbUnmarshaller.unmarshal(file);
+            return (NotaCredito) jaxbUnmarshaller.unmarshal(file);
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }

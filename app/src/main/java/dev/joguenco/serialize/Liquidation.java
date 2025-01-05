@@ -1,28 +1,28 @@
-package dev.mestizos.serialize;
+package dev.joguenco.serialize;
 
-import ec.gob.sri.note.credit.v110.NotaCredito;
+import ec.gob.sri.liquidation.v110.LiquidacionCompra;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;
 
 import java.io.File;
 
-public class CreditNote {
+public class Liquidation {
 
     private final String pathXmlFile;
 
-    public CreditNote(String pathXmlFile) {
+    public Liquidation(String pathXmlFile) {
         this.pathXmlFile = pathXmlFile;
     }
 
-    public NotaCredito xmlToObject() {
+    public LiquidacionCompra xmlToObject() {
         File file = new File(pathXmlFile);
 
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(NotaCredito.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(LiquidacionCompra.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-            return (NotaCredito) jaxbUnmarshaller.unmarshal(file);
+            return (LiquidacionCompra) jaxbUnmarshaller.unmarshal(file);
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }

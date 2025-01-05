@@ -1,6 +1,6 @@
-package dev.mestizos.pdf;
+package dev.joguenco.pdf;
 
-import dev.mestizos.serialize.Invoice;
+import dev.joguenco.serialize.Invoice;
 import ec.gob.sri.invoice.v210.Factura;
 import ec.gob.sri.invoice.v210.InfoTributaria;
 import net.sf.jasperreports.engine.*;

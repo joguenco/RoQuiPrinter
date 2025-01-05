@@ -1,4 +1,4 @@
-package dev.mestizos.pdf;
+package dev.joguenco.pdf;
 
 public enum TypeTaxIvaEnum
 {
