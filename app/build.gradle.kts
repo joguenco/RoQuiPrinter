@@ -11,7 +11,7 @@ plugins {
     id("io.freefair.lombok") version "8.4"
 }
 
-version = "1.0.0"
+version = "1.1.0"
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -51,5 +51,5 @@ tasks.named<Test>("test") {
 
 tasks.jar {
     // Customize the JAR file name
-    archiveFileName.set("RoquiPrinter-$version.jar")
+    archiveFileName.set("RoQuiPrinter-$version.jar")
 }

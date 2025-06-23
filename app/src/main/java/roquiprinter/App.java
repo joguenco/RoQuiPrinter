@@ -2,7 +2,7 @@ package roquiprinter;
 
 public class App {
     public String getGreeting() {
-        return "Hello RoquiPrinter !!!";
+        return "Hello RoQuiPrinter !!!";
     }
 
     public static void main(String[] args) {
