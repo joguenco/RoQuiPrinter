@@ -3,12 +3,12 @@ Library to generate PDF for SRI documents electronics of Ecuador
 
 ## Requirements
 - Java 21
-- Gradle 8.14.2
+- Gradle 8.14.3
 - Jaspersoft Studio 6.20
 
 ## Upgrade Gradle
 ```
-gradle wrapper --gradle-version 8.14.2
+gradle wrapper --gradle-version 8.14.3
 ```
 
 ## Test
@@ -22,6 +22,12 @@ gradle build
 ```
 
 ## Publish in local maven repository
+### GNU/Linux or MacOS
 ```
 mvn install:install-file -Dfile=./app/build/libs/RoQuiPrinter-1.1.0.jar -DgroupId=dev.joguenco.printer -DartifactId=RoQuiPrinter -Dversion=1.1.0 -Dpackaging=jar
+```
+### Windows
+In CMD terminal, not in PowerShell
+```
+mvn install:install-file -Dfile=.\app\build\libs\RoQuiPrinter-1.1.0.jar -DgroupId=dev.joguenco.printer -DartifactId=RoQuiPrinter -Dversion=1.1.0 -Dpackaging=jar
 ```
