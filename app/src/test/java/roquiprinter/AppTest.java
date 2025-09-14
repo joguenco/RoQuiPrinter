@@ -2,6 +2,7 @@ package roquiprinter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import dev.joguenco.pdf.CreditNoteReport;
 import dev.joguenco.pdf.InvoiceReport;
 import java.io.File;
 import org.junit.jupiter.api.Test;
@@ -28,6 +29,24 @@ class AppTest {
 
     InvoiceReport report = new InvoiceReport(pathXmlFile, reportFolder, pathLogo, pdfOutFolder);
     assertTrue(report.pdf("2403202401999999999900110012010000000581234567812", "1901-01-01"));
+  }
+
+  @Test
+  void createCreditNotePdf() {
+    ClassLoader classLoader = AppTest.class.getClassLoader();
+
+    final var xml = "0208202504123456789000120010010000000261234567817.xml";
+    final var logo = "logo.jpeg";
+    final var reportFolder = classLoader.getResource("./report").getPath();
+    final var pdfOutFolder = classLoader.getResource(".").getPath().concat("pdf");
+    createDirectory(pdfOutFolder);
+
+    final var pathXmlFile = classLoader.getResource(xml).getPath();
+    final var pathLogo = classLoader.getResource(logo).getPath();
+
+    CreditNoteReport report =
+        new CreditNoteReport(pathXmlFile, reportFolder, pathLogo, pdfOutFolder);
+    assertTrue(report.pdf("0208202504123456789000120010010000000261234567817", "1901-01-01"));
   }
 
   void createDirectory(String path) {

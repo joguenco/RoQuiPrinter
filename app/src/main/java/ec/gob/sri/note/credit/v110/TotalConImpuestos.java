@@ -105,7 +105,14 @@ public class TotalConImpuestos {
   @XmlAccessorType(XmlAccessType.FIELD)
   @XmlType(
       name = "",
-      propOrder = {"codigo", "codigoPorcentaje", "baseImponible", "valor", "valorDevolucionIva"})
+      propOrder = {
+        "codigo",
+        "codigoPorcentaje",
+        "tarifa",
+        "baseImponible",
+        "valor",
+        "valorDevolucionIva"
+      })
   public static class TotalImpuesto {
 
     @XmlElement(required = true)
@@ -116,6 +123,8 @@ public class TotalConImpuestos {
 
     @XmlElement(required = true)
     protected BigDecimal baseImponible;
+
+    protected BigDecimal tarifa;
 
     @XmlElement(required = true)
     protected BigDecimal valor;
@@ -165,6 +174,14 @@ public class TotalConImpuestos {
      */
     public BigDecimal getBaseImponible() {
       return baseImponible;
+    }
+
+    public BigDecimal getTarifa() {
+      return tarifa;
+    }
+
+    public void setTarifa(BigDecimal tarifa) {
+      this.tarifa = tarifa;
     }
 
     /**

@@ -12,7 +12,7 @@ public class InvoiceTemplate {
   private List<DetailsReport> detallesAdiciones;
   private List<AdditionalInformation> infoAdicional;
   private List<PayMethod> formasPago;
-  private List<TotalReceipts> totalesComprobante;
+  private List<TotalReceipts> totalReceipts;
 
   public InvoiceTemplate(Factura factura) {
     this.factura = factura;
@@ -56,46 +56,46 @@ public class InvoiceTemplate {
       if (getFormasPago() != null) {
         detAd.setFormasPago(getFormasPago());
       }
-      detAd.setTotalesComprobante(getTotalesComprobante());
+      detAd.setTotalesComprobante(getTotalReceipts());
       this.detallesAdiciones.add(detAd);
     }
     return this.detallesAdiciones;
   }
 
-  public List<TotalReceipts> getTotalesComprobante() {
-    this.totalesComprobante = new ArrayList<>();
+  public List<TotalReceipts> getTotalReceipts() {
+    this.totalReceipts = new ArrayList<>();
     BigDecimal importeTotal = BigDecimal.ZERO.setScale(2);
     BigDecimal compensaciones = BigDecimal.ZERO.setScale(2);
     BigDecimal oneHundred = new BigDecimal(100);
     TotalReceipt tc = getTotales(this.factura.getInfoFactura());
 
     for (TaxIvaNotZero iva : tc.getIvaDistintoCero()) {
-      this.totalesComprobante.add(
+      this.totalReceipts.add(
           new TotalReceipts("SUBTOTAL " + iva.getTarifa() + "%", iva.getSubtotal(), false));
     }
 
-    this.totalesComprobante.add(new TotalReceipts("SUBTOTAL IVA 0%", tc.getSubtotal0(), false));
-    this.totalesComprobante.add(
+    this.totalReceipts.add(new TotalReceipts("SUBTOTAL IVA 0%", tc.getSubtotal0(), false));
+    this.totalReceipts.add(
         new TotalReceipts("SUBTOTAL NO OBJETO IVA", tc.getSubtotalNoSujetoIva(), false));
-    this.totalesComprobante.add(
+    this.totalReceipts.add(
         new TotalReceipts("SUBTOTAL EXENTO IVA", tc.getSubtotalExentoIVA(), false));
-    this.totalesComprobante.add(
+    this.totalReceipts.add(
         new TotalReceipts(
             "SUBTOTAL SIN IMPUESTOS", this.factura.getInfoFactura().getTotalSinImpuestos(), false));
-    this.totalesComprobante.add(
+    this.totalReceipts.add(
         new TotalReceipts("DESCUENTO", this.factura.getInfoFactura().getTotalDescuento(), false));
-    this.totalesComprobante.add(new TotalReceipts("ICE", tc.getTotalIce(), false));
+    this.totalReceipts.add(new TotalReceipts("ICE", tc.getTotalIce(), false));
 
     for (TaxIvaNotZero iva : tc.getIvaDistintoCero()) {
       if (iva.getValor().compareTo(BigDecimal.ZERO) > 0) {
-        this.totalesComprobante.add(
+        this.totalReceipts.add(
             new TotalReceipts("IVA " + iva.getTarifa() + "%", iva.getValor(), false));
       } else {
-        this.totalesComprobante.add(new TotalReceipts("IVA ", iva.getValor(), false));
+        this.totalReceipts.add(new TotalReceipts("IVA ", iva.getValor(), false));
       }
     }
 
-    this.totalesComprobante.add(
+    this.totalReceipts.add(
         new TotalReceipts("PROPINA", this.factura.getInfoFactura().getPropina(), false));
     if (this.factura.getInfoFactura().getCompensaciones() != null) {
       for (var compensacion : this.factura.getInfoFactura().getCompensaciones().getCompensacion()) {
@@ -104,22 +104,22 @@ public class InvoiceTemplate {
       importeTotal = this.factura.getInfoFactura().getImporteTotal().add(compensaciones);
     }
     if (!compensaciones.equals(BigDecimal.ZERO.setScale(2))) {
-      this.totalesComprobante.add(new TotalReceipts("VALOR TOTAL", importeTotal, false));
+      this.totalReceipts.add(new TotalReceipts("VALOR TOTAL", importeTotal, false));
       for (var compensacion : this.factura.getInfoFactura().getCompensaciones().getCompensacion()) {
         if (!compensacion.getValor().equals(BigDecimal.ZERO.setScale(2))) {
           String detalleCompensacion = "";
-          this.totalesComprobante.add(
+          this.totalReceipts.add(
               new TotalReceipts("(-) " + detalleCompensacion, compensacion.getValor(), true));
         }
       }
-      this.totalesComprobante.add(
+      this.totalReceipts.add(
           new TotalReceipts(
               "VALOR A PAGAR", this.factura.getInfoFactura().getImporteTotal(), false));
     } else {
-      this.totalesComprobante.add(
+      this.totalReceipts.add(
           new TotalReceipts("VALOR TOTAL", this.factura.getInfoFactura().getImporteTotal(), false));
     }
-    return this.totalesComprobante;
+    return this.totalReceipts;
   }
 
   public List<AdditionalInformation> getInfoAdicional() {

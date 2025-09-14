@@ -26,31 +26,32 @@ public class InvoiceReport {
     var invoice = new Invoice(pathXmlFile);
 
     InvoiceTemplate fr = new InvoiceTemplate(invoice.xmlToObject());
-    generateReport(fr, authorization, authorizationDate);
-    return true;
+    return generateReport(fr, authorization, authorizationDate);
   }
 
-  private void generateReport(InvoiceTemplate xml, String numAut, String dateAut) {
-    generateReport(this.reportFolder + File.separator + "factura.jasper", xml, numAut, dateAut);
+  private Boolean generateReport(InvoiceTemplate rep, String numAut, String dateAut) {
+    return generateReport(
+        this.reportFolder + File.separator + "factura.jasper", rep, numAut, dateAut);
   }
 
-  private void generateReport(
-      String urlReport, InvoiceTemplate fact, String numAut, String dateAut) {
+  private Boolean generateReport(
+      String urlReport, InvoiceTemplate rep, String numAut, String dateAut) {
     FileInputStream is = null;
     try {
-      JRDataSource dataSource = new JRBeanCollectionDataSource(fact.getDetallesAdiciones());
+      JRDataSource dataSource = new JRBeanCollectionDataSource(rep.getDetallesAdiciones());
       is = new FileInputStream(urlReport);
       JasperPrint reportView =
           JasperFillManager.fillReport(
               is,
               obtenerMapaParametrosReportes(
                   getParametersInfoTriobutaria(
-                      fact.getFactura().getInfoTributaria(), numAut, dateAut),
-                  getInfoFactura(fact.getFactura().getInfoFactura())),
+                      rep.getFactura().getInfoTributaria(), numAut, dateAut),
+                  getInfoFactura(rep.getFactura().getInfoFactura())),
               dataSource);
-      savePdfReport(reportView, fact.getFactura().getInfoTributaria().getClaveAcceso());
+      savePdfReport(reportView, rep.getFactura().getInfoTributaria().getClaveAcceso());
     } catch (FileNotFoundException | JRException ex) {
       System.out.println(ex.getMessage());
+      return false;
     } finally {
       try {
         if (is != null) {
@@ -60,6 +61,7 @@ public class InvoiceReport {
         System.out.println("Error");
       }
     }
+    return true;
   }
 
   private void savePdfReport(JasperPrint jp, String pdfName) {
