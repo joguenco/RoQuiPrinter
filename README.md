@@ -11,6 +11,16 @@ Library to generate PDF for SRI documents electronics of Ecuador
 gradle wrapper --gradle-version 8.14.3
 ```
 
+## Check and format Java Code
+- Check
+```
+gradle spotlessCheck
+```
+- Format
+```
+gradle spotlessApply
+```
+
 ## Test
 ```
 gradle test

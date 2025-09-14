@@ -9,8 +9,25 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
     id("io.freefair.lombok") version "8.4"
+    id("com.diffplug.spotless") version "6.25.0"
 }
 
+spotless {
+    java {
+        // Choose a formatter, e.g., Google Java Format
+        googleJavaFormat()
+
+        // Optionally, add other steps
+        formatAnnotations()
+        removeUnusedImports()
+        trimTrailingWhitespace()
+        endWithNewline()
+
+        // Specify target files (e.g., all .java files except those in build directory)
+        target("src/**/*.java")
+        targetExclude("build/**")
+    }
+}
 version = "1.1.0"
 
 repositories {
