@@ -9,17 +9,15 @@ import lombok.Getter;
 public class InvoiceTemplate {
 
   @Getter private Factura factura;
-  private List<DetailsReport> detallesAdiciones;
   private List<AdditionalInformation> infoAdicional;
-  private List<PayMethod> formasPago;
-  private List<TotalReceipts> totalReceipts;
+  private List<PayMethod> payMethod;
 
   public InvoiceTemplate(Factura factura) {
     this.factura = factura;
   }
 
   public List<DetailsReport> getDetallesAdiciones() {
-    this.detallesAdiciones = new ArrayList<>();
+    List<DetailsReport> detallesAdiciones = new ArrayList<>();
 
     for (Factura.Detalles.Detalle det : getFactura().getDetalles().getDetalle()) {
       DetailsReport detAd = new DetailsReport();
@@ -53,49 +51,47 @@ public class InvoiceTemplate {
       }
       detAd.setInfoAdicional(getInfoAdicional());
 
-      if (getFormasPago() != null) {
-        detAd.setFormasPago(getFormasPago());
+      if (getPayMethod() != null) {
+        detAd.setFormasPago(getPayMethod());
       }
       detAd.setTotalesComprobante(getTotalReceipts());
-      this.detallesAdiciones.add(detAd);
+      detallesAdiciones.add(detAd);
     }
-    return this.detallesAdiciones;
+    return detallesAdiciones;
   }
 
   public List<TotalReceipts> getTotalReceipts() {
-    this.totalReceipts = new ArrayList<>();
+    List<TotalReceipts> totalReceipts = new ArrayList<>();
     BigDecimal importeTotal = BigDecimal.ZERO.setScale(2);
     BigDecimal compensaciones = BigDecimal.ZERO.setScale(2);
     BigDecimal oneHundred = new BigDecimal(100);
     TotalReceipt tc = getTotales(this.factura.getInfoFactura());
 
     for (TaxIvaNotZero iva : tc.getIvaDistintoCero()) {
-      this.totalReceipts.add(
+      totalReceipts.add(
           new TotalReceipts("SUBTOTAL " + iva.getTarifa() + "%", iva.getSubtotal(), false));
     }
 
-    this.totalReceipts.add(new TotalReceipts("SUBTOTAL IVA 0%", tc.getSubtotal0(), false));
-    this.totalReceipts.add(
+    totalReceipts.add(new TotalReceipts("SUBTOTAL IVA 0%", tc.getSubtotal0(), false));
+    totalReceipts.add(
         new TotalReceipts("SUBTOTAL NO OBJETO IVA", tc.getSubtotalNoSujetoIva(), false));
-    this.totalReceipts.add(
-        new TotalReceipts("SUBTOTAL EXENTO IVA", tc.getSubtotalExentoIVA(), false));
-    this.totalReceipts.add(
+    totalReceipts.add(new TotalReceipts("SUBTOTAL EXENTO IVA", tc.getSubtotalExentoIVA(), false));
+    totalReceipts.add(
         new TotalReceipts(
             "SUBTOTAL SIN IMPUESTOS", this.factura.getInfoFactura().getTotalSinImpuestos(), false));
-    this.totalReceipts.add(
+    totalReceipts.add(
         new TotalReceipts("DESCUENTO", this.factura.getInfoFactura().getTotalDescuento(), false));
-    this.totalReceipts.add(new TotalReceipts("ICE", tc.getTotalIce(), false));
+    totalReceipts.add(new TotalReceipts("ICE", tc.getTotalIce(), false));
 
     for (TaxIvaNotZero iva : tc.getIvaDistintoCero()) {
       if (iva.getValor().compareTo(BigDecimal.ZERO) > 0) {
-        this.totalReceipts.add(
-            new TotalReceipts("IVA " + iva.getTarifa() + "%", iva.getValor(), false));
+        totalReceipts.add(new TotalReceipts("IVA " + iva.getTarifa() + "%", iva.getValor(), false));
       } else {
-        this.totalReceipts.add(new TotalReceipts("IVA ", iva.getValor(), false));
+        totalReceipts.add(new TotalReceipts("IVA ", iva.getValor(), false));
       }
     }
 
-    this.totalReceipts.add(
+    totalReceipts.add(
         new TotalReceipts("PROPINA", this.factura.getInfoFactura().getPropina(), false));
     if (this.factura.getInfoFactura().getCompensaciones() != null) {
       for (var compensacion : this.factura.getInfoFactura().getCompensaciones().getCompensacion()) {
@@ -104,22 +100,22 @@ public class InvoiceTemplate {
       importeTotal = this.factura.getInfoFactura().getImporteTotal().add(compensaciones);
     }
     if (!compensaciones.equals(BigDecimal.ZERO.setScale(2))) {
-      this.totalReceipts.add(new TotalReceipts("VALOR TOTAL", importeTotal, false));
+      totalReceipts.add(new TotalReceipts("VALOR TOTAL", importeTotal, false));
       for (var compensacion : this.factura.getInfoFactura().getCompensaciones().getCompensacion()) {
         if (!compensacion.getValor().equals(BigDecimal.ZERO.setScale(2))) {
           String detalleCompensacion = "";
-          this.totalReceipts.add(
+          totalReceipts.add(
               new TotalReceipts("(-) " + detalleCompensacion, compensacion.getValor(), true));
         }
       }
-      this.totalReceipts.add(
+      totalReceipts.add(
           new TotalReceipts(
               "VALOR A PAGAR", this.factura.getInfoFactura().getImporteTotal(), false));
     } else {
-      this.totalReceipts.add(
+      totalReceipts.add(
           new TotalReceipts("VALOR TOTAL", this.factura.getInfoFactura().getImporteTotal(), false));
     }
-    return this.totalReceipts;
+    return totalReceipts;
   }
 
   public List<AdditionalInformation> getInfoAdicional() {
@@ -231,23 +227,32 @@ public class InvoiceTemplate {
     this.infoAdicional = infoAdicional;
   }
 
-  public List<PayMethod> getFormasPago() {
+  public List<PayMethod> getPayMethod() {
     if (getFactura().getInfoFactura().getPagos() != null) {
-      this.formasPago = new ArrayList();
+      this.payMethod = new ArrayList();
       if ((getFactura().getInfoFactura().getPagos().getPago() != null)
           && (!this.factura.getInfoFactura().getPagos().getPago().isEmpty())) {
         for (var pa : getFactura().getInfoFactura().getPagos().getPago()) {
-          this.formasPago.add(
+          this.payMethod.add(
               new PayMethod(
-                  obtenerDetalleFormaPago(pa.getFormaPago()),
-                  pa.getTotal().setScale(2).toString()));
+                  getNamePayMethod(pa.getFormaPago()), pa.getTotal().setScale(2).toString()));
         }
       }
     }
-    return this.formasPago;
+    return this.payMethod;
   }
 
-  private String obtenerDetalleFormaPago(String codigo) {
-    return codigo;
+  private String getNamePayMethod(String code) {
+    return switch (code) {
+      case "01" -> "Sin utilización del sistema financiero";
+      case "15" -> "Compensación de deudas";
+      case "16" -> "Tarjeta de débito";
+      case "17" -> "Dinero electrónico";
+      case "18" -> "Tarjeta prepago";
+      case "19" -> "Tarjeta de crédito";
+      case "20" -> "Otros con utilización del sistema financiero";
+      case "21" -> "Endoso de títulos";
+      default -> code + " No definido";
+    };
   }
 }

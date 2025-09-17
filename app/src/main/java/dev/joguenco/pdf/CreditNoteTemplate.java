@@ -10,16 +10,14 @@ import lombok.Getter;
 public class CreditNoteTemplate {
 
   @Getter private NotaCredito notaCredito;
-  private List<DetailsReport> detallesAdiciones;
   private List<AdditionalInformation> infoAdicional;
-  private List<TotalReceipts> totalReceipts;
 
   public CreditNoteTemplate(NotaCredito notaCredito) {
     this.notaCredito = notaCredito;
   }
 
   public List<DetailsReport> getDetallesAdiciones() {
-    this.detallesAdiciones = new ArrayList<>();
+    List<DetailsReport> detallesAdiciones = new ArrayList<>();
     for (NotaCredito.Detalles.Detalle det : getNotaCredito().getDetalles().getDetalle()) {
       DetailsReport detAd = new DetailsReport();
       detAd.setCodigoPrincipal(det.getCodigoInterno());
@@ -41,9 +39,9 @@ public class CreditNoteTemplate {
         }
       detAd.setInfoAdicional(getInfoAdicional());
       detAd.setTotalesComprobante(getTotalReceipts());
-      this.detallesAdiciones.add(detAd);
+      detallesAdiciones.add(detAd);
     }
-    return this.detallesAdiciones;
+    return detallesAdiciones;
   }
 
   public List<AdditionalInformation> getInfoAdicional() {
@@ -59,45 +57,43 @@ public class CreditNoteTemplate {
   }
 
   public List<TotalReceipts> getTotalReceipts() {
-    this.totalReceipts = new ArrayList<>();
+    List<TotalReceipts> totalReceipts = new ArrayList<>();
     BigDecimal importeTotal = BigDecimal.ZERO.setScale(2);
     TotalReceipt tc = getTotalesNC(this.notaCredito.getInfoNotaCredito());
     BigDecimal compensaciones = BigDecimal.ZERO.setScale(2);
     for (TaxIvaNotZero iva : tc.getIvaDistintoCero()) {
       if (iva.getSubtotal().compareTo(BigDecimal.ZERO) > 0)
-        this.totalReceipts.add(
+        totalReceipts.add(
             new TotalReceipts("SUBTOTAL " + iva.getTarifa() + "%", iva.getSubtotal(), false));
     }
 
     if (tc.getSubtotal0().compareTo(BigDecimal.ZERO) > 0)
-      this.totalReceipts.add(new TotalReceipts("SUBTOTAL IVA 0%", tc.getSubtotal0(), false));
+      totalReceipts.add(new TotalReceipts("SUBTOTAL IVA 0%", tc.getSubtotal0(), false));
     if (tc.getSubtotalNoSujetoIva().compareTo(BigDecimal.ZERO) > 0)
-      this.totalReceipts.add(
+      totalReceipts.add(
           new TotalReceipts("SUBTOTAL NO OBJETO IVA", tc.getSubtotalNoSujetoIva(), false));
     if (tc.getSubtotalExentoIVA().compareTo(BigDecimal.ZERO) > 0)
-      this.totalReceipts.add(
-          new TotalReceipts("SUBTOTAL EXENTO IVA", tc.getSubtotalExentoIVA(), false));
-    this.totalReceipts.add(
+      totalReceipts.add(new TotalReceipts("SUBTOTAL EXENTO IVA", tc.getSubtotalExentoIVA(), false));
+    totalReceipts.add(
         new TotalReceipts(
             "SUBTOTAL SIN IMPUESTOS",
             this.notaCredito.getInfoNotaCredito().getTotalSinImpuestos(),
             false));
 
-    this.totalReceipts.add(new TotalReceipts("DESCUENTO", getDiscount(), false));
+    totalReceipts.add(new TotalReceipts("DESCUENTO", getDiscount(), false));
     if (tc.getTotalIce().compareTo(BigDecimal.ZERO) > 0)
-      this.totalReceipts.add(new TotalReceipts("ICE", tc.getTotalIce(), false));
+      totalReceipts.add(new TotalReceipts("ICE", tc.getTotalIce(), false));
     for (TaxIvaNotZero iva : tc.getIvaDistintoCero())
-      this.totalReceipts.add(
-          new TotalReceipts("IVA " + iva.getTarifa() + "%", iva.getValor(), false));
+      totalReceipts.add(new TotalReceipts("IVA " + iva.getTarifa() + "%", iva.getValor(), false));
 
     if (tc.getTotalIRBPNR().compareTo(BigDecimal.ZERO) > 0)
-      this.totalReceipts.add(new TotalReceipts("IRBPNR", tc.getTotalIRBPNR(), false));
+      totalReceipts.add(new TotalReceipts("IRBPNR", tc.getTotalIRBPNR(), false));
 
-    this.totalReceipts.add(
+    totalReceipts.add(
         new TotalReceipts(
             "VALOR TOTAL", this.notaCredito.getInfoNotaCredito().getValorModificacion(), false));
 
-    return this.totalReceipts;
+    return totalReceipts;
   }
 
   private TotalReceipt getTotalesNC(NotaCredito.InfoNotaCredito infoNc) {

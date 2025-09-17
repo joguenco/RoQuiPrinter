@@ -34,12 +34,12 @@ gradle build
 ## Publish in local maven repository
 ### GNU/Linux or MacOS
 ```
-mvn install:install-file -Dfile=./app/build/libs/RoQuiPrinter-1.1.0.jar -DgroupId=dev.joguenco.printer -DartifactId=RoQuiPrinter -Dversion=1.1.0 -Dpackaging=jar
+mvn install:install-file -Dfile=./app/build/libs/RoQuiPrinter-1.2.0.jar -DgroupId=dev.joguenco.printer -DartifactId=RoQuiPrinter -Dversion=1.2.0 -Dpackaging=jar
 ```
 ### Windows
 In CMD terminal, not in PowerShell
 ```
-mvn install:install-file -Dfile=.\app\build\libs\RoQuiPrinter-1.1.0.jar -DgroupId=dev.joguenco.printer -DartifactId=RoQuiPrinter -Dversion=1.1.0 -Dpackaging=jar
+mvn install:install-file -Dfile=.\app\build\libs\RoQuiPrinter-1.2.0.jar -DgroupId=dev.joguenco.printer -DartifactId=RoQuiPrinter -Dversion=1.2.0 -Dpackaging=jar
 ```
 ## Jaspersoft Studio
 - Open Jaspersoft Studio

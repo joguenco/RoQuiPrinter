@@ -28,7 +28,7 @@ spotless {
         targetExclude("build/**")
     }
 }
-version = "1.1.0"
+version = "1.2.0"
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -39,7 +39,7 @@ dependencies {
     implementation("com.sun.xml.ws:jaxws-rt:4.0.1")
     implementation("net.sf.jasperreports:jasperreports:6.21.2")
     implementation("net.sf.barcode4j:barcode4j:2.1")
-    implementation("org.apache.xmlgraphics:batik-all:1.17")
+    implementation("org.apache.xmlgraphics:batik-all:1.18")
     implementation("com.github.librepdf:openpdf:1.3.30")
     compileOnly("org.projectlombok:lombok:1.18.30")
 
