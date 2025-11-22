@@ -26,6 +26,12 @@ gradle spotlessApply
 gradle test
 ```
 
+### Clean, Build and Publish in local maven repository
+```
+gradle clean build publishToMavenLocal
+```
+or you can run separately
+
 ## Build
 ```
 gradle build

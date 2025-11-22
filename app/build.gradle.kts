@@ -10,6 +10,7 @@ plugins {
     application
     id("io.freefair.lombok") version "8.4"
     id("com.diffplug.spotless") version "6.25.0"
+    id("maven-publish")
 }
 
 spotless {
@@ -29,6 +30,7 @@ spotless {
     }
 }
 version = "1.2.0"
+group = "dev.joguenco.printer"
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -69,4 +71,20 @@ tasks.named<Test>("test") {
 tasks.jar {
     // Customize the JAR file name
     archiveFileName.set("RoQuiPrinter-$version.jar")
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            artifactId = "RoQuiPrinter"
+            from(components["java"])
+            pom {
+                name.set("RoQuiPrinter")
+                description.set("Library to generate PDF for SRI documents electronics of Ecuador")
+            }
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
 }
