@@ -9,18 +9,18 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
     id("io.freefair.lombok") version "8.4"
-    id("com.diffplug.spotless") version "6.25.0"
+    id("com.diffplug.spotless") version "7.0.4"
     id("maven-publish")
 }
 
 spotless {
     java {
         // Choose a formatter, e.g., Google Java Format
-        googleJavaFormat()
+//        googleJavaFormat()
 
         // Optionally, add other steps
         formatAnnotations()
-        removeUnusedImports()
+//        removeUnusedImports()
         trimTrailingWhitespace()
         endWithNewline()
 
