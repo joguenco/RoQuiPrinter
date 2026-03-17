@@ -3,7 +3,7 @@ Library to generate PDF for SRI documents electronics of Ecuador
 
 ## Requirements
 - Java 21
-- Gradle 8.14.3
+- Gradle 8.14.4
 - Jaspersoft Studio 6.21
 
 ## Upgrade Gradle
