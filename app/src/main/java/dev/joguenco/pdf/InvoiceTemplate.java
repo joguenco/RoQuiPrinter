@@ -154,29 +154,20 @@ public class InvoiceTemplate {
                   ti.getBaseImponible(), ti.getTarifa().setScale(0).toString(), ti.getValor());
           ivaDiferenteCero.add(iva);
         } else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_12.getCode())) {
-          TaxIvaNotZero iva =
-              new TaxIvaNotZero(
-                  ti.getBaseImponible(), ti.getTarifa().setScale(0).toString(), ti.getValor());
+          TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), "12", ti.getValor());
           ivaDiferenteCero.add(iva);
         } else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_13.getCode())) {
-          TaxIvaNotZero iva =
-              new TaxIvaNotZero(
-                  ti.getBaseImponible(), ti.getTarifa().setScale(0).toString(), ti.getValor());
+          TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), "13", ti.getValor());
           ivaDiferenteCero.add(iva);
         } else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_15.getCode())) {
-          TaxIvaNotZero iva =
-              new TaxIvaNotZero(
-                  ti.getBaseImponible(), ti.getTarifa().setScale(0).toString(), ti.getValor());
+          TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), "15", ti.getValor());
           ivaDiferenteCero.add(iva);
         } else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_5.getCode())) {
-          TaxIvaNotZero iva =
-              new TaxIvaNotZero(
-                  ti.getBaseImponible(), ti.getTarifa().setScale(0).toString(), ti.getValor());
+          TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), "5", ti.getValor());
           ivaDiferenteCero.add(iva);
         } else {
           String codigoPorcentaje = "e";
-          TaxIvaNotZero iva =
-              new TaxIvaNotZero(ti.getBaseImponible(), codigoPorcentaje, ti.getValor());
+          TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), codigoPorcentaje, ti.getValor());
           ivaDiferenteCero.add(iva);
         }
       }
