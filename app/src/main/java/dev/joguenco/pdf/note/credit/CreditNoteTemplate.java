@@ -1,5 +1,6 @@
-package dev.joguenco.pdf;
+package dev.joguenco.pdf.note.credit;
 
+import dev.joguenco.pdf.*;
 import ec.gob.sri.note.credit.v110.NotaCredito;
 import ec.gob.sri.note.credit.v110.TotalConImpuestos;
 import java.math.BigDecimal;

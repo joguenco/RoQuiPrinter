@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<notaDebito id="comprobante" version="1.0.0">
+    <infoTributaria>
+        <ambiente>1</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>Jorge Luis</razonSocial>
+        <nombreComercial>joguenco.dev</nombreComercial>
+        <ruc>123456789001</ruc>
+        <claveAcceso>110820260512345678900110010010000000011234567810</claveAcceso>
+        <codDoc>05</codDoc>
+        <estab>001</estab>
+        <ptoEmi>001</ptoEmi>
+        <secuencial>000000001</secuencial>
+        <dirMatriz>Mi dirección principal</dirMatriz>
+        <agenteRetencion>1</agenteRetencion>
+    </infoTributaria>
+    <infoNotaDebito>
+        <fechaEmision>11/08/2026</fechaEmision>
+        <dirEstablecimiento>Mi dirección principal</dirEstablecimiento>
+        <tipoIdentificacionComprador>05</tipoIdentificacionComprador>
+        <razonSocialComprador>Jorge Luis</razonSocialComprador>
+        <identificacionComprador>1234567890</identificacionComprador>
+        <obligadoContabilidad>SI</obligadoContabilidad>
+        <codDocModificado>01</codDocModificado>
+        <numDocModificado>001-003-003016635</numDocModificado>
+        <fechaEmisionDocSustento>11/08/2026</fechaEmisionDocSustento>
+        <totalSinImpuestos>2.61</totalSinImpuestos>
+        <impuestos>
+            <impuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>4</codigoPorcentaje>
+                <tarifa>15</tarifa>
+                <baseImponible>2.61</baseImponible>
+                <valor>0.39</valor>
+            </impuesto>
+        </impuestos>
+        <valorTotal>3.00</valorTotal>
+        <pagos>
+            <pago>
+                <formaPago>20</formaPago>
+                <total>3.00</total>
+                <plazo>8</plazo>
+                <unidadTiempo>Día</unidadTiempo>
+            </pago>
+        </pagos>
+    </infoNotaDebito>
+    <motivos>
+        <motivo>
+            <razon>test</razon>
+            <valor>2.61</valor>
+        </motivo>
+    </motivos>
+    <infoAdicional>
+        <campoAdicional nombre="Dirección">Quito</campoAdicional>
+        <campoAdicional nombre="Pago">OTROS CON UTILIZACION DEL SISTEMA FINANCIERO</campoAdicional>
+        <campoAdicional nombre="Total">3.00</campoAdicional>
+    </infoAdicional>
+</notaDebito>

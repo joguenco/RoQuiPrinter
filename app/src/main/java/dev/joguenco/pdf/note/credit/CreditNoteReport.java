@@ -1,5 +1,6 @@
-package dev.joguenco.pdf;
+package dev.joguenco.pdf.note.credit;
 
+import dev.joguenco.pdf.TypeTaxEnum;
 import dev.joguenco.serialize.CreditNote;
 import ec.gob.sri.note.credit.v110.InfoTributaria;
 import ec.gob.sri.note.credit.v110.NotaCredito;
@@ -28,9 +29,9 @@ public class CreditNoteReport {
   }
 
   public Boolean pdf(String authorization, String authorizationDate) {
-    var invoice = new CreditNote(pathXmlFile);
+    var creditNote = new CreditNote(pathXmlFile);
 
-    CreditNoteTemplate cn = new CreditNoteTemplate(invoice.xmlToObject());
+    CreditNoteTemplate cn = new CreditNoteTemplate(creditNote.xmlToObject());
     return generateReport(cn, authorization, authorizationDate);
   }
 
