@@ -1,5 +1,6 @@
-package dev.joguenco.pdf;
+package dev.joguenco.pdf.invoice;
 
+import dev.joguenco.pdf.*;
 import ec.gob.sri.invoice.v210.Factura;
 import java.math.BigDecimal;
 import java.util.ArrayList;

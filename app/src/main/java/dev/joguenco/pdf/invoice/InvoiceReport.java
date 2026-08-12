@@ -1,4 +1,4 @@
-package dev.joguenco.pdf;
+package dev.joguenco.pdf.invoice;
 
 import dev.joguenco.serialize.Invoice;
 import ec.gob.sri.invoice.v210.Factura;
