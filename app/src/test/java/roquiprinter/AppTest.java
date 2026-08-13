@@ -3,10 +3,10 @@ package roquiprinter;
 import static org.junit.jupiter.api.Assertions.*;
 
 import dev.joguenco.pdf.note.credit.CreditNoteReport;
+import dev.joguenco.pdf.note.debit.DebitNoteReport;
 import dev.joguenco.pdf.invoice.InvoiceReport;
 import java.io.File;
 
-import dev.joguenco.pdf.note.debit.DebitNoteReport;
 import org.junit.jupiter.api.Test;
 
 class AppTest {
