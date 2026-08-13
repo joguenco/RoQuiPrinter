@@ -112,7 +112,7 @@ public class DebitNoteReport {
         Map<String, Object> param = new HashMap<>();
         param.put("DIR_SUCURSAL", notaDebito.getDirEstablecimiento());
         param.put("CONT_ESPECIAL", notaDebito.getContribuyenteEspecial());
-        param.put("LLEVA_CONTABILIDAD", notaDebito.getObligadoContabilidad());
+        param.put("LLEVA_CONTABILIDAD", notaDebito.getObligadoContabilidad().toString());
         param.put("RS_COMPRADOR", notaDebito.getRazonSocialComprador());
         param.put("RUC_COMPRADOR", notaDebito.getIdentificacionComprador());
         param.put("FECHA_EMISION", notaDebito.getFechaEmision());
