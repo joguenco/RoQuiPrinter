@@ -145,7 +145,7 @@
 				<textFieldExpression><![CDATA[$P{RS_COMPRADOR}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Transparent" x="432" y="380" width="118" height="17" uuid="ec9d05f5-b93b-4b50-9aaf-c875359ec703"/>
+				<reportElement mode="Transparent" x="432" y="379" width="118" height="17" uuid="ec9d05f5-b93b-4b50-9aaf-c875359ec703"/>
 				<textFieldExpression><![CDATA[$P{RUC_COMPRADOR}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -290,7 +290,7 @@
 				<text><![CDATA[Fecha:]]></text>
 			</staticText>
 			<textField>
-				<reportElement mode="Transparent" x="432" y="400" width="118" height="17" uuid="8e514858-d95b-4417-9cbd-bf8097310e33"/>
+				<reportElement mode="Transparent" x="432" y="399" width="118" height="17" uuid="8e514858-d95b-4417-9cbd-bf8097310e33"/>
 				<textFieldExpression><![CDATA[$P{EJERCICIO_FISCAL}]]></textFieldExpression>
 			</textField>
 			<staticText>

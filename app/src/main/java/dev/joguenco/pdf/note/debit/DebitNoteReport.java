@@ -1,6 +1,7 @@
 package dev.joguenco.pdf.note.debit;
 
 import dev.joguenco.serialize.DebitNote;
+import dev.joguenco.util.ReportUtil;
 import ec.gob.sri.note.debit.v100.InfoTributaria;
 import ec.gob.sri.note.debit.v100.NotaDebito;
 import net.sf.jasperreports.engine.*;
@@ -45,7 +46,7 @@ public class DebitNoteReport {
             JasperPrint reporte_view = JasperFillManager.fillReport(is,
                     obtenerMapaParametrosReportes(getParametersInfoTriobutaria(rep.getNotaDebito().getInfoTributaria(), numAut, fechaAut), obtenerInfoND(rep.getNotaDebito().getInfoNotaDebito())), (JRDataSource)jRBeanCollectionDataSource);
 
-            savePdfReport(reporte_view, rep.getNotaDebito().getInfoTributaria().getClaveAcceso());
+            ReportUtil.savePdfReport(reporte_view, rep.getNotaDebito().getInfoTributaria().getClaveAcceso(), pdfOutFolder);
         } catch (FileNotFoundException | JRException ex) {
             System.out.println(ex.getMessage());
             return false;
@@ -120,19 +121,6 @@ public class DebitNoteReport {
         param.put("FECHA_EMISION_DOC_SUSTENTO", notaDebito.getFechaEmisionDocSustento());
         param.put("DOC_MODIFICADO", obtenerDocumentoModificado(notaDebito.getCodDocModificado()));
         return param;
-    }
-
-    private void savePdfReport(JasperPrint jp, String pdfName) {
-        try {
-            OutputStream output =
-                    new FileOutputStream(new File(this.pdfOutFolder + File.separatorChar + pdfName + ".pdf"));
-            JasperExportManager.exportReportToPdfStream(jp, output);
-            output.close();
-            System.out.println(
-                    "PDF: Saved in " + this.pdfOutFolder + File.separatorChar + pdfName + ".pdf");
-        } catch (JRException | IOException ex) {
-            System.out.println("Error " + ex.getMessage());
-        }
     }
 
     public static String obtenerDocumentoModificado(String codDoc) {

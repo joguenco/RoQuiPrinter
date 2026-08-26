@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<comprobanteRetencion id="comprobante" version="2.0.0">
+    <infoTributaria>
+        <ambiente>2</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>Jorge Luis</razonSocial>
+        <nombreComercial>joguenco.dev</nombreComercial>
+        <ruc>9999999999001</ruc>
+        <claveAcceso>3007202607999999999900120010020000145281234567816</claveAcceso>
+        <codDoc>07</codDoc>
+        <estab>001</estab>
+        <ptoEmi>002</ptoEmi>
+        <secuencial>000014528</secuencial>
+        <dirMatriz>AV. AGUSTIN</dirMatriz>
+        <agenteRetencion>1</agenteRetencion>
+    </infoTributaria>
+    <infoCompRetencion>
+        <fechaEmision>30/07/2026</fechaEmision>
+        <dirEstablecimiento>AV. AGUSTIN</dirEstablecimiento>
+        <obligadoContabilidad>SI</obligadoContabilidad>
+        <tipoIdentificacionSujetoRetenido>04</tipoIdentificacionSujetoRetenido>
+        <parteRel>NO</parteRel>
+        <razonSocialSujetoRetenido>ELENA</razonSocialSujetoRetenido>
+        <identificacionSujetoRetenido>0400000008001</identificacionSujetoRetenido>
+        <periodoFiscal>07/2026</periodoFiscal>
+    </infoCompRetencion>
+    <docsSustento>
+        <docSustento>
+            <codSustento>01</codSustento>
+            <codDocSustento>01</codDocSustento>
+            <numDocSustento>002002000000066</numDocSustento>
+            <fechaEmisionDocSustento>21/07/2026</fechaEmisionDocSustento>
+            <numAutDocSustento>2307202601040000000800120020020000000661234567815</numAutDocSustento>
+            <pagoLocExt>01</pagoLocExt>
+            <totalSinImpuestos>1430.86</totalSinImpuestos>
+            <importeTotal>1577.99</importeTotal>
+            <impuestosDocSustento>
+                <impuestoDocSustento>
+                    <codImpuestoDocSustento>2</codImpuestoDocSustento>
+                    <codigoPorcentaje>0</codigoPorcentaje>
+                    <baseImponible>450</baseImponible>
+                    <tarifa>0</tarifa>
+                    <valorImpuesto>0</valorImpuesto>
+                </impuestoDocSustento>
+                <impuestoDocSustento>
+                    <codImpuestoDocSustento>2</codImpuestoDocSustento>
+                    <codigoPorcentaje>4</codigoPorcentaje>
+                    <baseImponible>980.86</baseImponible>
+                    <tarifa>15</tarifa>
+                    <valorImpuesto>147.13</valorImpuesto>
+                </impuestoDocSustento>
+            </impuestosDocSustento>
+            <retenciones>
+                <retencion>
+                    <codigo>1</codigo>
+                    <codigoRetencion>310</codigoRetencion>
+                    <baseImponible>450</baseImponible>
+                    <porcentajeRetener>1</porcentajeRetener>
+                    <valorRetenido>4.5</valorRetenido>
+                </retencion>
+                <retencion>
+                    <codigo>1</codigo>
+                    <codigoRetencion>3440</codigoRetencion>
+                    <baseImponible>980.86</baseImponible>
+                    <porcentajeRetener>3</porcentajeRetener>
+                    <valorRetenido>29.43</valorRetenido>
+                </retencion>
+                <retencion>
+                    <codigo>2</codigo>
+                    <codigoRetencion>2</codigoRetencion>
+                    <baseImponible>147.13</baseImponible>
+                    <porcentajeRetener>70</porcentajeRetener>
+                    <valorRetenido>102.99</valorRetenido>
+                </retencion>
+            </retenciones>
+            <pagos>
+                <pago>
+                    <formaPago>20</formaPago>
+                    <total>1577.99</total>
+                </pago>
+            </pagos>
+        </docSustento>
+    </docsSustento>
+    <infoAdicional>
+        <campoAdicional nombre="Dirección">AV. JUAN</campoAdicional>
+        <campoAdicional nombre="Teléfono">0999999999</campoAdicional>
+        <campoAdicional nombre="Email">beto@hotmail.com</campoAdicional>
+        <campoAdicional nombre="Teléfono">0222222222</campoAdicional>
+    </infoAdicional>
+</comprobanteRetencion>

@@ -1,6 +1,7 @@
 package dev.joguenco.pdf.liquidation;
 
 import dev.joguenco.serialize.Liquidation;
+import dev.joguenco.util.ReportUtil;
 import ec.gob.sri.liquidation.v110.LiquidacionCompra;
 import ec.gob.sri.liquidation.v110.InfoTributaria;
 import net.sf.jasperreports.engine.*;
@@ -50,7 +51,7 @@ public class LiquidationReport {
                       rep.getLiquidacion().getInfoTributaria(), numAut, dateAut),
                   getInfoLiquidation(rep.getLiquidacion().getInfoLiquidacionCompra())),
               dataSource);
-      savePdfReport(reportView, rep.getLiquidacion().getInfoTributaria().getClaveAcceso());
+      ReportUtil.savePdfReport(reportView, rep.getLiquidacion().getInfoTributaria().getClaveAcceso(), pdfOutFolder);
     } catch (FileNotFoundException | JRException ex) {
       System.out.println(ex.getMessage());
       return false;
@@ -64,19 +65,6 @@ public class LiquidationReport {
       }
     }
     return true;
-  }
-
-  private void savePdfReport(JasperPrint jp, String pdfName) {
-    try {
-      OutputStream output =
-          new FileOutputStream(new File(this.pdfOutFolder + File.separatorChar + pdfName + ".pdf"));
-      JasperExportManager.exportReportToPdfStream(jp, output);
-      output.close();
-      System.out.println(
-          "PDF: Saved in " + this.pdfOutFolder + File.separatorChar + pdfName + ".pdf");
-    } catch (JRException | IOException ex) {
-      System.out.println("Error " + ex.getMessage());
-    }
   }
 
   public Map<String, Object> getParametersInfoTriobutaria(

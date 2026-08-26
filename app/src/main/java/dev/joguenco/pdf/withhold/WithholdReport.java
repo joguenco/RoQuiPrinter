@@ -1,21 +1,23 @@
-package dev.joguenco.pdf.invoice;
+package dev.joguenco.pdf.withhold;
 
-import dev.joguenco.serialize.Invoice;
+import dev.joguenco.serialize.Withhold;
 import dev.joguenco.util.ReportUtil;
-import ec.gob.sri.invoice.v210.Factura;
-import ec.gob.sri.invoice.v210.InfoTributaria;
-import java.io.*;
-import java.util.*;
+import ec.gob.sri.withhold.v200.ComprobanteRetencion;
+import ec.gob.sri.withhold.v200.InfoTributaria;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
-public class InvoiceReport {
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
+
+public class WithholdReport {
   String pathXmlFile;
   String reportFolder;
   String pathLogo;
   String pdfOutFolder;
 
-  public InvoiceReport(
+  public WithholdReport(
       String pathXmlFile, String reportFolder, String pathLogo, String pdfOutFolder) {
     this.pathXmlFile = pathXmlFile;
     this.reportFolder = reportFolder;
@@ -24,19 +26,19 @@ public class InvoiceReport {
   }
 
   public Boolean pdf(String authorization, String authorizationDate) {
-    var invoice = new Invoice(pathXmlFile);
+    var withhold = new Withhold(pathXmlFile);
 
-    InvoiceTemplate fr = new InvoiceTemplate(invoice.xmlToObject());
+    var fr = new WithholdTemplate(withhold.xmlToObject());
     return generateReport(fr, authorization, authorizationDate);
   }
 
-  private Boolean generateReport(InvoiceTemplate rep, String numAut, String dateAut) {
+  private Boolean generateReport(WithholdTemplate rep, String numAut, String dateAut) {
     return generateReport(
-        this.reportFolder + File.separator + "factura.jasper", rep, numAut, dateAut);
+        this.reportFolder + File.separator + "comprobanteRetencion.jasper", rep, numAut, dateAut);
   }
 
   private Boolean generateReport(
-      String urlReport, InvoiceTemplate rep, String numAut, String dateAut) {
+      String urlReport, WithholdTemplate rep, String numAut, String dateAut) {
     FileInputStream is = null;
     try {
       JRDataSource dataSource = new JRBeanCollectionDataSource(rep.getDetallesAdiciones());
@@ -46,10 +48,10 @@ public class InvoiceReport {
               is,
               obtenerMapaParametrosReportes(
                   getParametersInfoTriobutaria(
-                      rep.getFactura().getInfoTributaria(), numAut, dateAut),
-                  getInfoFactura(rep.getFactura().getInfoFactura())),
+                      rep.getRetencion().getInfoTributaria(), numAut, dateAut),
+                  getInfoRetencion(rep.getRetencion().getInfoCompRetencion())),
               dataSource);
-      ReportUtil.savePdfReport(reportView, rep.getFactura().getInfoTributaria().getClaveAcceso(), pdfOutFolder);
+      ReportUtil.savePdfReport(reportView, rep.getRetencion().getInfoTributaria().getClaveAcceso(), pdfOutFolder);
     } catch (FileNotFoundException | JRException ex) {
       System.out.println(ex.getMessage());
       return false;
@@ -79,7 +81,6 @@ public class InvoiceReport {
     } catch (FileNotFoundException ex) {
       System.out.println("Error " + ex.getMessage());
     }
-    //        param.put("SUBREPORT_DIR", "./resources/reportes/");
 
     param.put("SUBREPORT_DIR", reportFolder + File.separator);
     param.put("SUBREPORT_PAGOS", reportFolder + File.separator);
@@ -92,13 +93,8 @@ public class InvoiceReport {
     param.put("NUM_AUT", numAut);
     param.put("FECHA_AUT", fechaAut);
     param.put("MARCA_AGUA", "");
-    param.put(
-        "NUM_FACT",
-        infoTributaria.getEstab()
-            + "-"
-            + infoTributaria.getPtoEmi()
-            + "-"
-            + infoTributaria.getSecuencial());
+    param.put("NUM_FACT",
+        infoTributaria.getEstab() + "-" + infoTributaria.getPtoEmi() + "-" + infoTributaria.getSecuencial());
     if (infoTributaria.getAmbiente().equals("1")) {
       param.put("AMBIENTE", "Pruebas");
     } else {
@@ -114,16 +110,15 @@ public class InvoiceReport {
     return mapa1;
   }
 
-  private Map<String, Object> getInfoFactura(Factura.InfoFactura infoFactura) {
+  private Map<String, Object> getInfoRetencion(ComprobanteRetencion.InfoCompRetencion infoRetencion) {
     Map<String, Object> param = new HashMap<>();
-    param.put("DIR_SUCURSAL", infoFactura.getDirEstablecimiento());
-    param.put("CONT_ESPECIAL", infoFactura.getContribuyenteEspecial());
-    param.put("LLEVA_CONTABILIDAD", infoFactura.getObligadoContabilidad().toString());
-    param.put("RS_COMPRADOR", infoFactura.getRazonSocialComprador());
-    param.put("RUC_COMPRADOR", infoFactura.getIdentificacionComprador());
-    param.put("DIRECCION_CLIENTE", infoFactura.getDireccionComprador());
-    param.put("FECHA_EMISION", infoFactura.getFechaEmision());
-    param.put("GUIA", infoFactura.getGuiaRemision());
+    param.put("DIR_SUCURSAL", infoRetencion.getDirEstablecimiento());
+    param.put("CONT_ESPECIAL", infoRetencion.getContribuyenteEspecial());
+    param.put("LLEVA_CONTABILIDAD", infoRetencion.getObligadoContabilidad().toString());
+    param.put("RS_COMPRADOR", infoRetencion.getRazonSocialSujetoRetenido());
+    param.put("RUC_COMPRADOR", infoRetencion.getIdentificacionSujetoRetenido());
+    param.put("FECHA_EMISION", infoRetencion.getFechaEmision());
+    param.put("EJERCICIO_FISCAL", infoRetencion.getPeriodoFiscal());
 
     return param;
   }

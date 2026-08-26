@@ -2,6 +2,7 @@ package dev.joguenco.pdf.note.credit;
 
 import dev.joguenco.pdf.TypeTaxEnum;
 import dev.joguenco.serialize.CreditNote;
+import dev.joguenco.util.ReportUtil;
 import ec.gob.sri.note.credit.v110.InfoTributaria;
 import ec.gob.sri.note.credit.v110.NotaCredito;
 import ec.gob.sri.note.credit.v110.TotalConImpuestos;
@@ -55,7 +56,7 @@ public class CreditNoteReport {
                       rep.getNotaCredito().getInfoTributaria(), numAut, fechaAut),
                   getInfoCN(rep.getNotaCredito().getInfoNotaCredito(), rep)),
               (JRDataSource) jRBeanCollectionDataSource);
-      savePdfReport(reporte_view, rep.getNotaCredito().getInfoTributaria().getClaveAcceso());
+      ReportUtil.savePdfReport(reporte_view, rep.getNotaCredito().getInfoTributaria().getClaveAcceso(), pdfOutFolder);
     } catch (FileNotFoundException | JRException ex) {
       System.out.println(ex.getMessage());
       return false;
@@ -119,19 +120,6 @@ public class CreditNoteReport {
     return param;
   }
 
-  private void savePdfReport(JasperPrint jp, String pdfName) {
-    try {
-      OutputStream output =
-          new FileOutputStream(new File(this.pdfOutFolder + File.separatorChar + pdfName + ".pdf"));
-      JasperExportManager.exportReportToPdfStream(jp, output);
-      output.close();
-      System.out.println(
-          "PDF: Saved in " + this.pdfOutFolder + File.separatorChar + pdfName + ".pdf");
-    } catch (JRException | IOException ex) {
-      System.out.println("Error " + ex.getMessage());
-    }
-  }
-
   private Map<String, Object> getInfoCN(NotaCredito.InfoNotaCredito infoCN, CreditNoteTemplate nc) {
     Map<String, Object> param = new HashMap<>();
     param.put("DIR_SUCURSAL", infoCN.getDirEstablecimiento());
@@ -142,7 +130,7 @@ public class CreditNoteReport {
     param.put("FECHA_EMISION", infoCN.getFechaEmision());
     param.put("NUM_DOC_MODIFICADO", infoCN.getNumDocModificado());
     param.put("FECHA_EMISION_DOC_SUSTENTO", infoCN.getFechaEmisionDocSustento());
-    param.put("DOC_MODIFICADO", obtenerDocumentoModificado(infoCN.getCodDocModificado()));
+    param.put("DOC_MODIFICADO", ReportUtil.getNameOfDocument(infoCN.getCodDocModificado()));
     param.put("RAZON_MODIF", infoCN.getMotivo());
     String porcentajeIva =
         ObtieneIvaRideNC(
@@ -150,15 +138,6 @@ public class CreditNoteReport {
             DeStringADate(infoCN.getFechaEmisionDocSustento()));
     param.put("PORCENTAJE_IVA", porcentajeIva);
     return param;
-  }
-
-  public static String obtenerDocumentoModificado(String codDoc) {
-    if ("01".equals(codDoc)) return "FACTURA";
-    if ("04".equals(codDoc)) return "NOTA DE CRÉDITO";
-    if ("05".equals(codDoc)) return "NOTA DE DÉBITO";
-    if ("06".equals(codDoc)) return "GUÍA DE REMISIÓN";
-    if ("07".equals(codDoc)) return "COMPROBANTE DE RETENCIÓN";
-    return null;
   }
 
   private String ObtieneIvaRideNC(TotalConImpuestos impuestos, Date fecha) {

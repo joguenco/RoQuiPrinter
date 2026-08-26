@@ -29,7 +29,7 @@ spotless {
         targetExclude("build/**")
     }
 }
-version = "1.2.0"
+version = "2.0.0"
 group = "dev.joguenco.printer"
 
 repositories {
@@ -39,7 +39,7 @@ repositories {
 
 dependencies {
     implementation("com.sun.xml.ws:jaxws-rt:4.0.1")
-    implementation("net.sf.jasperreports:jasperreports:6.21.3")
+    implementation("net.sf.jasperreports:jasperreports:6.21.5")
     implementation("net.sf.barcode4j:barcode4j:2.1")
     implementation("org.apache.xmlgraphics:batik-all:1.18")
     implementation("com.github.librepdf:openpdf:1.3.30")
