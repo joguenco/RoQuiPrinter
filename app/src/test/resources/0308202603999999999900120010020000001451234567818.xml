@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<liquidacionCompra id="comprobante" version="1.1.0">
+    <infoTributaria>
+        <ambiente>2</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>Jorge Luis</razonSocial>
+        <nombreComercial>joguenco.dev</nombreComercial>
+        <ruc>9999999999001</ruc>
+        <claveAcceso>0308202603999999999900120010020000001451234567818</claveAcceso>
+        <codDoc>03</codDoc>
+        <estab>001</estab>
+        <ptoEmi>002</ptoEmi>
+        <secuencial>000000145</secuencial>
+        <dirMatriz>AV. ROSALES</dirMatriz>
+        <agenteRetencion>1</agenteRetencion>
+    </infoTributaria>
+    <infoLiquidacionCompra>
+        <fechaEmision>03/08/2026</fechaEmision>
+        <dirEstablecimiento>AV. ROSALES</dirEstablecimiento>
+        <obligadoContabilidad>SI</obligadoContabilidad>
+        <tipoIdentificacionProveedor>05</tipoIdentificacionProveedor>
+        <razonSocialProveedor>WILO</razonSocialProveedor>
+        <identificacionProveedor>1000000000</identificacionProveedor>
+        <direccionProveedor>CALLE CONDOR Y ZUMBA</direccionProveedor>
+        <totalSinImpuestos>74.23</totalSinImpuestos>
+        <totalDescuento>0.00</totalDescuento>
+        <totalConImpuestos>
+            <totalImpuesto>
+                <codigo>2</codigo>
+                <codigoPorcentaje>4</codigoPorcentaje>
+                <baseImponible>74.23</baseImponible>
+                <tarifa>15</tarifa>
+                <valor>11.13</valor>
+            </totalImpuesto>
+        </totalConImpuestos>
+        <importeTotal>85.36</importeTotal>
+        <moneda>DOLAR</moneda>
+        <pagos>
+            <pago>
+                <formaPago>01</formaPago>
+                <total>85.36</total>
+            </pago>
+        </pagos>
+    </infoLiquidacionCompra>
+    <detalles>
+        <detalle>
+            <codigoPrincipal>45257</codigoPrincipal>
+            <descripcion>TE-26-02 / ESTIBAJE IBARRA TERRAKING</descripcion>
+            <cantidad>1.00</cantidad>
+            <precioUnitario>74.2300</precioUnitario>
+            <descuento>0.00</descuento>
+            <precioTotalSinImpuesto>74.23</precioTotalSinImpuesto>
+            <impuestos>
+                <impuesto>
+                    <codigo>2</codigo>
+                    <codigoPorcentaje>4</codigoPorcentaje>
+                    <tarifa>15</tarifa>
+                    <baseImponible>74.23</baseImponible>
+                    <valor>11.13</valor>
+                </impuesto>
+            </impuestos>
+        </detalle>
+    </detalles>
+    <infoAdicional>
+        <campoAdicional nombre="Dirección">CALLE CONDOR Y ZUMBA</campoAdicional>
+        <campoAdicional nombre="Teléfono">0999999999</campoAdicional>
+    </infoAdicional>
+</liquidacionCompra>
