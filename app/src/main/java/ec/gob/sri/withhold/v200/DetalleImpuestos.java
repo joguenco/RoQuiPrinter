@@ -34,32 +34,32 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "detalleImpuestos",
-    propOrder = {"detalleImpuesto"})
+        name = "detalleImpuestos",
+        propOrder = {"detalleImpuesto"})
 public class DetalleImpuestos {
 
-  @XmlElement(required = true)
-  protected List<DetalleImpuesto> detalleImpuesto;
+    @XmlElement(required = true)
+    protected List<DetalleImpuesto> detalleImpuesto;
 
-  /**
-   * Gets the value of the detalleImpuesto property.
-   *
-   * <p>This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the detalleImpuesto property.
-   *
-   * <p>For example, to add a new item, do as follows:
-   *
-   * <pre>
-   *    getDetalleImpuesto().add(newItem);
-   * </pre>
-   *
-   * <p>Objects of the following type(s) are allowed in the list {@link DetalleImpuesto }
-   */
-  public List<DetalleImpuesto> getDetalleImpuesto() {
-    if (detalleImpuesto == null) {
-      detalleImpuesto = new ArrayList<DetalleImpuesto>();
+    /**
+     * Gets the value of the detalleImpuesto property.
+     *
+     * <p>This accessor method returns a reference to the live list, not a snapshot. Therefore any
+     * modification you make to the returned list will be present inside the JAXB object. This is
+     * why there is not a <CODE>set</CODE> method for the detalleImpuesto property.
+     *
+     * <p>For example, to add a new item, do as follows:
+     *
+     * <pre>
+     *    getDetalleImpuesto().add(newItem);
+     * </pre>
+     *
+     * <p>Objects of the following type(s) are allowed in the list {@link DetalleImpuesto }
+     */
+    public List<DetalleImpuesto> getDetalleImpuesto() {
+        if (detalleImpuesto == null) {
+            detalleImpuesto = new ArrayList<DetalleImpuesto>();
+        }
+        return this.detalleImpuesto;
     }
-    return this.detalleImpuesto;
-  }
 }

@@ -22,69 +22,70 @@ import jakarta.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
-  /**
-   * Create a new ObjectFactory that can be used to create new instances of schema derived classes
-   * for package: ec.gob.sri.note.delivery.v110
-   */
-  public ObjectFactory() {}
+    /**
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes
+     * for package: ec.gob.sri.note.delivery.v110
+     */
+    public ObjectFactory() {}
 
-  /** Create an instance of {@link GuiaRemision } */
-  public GuiaRemision createGuiaRemision() {
-    return new GuiaRemision();
-  }
+    /** Create an instance of {@link GuiaRemision } */
+    public GuiaRemision createGuiaRemision() {
+        return new GuiaRemision();
+    }
 
-  /** Create an instance of {@link Detalle } */
-  public Detalle createDetalle() {
-    return new Detalle();
-  }
+    /** Create an instance of {@link Detalle } */
+    public Detalle createDetalle() {
+        return new Detalle();
+    }
 
-  /** Create an instance of {@link Detalle.DetallesAdicionales } */
-  public Detalle.DetallesAdicionales createDetalleDetallesAdicionales() {
-    return new Detalle.DetallesAdicionales();
-  }
+    /** Create an instance of {@link Detalle.DetallesAdicionales } */
+    public Detalle.DetallesAdicionales createDetalleDetallesAdicionales() {
+        return new Detalle.DetallesAdicionales();
+    }
 
-  /** Create an instance of {@link Destinatario } */
-  public Destinatario createDestinatario() {
-    return new Destinatario();
-  }
+    /** Create an instance of {@link Destinatario } */
+    public Destinatario createDestinatario() {
+        return new Destinatario();
+    }
 
-  /** Create an instance of {@link GuiaRemision.InfoAdicional } */
-  public GuiaRemision.InfoAdicional createGuiaRemisionInfoAdicional() {
-    return new GuiaRemision.InfoAdicional();
-  }
+    /** Create an instance of {@link GuiaRemision.InfoAdicional } */
+    public GuiaRemision.InfoAdicional createGuiaRemisionInfoAdicional() {
+        return new GuiaRemision.InfoAdicional();
+    }
 
-  /** Create an instance of {@link InfoTributaria } */
-  public InfoTributaria createInfoTributaria() {
-    return new InfoTributaria();
-  }
+    /** Create an instance of {@link InfoTributaria } */
+    public InfoTributaria createInfoTributaria() {
+        return new InfoTributaria();
+    }
 
-  /** Create an instance of {@link GuiaRemision.InfoGuiaRemision } */
-  public GuiaRemision.InfoGuiaRemision createGuiaRemisionInfoGuiaRemision() {
-    return new GuiaRemision.InfoGuiaRemision();
-  }
+    /** Create an instance of {@link GuiaRemision.InfoGuiaRemision } */
+    public GuiaRemision.InfoGuiaRemision createGuiaRemisionInfoGuiaRemision() {
+        return new GuiaRemision.InfoGuiaRemision();
+    }
 
-  /** Create an instance of {@link GuiaRemision.Destinatarios } */
-  public GuiaRemision.Destinatarios createGuiaRemisionDestinatarios() {
-    return new GuiaRemision.Destinatarios();
-  }
+    /** Create an instance of {@link GuiaRemision.Destinatarios } */
+    public GuiaRemision.Destinatarios createGuiaRemisionDestinatarios() {
+        return new GuiaRemision.Destinatarios();
+    }
 
-  /** Create an instance of {@link MaquinaFiscal } */
-  public MaquinaFiscal createMaquinaFiscal() {
-    return new MaquinaFiscal();
-  }
+    /** Create an instance of {@link MaquinaFiscal } */
+    public MaquinaFiscal createMaquinaFiscal() {
+        return new MaquinaFiscal();
+    }
 
-  /** Create an instance of {@link Detalle.DetallesAdicionales.DetAdicional } */
-  public Detalle.DetallesAdicionales.DetAdicional createDetalleDetallesAdicionalesDetAdicional() {
-    return new Detalle.DetallesAdicionales.DetAdicional();
-  }
+    /** Create an instance of {@link Detalle.DetallesAdicionales.DetAdicional } */
+    public Detalle.DetallesAdicionales.DetAdicional createDetalleDetallesAdicionalesDetAdicional() {
+        return new Detalle.DetallesAdicionales.DetAdicional();
+    }
 
-  /** Create an instance of {@link Destinatario.Detalles } */
-  public Destinatario.Detalles createDestinatarioDetalles() {
-    return new Destinatario.Detalles();
-  }
+    /** Create an instance of {@link Destinatario.Detalles } */
+    public Destinatario.Detalles createDestinatarioDetalles() {
+        return new Destinatario.Detalles();
+    }
 
-  /** Create an instance of {@link GuiaRemision.InfoAdicional.CampoAdicional } */
-  public GuiaRemision.InfoAdicional.CampoAdicional createGuiaRemisionInfoAdicionalCampoAdicional() {
-    return new GuiaRemision.InfoAdicional.CampoAdicional();
-  }
+    /** Create an instance of {@link GuiaRemision.InfoAdicional.CampoAdicional } */
+    public GuiaRemision.InfoAdicional.CampoAdicional
+            createGuiaRemisionInfoAdicionalCampoAdicional() {
+        return new GuiaRemision.InfoAdicional.CampoAdicional();
+    }
 }

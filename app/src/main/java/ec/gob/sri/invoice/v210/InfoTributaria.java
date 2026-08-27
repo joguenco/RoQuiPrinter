@@ -46,290 +46,290 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "infoTributaria",
-    propOrder = {
-      "ambiente",
-      "tipoEmision",
-      "razonSocial",
-      "nombreComercial",
-      "ruc",
-      "claveAcceso",
-      "codDoc",
-      "estab",
-      "ptoEmi",
-      "secuencial",
-      "dirMatriz",
-      "agenteRetencion",
-      "contribuyenteRimpe"
-    })
+        name = "infoTributaria",
+        propOrder = {
+            "ambiente",
+            "tipoEmision",
+            "razonSocial",
+            "nombreComercial",
+            "ruc",
+            "claveAcceso",
+            "codDoc",
+            "estab",
+            "ptoEmi",
+            "secuencial",
+            "dirMatriz",
+            "agenteRetencion",
+            "contribuyenteRimpe"
+        })
 public class InfoTributaria {
 
-  @XmlElement(required = true)
-  protected String ambiente;
+    @XmlElement(required = true)
+    protected String ambiente;
 
-  @XmlElement(required = true)
-  protected String tipoEmision;
+    @XmlElement(required = true)
+    protected String tipoEmision;
 
-  @XmlElement(required = true)
-  protected String razonSocial;
+    @XmlElement(required = true)
+    protected String razonSocial;
 
-  protected String nombreComercial;
+    protected String nombreComercial;
 
-  @XmlElement(required = true)
-  protected String ruc;
+    @XmlElement(required = true)
+    protected String ruc;
 
-  @XmlElement(required = true)
-  protected String claveAcceso;
+    @XmlElement(required = true)
+    protected String claveAcceso;
 
-  @XmlElement(required = true)
-  protected String codDoc;
+    @XmlElement(required = true)
+    protected String codDoc;
 
-  @XmlElement(required = true)
-  protected String estab;
+    @XmlElement(required = true)
+    protected String estab;
 
-  @XmlElement(required = true)
-  protected String ptoEmi;
+    @XmlElement(required = true)
+    protected String ptoEmi;
 
-  @XmlElement(required = true)
-  protected String secuencial;
+    @XmlElement(required = true)
+    protected String secuencial;
 
-  @XmlElement(required = true)
-  protected String dirMatriz;
+    @XmlElement(required = true)
+    protected String dirMatriz;
 
-  protected String agenteRetencion;
-  protected String contribuyenteRimpe;
+    protected String agenteRetencion;
+    protected String contribuyenteRimpe;
 
-  /**
-   * Gets the value of the ambiente property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getAmbiente() {
-    return ambiente;
-  }
+    /**
+     * Gets the value of the ambiente property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getAmbiente() {
+        return ambiente;
+    }
 
-  /**
-   * Sets the value of the ambiente property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setAmbiente(String value) {
-    this.ambiente = value;
-  }
+    /**
+     * Sets the value of the ambiente property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setAmbiente(String value) {
+        this.ambiente = value;
+    }
 
-  /**
-   * Gets the value of the tipoEmision property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getTipoEmision() {
-    return tipoEmision;
-  }
+    /**
+     * Gets the value of the tipoEmision property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getTipoEmision() {
+        return tipoEmision;
+    }
 
-  /**
-   * Sets the value of the tipoEmision property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setTipoEmision(String value) {
-    this.tipoEmision = value;
-  }
+    /**
+     * Sets the value of the tipoEmision property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setTipoEmision(String value) {
+        this.tipoEmision = value;
+    }
 
-  /**
-   * Gets the value of the razonSocial property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getRazonSocial() {
-    return razonSocial;
-  }
+    /**
+     * Gets the value of the razonSocial property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getRazonSocial() {
+        return razonSocial;
+    }
 
-  /**
-   * Sets the value of the razonSocial property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setRazonSocial(String value) {
-    this.razonSocial = value;
-  }
+    /**
+     * Sets the value of the razonSocial property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setRazonSocial(String value) {
+        this.razonSocial = value;
+    }
 
-  /**
-   * Gets the value of the nombreComercial property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getNombreComercial() {
-    return nombreComercial;
-  }
+    /**
+     * Gets the value of the nombreComercial property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getNombreComercial() {
+        return nombreComercial;
+    }
 
-  /**
-   * Sets the value of the nombreComercial property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setNombreComercial(String value) {
-    this.nombreComercial = value;
-  }
+    /**
+     * Sets the value of the nombreComercial property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setNombreComercial(String value) {
+        this.nombreComercial = value;
+    }
 
-  /**
-   * Gets the value of the ruc property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getRuc() {
-    return ruc;
-  }
+    /**
+     * Gets the value of the ruc property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getRuc() {
+        return ruc;
+    }
 
-  /**
-   * Sets the value of the ruc property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setRuc(String value) {
-    this.ruc = value;
-  }
+    /**
+     * Sets the value of the ruc property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setRuc(String value) {
+        this.ruc = value;
+    }
 
-  /**
-   * Gets the value of the claveAcceso property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getClaveAcceso() {
-    return claveAcceso;
-  }
+    /**
+     * Gets the value of the claveAcceso property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getClaveAcceso() {
+        return claveAcceso;
+    }
 
-  /**
-   * Sets the value of the claveAcceso property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setClaveAcceso(String value) {
-    this.claveAcceso = value;
-  }
+    /**
+     * Sets the value of the claveAcceso property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setClaveAcceso(String value) {
+        this.claveAcceso = value;
+    }
 
-  /**
-   * Gets the value of the codDoc property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getCodDoc() {
-    return codDoc;
-  }
+    /**
+     * Gets the value of the codDoc property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getCodDoc() {
+        return codDoc;
+    }
 
-  /**
-   * Sets the value of the codDoc property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setCodDoc(String value) {
-    this.codDoc = value;
-  }
+    /**
+     * Sets the value of the codDoc property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setCodDoc(String value) {
+        this.codDoc = value;
+    }
 
-  /**
-   * Gets the value of the estab property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getEstab() {
-    return estab;
-  }
+    /**
+     * Gets the value of the estab property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getEstab() {
+        return estab;
+    }
 
-  /**
-   * Sets the value of the estab property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setEstab(String value) {
-    this.estab = value;
-  }
+    /**
+     * Sets the value of the estab property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setEstab(String value) {
+        this.estab = value;
+    }
 
-  /**
-   * Gets the value of the ptoEmi property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getPtoEmi() {
-    return ptoEmi;
-  }
+    /**
+     * Gets the value of the ptoEmi property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getPtoEmi() {
+        return ptoEmi;
+    }
 
-  /**
-   * Sets the value of the ptoEmi property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setPtoEmi(String value) {
-    this.ptoEmi = value;
-  }
+    /**
+     * Sets the value of the ptoEmi property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setPtoEmi(String value) {
+        this.ptoEmi = value;
+    }
 
-  /**
-   * Gets the value of the secuencial property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getSecuencial() {
-    return secuencial;
-  }
+    /**
+     * Gets the value of the secuencial property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getSecuencial() {
+        return secuencial;
+    }
 
-  /**
-   * Sets the value of the secuencial property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setSecuencial(String value) {
-    this.secuencial = value;
-  }
+    /**
+     * Sets the value of the secuencial property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setSecuencial(String value) {
+        this.secuencial = value;
+    }
 
-  /**
-   * Gets the value of the dirMatriz property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getDirMatriz() {
-    return dirMatriz;
-  }
+    /**
+     * Gets the value of the dirMatriz property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getDirMatriz() {
+        return dirMatriz;
+    }
 
-  /**
-   * Sets the value of the dirMatriz property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setDirMatriz(String value) {
-    this.dirMatriz = value;
-  }
+    /**
+     * Sets the value of the dirMatriz property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setDirMatriz(String value) {
+        this.dirMatriz = value;
+    }
 
-  /**
-   * Gets the value of the agenteRetencion property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getAgenteRetencion() {
-    return agenteRetencion;
-  }
+    /**
+     * Gets the value of the agenteRetencion property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getAgenteRetencion() {
+        return agenteRetencion;
+    }
 
-  /**
-   * Sets the value of the agenteRetencion property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setAgenteRetencion(String value) {
-    this.agenteRetencion = value;
-  }
+    /**
+     * Sets the value of the agenteRetencion property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setAgenteRetencion(String value) {
+        this.agenteRetencion = value;
+    }
 
-  /**
-   * Gets the value of the contribuyenteRimpe property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getContribuyenteRimpe() {
-    return contribuyenteRimpe;
-  }
+    /**
+     * Gets the value of the contribuyenteRimpe property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getContribuyenteRimpe() {
+        return contribuyenteRimpe;
+    }
 
-  /**
-   * Sets the value of the contribuyenteRimpe property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setContribuyenteRimpe(String value) {
-    this.contribuyenteRimpe = value;
-  }
+    /**
+     * Sets the value of the contribuyenteRimpe property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setContribuyenteRimpe(String value) {
+        this.contribuyenteRimpe = value;
+    }
 }

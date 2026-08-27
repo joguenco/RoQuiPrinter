@@ -48,140 +48,140 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "pagos",
-    propOrder = {"pago"})
+        name = "pagos",
+        propOrder = {"pago"})
 public class Pagos {
 
-  @XmlElement(required = true)
-  protected List<Pagos.Pago> pago;
-
-  /**
-   * Gets the value of the pago property.
-   *
-   * <p>This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the pago property.
-   *
-   * <p>For example, to add a new item, do as follows:
-   *
-   * <pre>
-   *    getPago().add(newItem);
-   * </pre>
-   *
-   * <p>Objects of the following type(s) are allowed in the list {@link Pagos.Pago }
-   */
-  public List<Pagos.Pago> getPago() {
-    if (pago == null) {
-      pago = new ArrayList<Pagos.Pago>();
-    }
-    return this.pago;
-  }
-
-  /**
-   * Java class for anonymous complex type.
-   *
-   * <p>The following schema fragment specifies the expected content contained within this class.
-   *
-   * <pre>
-   * &lt;complexType&gt;
-   *   &lt;complexContent&gt;
-   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
-   *       &lt;sequence&gt;
-   *         &lt;element name="formaPago" type="{}formaPago"/&gt;
-   *         &lt;element name="total" type="{}total"/&gt;
-   *         &lt;element name="plazo" type="{}plazo" minOccurs="0"/&gt;
-   *         &lt;element name="unidadTiempo" type="{}unidadTiempo" minOccurs="0"/&gt;
-   *       &lt;/sequence&gt;
-   *     &lt;/restriction&gt;
-   *   &lt;/complexContent&gt;
-   * &lt;/complexType&gt;
-   * </pre>
-   */
-  @XmlAccessorType(XmlAccessType.FIELD)
-  @XmlType(
-      name = "",
-      propOrder = {"formaPago", "total", "plazo", "unidadTiempo"})
-  public static class Pago {
-
     @XmlElement(required = true)
-    protected String formaPago;
-
-    @XmlElement(required = true)
-    protected BigDecimal total;
-
-    protected BigDecimal plazo;
-    protected String unidadTiempo;
+    protected List<Pagos.Pago> pago;
 
     /**
-     * Gets the value of the formaPago property.
+     * Gets the value of the pago property.
      *
-     * @return possible object is {@link String }
+     * <p>This accessor method returns a reference to the live list, not a snapshot. Therefore any
+     * modification you make to the returned list will be present inside the JAXB object. This is
+     * why there is not a <CODE>set</CODE> method for the pago property.
+     *
+     * <p>For example, to add a new item, do as follows:
+     *
+     * <pre>
+     *    getPago().add(newItem);
+     * </pre>
+     *
+     * <p>Objects of the following type(s) are allowed in the list {@link Pagos.Pago }
      */
-    public String getFormaPago() {
-      return formaPago;
+    public List<Pagos.Pago> getPago() {
+        if (pago == null) {
+            pago = new ArrayList<Pagos.Pago>();
+        }
+        return this.pago;
     }
 
     /**
-     * Sets the value of the formaPago property.
+     * Java class for anonymous complex type.
      *
-     * @param value allowed object is {@link String }
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     *
+     * <pre>
+     * &lt;complexType&gt;
+     *   &lt;complexContent&gt;
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *       &lt;sequence&gt;
+     *         &lt;element name="formaPago" type="{}formaPago"/&gt;
+     *         &lt;element name="total" type="{}total"/&gt;
+     *         &lt;element name="plazo" type="{}plazo" minOccurs="0"/&gt;
+     *         &lt;element name="unidadTiempo" type="{}unidadTiempo" minOccurs="0"/&gt;
+     *       &lt;/sequence&gt;
+     *     &lt;/restriction&gt;
+     *   &lt;/complexContent&gt;
+     * &lt;/complexType&gt;
+     * </pre>
      */
-    public void setFormaPago(String value) {
-      this.formaPago = value;
-    }
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(
+            name = "",
+            propOrder = {"formaPago", "total", "plazo", "unidadTiempo"})
+    public static class Pago {
 
-    /**
-     * Gets the value of the total property.
-     *
-     * @return possible object is {@link BigDecimal }
-     */
-    public BigDecimal getTotal() {
-      return total;
-    }
+        @XmlElement(required = true)
+        protected String formaPago;
 
-    /**
-     * Sets the value of the total property.
-     *
-     * @param value allowed object is {@link BigDecimal }
-     */
-    public void setTotal(BigDecimal value) {
-      this.total = value;
-    }
+        @XmlElement(required = true)
+        protected BigDecimal total;
 
-    /**
-     * Gets the value of the plazo property.
-     *
-     * @return possible object is {@link BigDecimal }
-     */
-    public BigDecimal getPlazo() {
-      return plazo;
-    }
+        protected BigDecimal plazo;
+        protected String unidadTiempo;
 
-    /**
-     * Sets the value of the plazo property.
-     *
-     * @param value allowed object is {@link BigDecimal }
-     */
-    public void setPlazo(BigDecimal value) {
-      this.plazo = value;
-    }
+        /**
+         * Gets the value of the formaPago property.
+         *
+         * @return possible object is {@link String }
+         */
+        public String getFormaPago() {
+            return formaPago;
+        }
 
-    /**
-     * Gets the value of the unidadTiempo property.
-     *
-     * @return possible object is {@link String }
-     */
-    public String getUnidadTiempo() {
-      return unidadTiempo;
-    }
+        /**
+         * Sets the value of the formaPago property.
+         *
+         * @param value allowed object is {@link String }
+         */
+        public void setFormaPago(String value) {
+            this.formaPago = value;
+        }
 
-    /**
-     * Sets the value of the unidadTiempo property.
-     *
-     * @param value allowed object is {@link String }
-     */
-    public void setUnidadTiempo(String value) {
-      this.unidadTiempo = value;
+        /**
+         * Gets the value of the total property.
+         *
+         * @return possible object is {@link BigDecimal }
+         */
+        public BigDecimal getTotal() {
+            return total;
+        }
+
+        /**
+         * Sets the value of the total property.
+         *
+         * @param value allowed object is {@link BigDecimal }
+         */
+        public void setTotal(BigDecimal value) {
+            this.total = value;
+        }
+
+        /**
+         * Gets the value of the plazo property.
+         *
+         * @return possible object is {@link BigDecimal }
+         */
+        public BigDecimal getPlazo() {
+            return plazo;
+        }
+
+        /**
+         * Sets the value of the plazo property.
+         *
+         * @param value allowed object is {@link BigDecimal }
+         */
+        public void setPlazo(BigDecimal value) {
+            this.plazo = value;
+        }
+
+        /**
+         * Gets the value of the unidadTiempo property.
+         *
+         * @return possible object is {@link String }
+         */
+        public String getUnidadTiempo() {
+            return unidadTiempo;
+        }
+
+        /**
+         * Sets the value of the unidadTiempo property.
+         *
+         * @param value allowed object is {@link String }
+         */
+        public void setUnidadTiempo(String value) {
+            this.unidadTiempo = value;
+        }
     }
-  }
 }

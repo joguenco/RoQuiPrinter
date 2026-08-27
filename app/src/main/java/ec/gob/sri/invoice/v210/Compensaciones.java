@@ -34,32 +34,32 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "compensaciones",
-    propOrder = {"compensacion"})
+        name = "compensaciones",
+        propOrder = {"compensacion"})
 public class Compensaciones {
 
-  @XmlElement(required = true)
-  protected List<Compensacion> compensacion;
+    @XmlElement(required = true)
+    protected List<Compensacion> compensacion;
 
-  /**
-   * Gets the value of the compensacion property.
-   *
-   * <p>This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the compensacion property.
-   *
-   * <p>For example, to add a new item, do as follows:
-   *
-   * <pre>
-   *    getCompensacion().add(newItem);
-   * </pre>
-   *
-   * <p>Objects of the following type(s) are allowed in the list {@link Compensacion }
-   */
-  public List<Compensacion> getCompensacion() {
-    if (compensacion == null) {
-      compensacion = new ArrayList<Compensacion>();
+    /**
+     * Gets the value of the compensacion property.
+     *
+     * <p>This accessor method returns a reference to the live list, not a snapshot. Therefore any
+     * modification you make to the returned list will be present inside the JAXB object. This is
+     * why there is not a <CODE>set</CODE> method for the compensacion property.
+     *
+     * <p>For example, to add a new item, do as follows:
+     *
+     * <pre>
+     *    getCompensacion().add(newItem);
+     * </pre>
+     *
+     * <p>Objects of the following type(s) are allowed in the list {@link Compensacion }
+     */
+    public List<Compensacion> getCompensacion() {
+        if (compensacion == null) {
+            compensacion = new ArrayList<Compensacion>();
+        }
+        return this.compensacion;
     }
-    return this.compensacion;
-  }
 }

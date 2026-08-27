@@ -34,32 +34,32 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "pagos",
-    propOrder = {"pago"})
+        name = "pagos",
+        propOrder = {"pago"})
 public class Pagos {
 
-  @XmlElement(required = true)
-  protected List<Pago> pago;
+    @XmlElement(required = true)
+    protected List<Pago> pago;
 
-  /**
-   * Gets the value of the pago property.
-   *
-   * <p>This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the pago property.
-   *
-   * <p>For example, to add a new item, do as follows:
-   *
-   * <pre>
-   *    getPago().add(newItem);
-   * </pre>
-   *
-   * <p>Objects of the following type(s) are allowed in the list {@link Pago }
-   */
-  public List<Pago> getPago() {
-    if (pago == null) {
-      pago = new ArrayList<Pago>();
+    /**
+     * Gets the value of the pago property.
+     *
+     * <p>This accessor method returns a reference to the live list, not a snapshot. Therefore any
+     * modification you make to the returned list will be present inside the JAXB object. This is
+     * why there is not a <CODE>set</CODE> method for the pago property.
+     *
+     * <p>For example, to add a new item, do as follows:
+     *
+     * <pre>
+     *    getPago().add(newItem);
+     * </pre>
+     *
+     * <p>Objects of the following type(s) are allowed in the list {@link Pago }
+     */
+    public List<Pago> getPago() {
+        if (pago == null) {
+            pago = new ArrayList<Pago>();
+        }
+        return this.pago;
     }
-    return this.pago;
-  }
 }

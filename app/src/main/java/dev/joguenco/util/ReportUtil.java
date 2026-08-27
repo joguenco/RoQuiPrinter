@@ -1,23 +1,24 @@
 package dev.joguenco.util;
 
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperPrint;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
 
 public class ReportUtil {
 
     public static void savePdfReport(JasperPrint jp, String pdfName, String pdfOutFolder) {
         try {
             OutputStream output =
-                    new FileOutputStream(new File(pdfOutFolder + File.separatorChar + pdfName + ".pdf"));
+                    new FileOutputStream(
+                            new File(pdfOutFolder + File.separatorChar + pdfName + ".pdf"));
             JasperExportManager.exportReportToPdfStream(jp, output);
             output.close();
-            System.out.println("PDF: Saved in " + pdfOutFolder + File.separatorChar + pdfName + ".pdf");
+            System.out.println(
+                    "PDF: Saved in " + pdfOutFolder + File.separatorChar + pdfName + ".pdf");
         } catch (JRException | IOException ex) {
             System.out.println("Error " + ex.getMessage());
         }

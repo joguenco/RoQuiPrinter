@@ -32,28 +32,28 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "tipoNegociable",
-    propOrder = {"correo"})
+        name = "tipoNegociable",
+        propOrder = {"correo"})
 public class TipoNegociable {
 
-  @XmlElement(required = true)
-  protected String correo;
+    @XmlElement(required = true)
+    protected String correo;
 
-  /**
-   * Gets the value of the correo property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getCorreo() {
-    return correo;
-  }
+    /**
+     * Gets the value of the correo property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getCorreo() {
+        return correo;
+    }
 
-  /**
-   * Sets the value of the correo property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setCorreo(String value) {
-    this.correo = value;
-  }
+    /**
+     * Sets the value of the correo property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setCorreo(String value) {
+        this.correo = value;
+    }
 }

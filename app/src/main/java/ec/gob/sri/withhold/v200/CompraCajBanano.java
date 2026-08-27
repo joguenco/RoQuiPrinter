@@ -34,49 +34,49 @@ import java.math.BigDecimal;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "compraCajBanano",
-    propOrder = {"numCajBan", "precCajBan"})
+        name = "compraCajBanano",
+        propOrder = {"numCajBan", "precCajBan"})
 public class CompraCajBanano {
 
-  @XmlElement(required = true)
-  protected String numCajBan;
+    @XmlElement(required = true)
+    protected String numCajBan;
 
-  @XmlElement(required = true)
-  protected BigDecimal precCajBan;
+    @XmlElement(required = true)
+    protected BigDecimal precCajBan;
 
-  /**
-   * Gets the value of the numCajBan property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getNumCajBan() {
-    return numCajBan;
-  }
+    /**
+     * Gets the value of the numCajBan property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getNumCajBan() {
+        return numCajBan;
+    }
 
-  /**
-   * Sets the value of the numCajBan property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setNumCajBan(String value) {
-    this.numCajBan = value;
-  }
+    /**
+     * Sets the value of the numCajBan property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setNumCajBan(String value) {
+        this.numCajBan = value;
+    }
 
-  /**
-   * Gets the value of the precCajBan property.
-   *
-   * @return possible object is {@link BigDecimal }
-   */
-  public BigDecimal getPrecCajBan() {
-    return precCajBan;
-  }
+    /**
+     * Gets the value of the precCajBan property.
+     *
+     * @return possible object is {@link BigDecimal }
+     */
+    public BigDecimal getPrecCajBan() {
+        return precCajBan;
+    }
 
-  /**
-   * Sets the value of the precCajBan property.
-   *
-   * @param value allowed object is {@link BigDecimal }
-   */
-  public void setPrecCajBan(BigDecimal value) {
-    this.precCajBan = value;
-  }
+    /**
+     * Sets the value of the precCajBan property.
+     *
+     * @param value allowed object is {@link BigDecimal }
+     */
+    public void setPrecCajBan(BigDecimal value) {
+        this.precCajBan = value;
+    }
 }

@@ -40,139 +40,139 @@ import java.math.BigDecimal;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "impuesto",
-    propOrder = {
-      "codigo",
-      "codigoPorcentaje",
-      "tarifa",
-      "baseImponible",
-      "valor",
-      "valorDevolucionIva"
-    })
+        name = "impuesto",
+        propOrder = {
+            "codigo",
+            "codigoPorcentaje",
+            "tarifa",
+            "baseImponible",
+            "valor",
+            "valorDevolucionIva"
+        })
 public class Impuesto {
 
-  @XmlElement(required = true)
-  protected String codigo;
+    @XmlElement(required = true)
+    protected String codigo;
 
-  @XmlElement(required = true)
-  protected String codigoPorcentaje;
+    @XmlElement(required = true)
+    protected String codigoPorcentaje;
 
-  @XmlElement(required = true)
-  protected BigDecimal tarifa;
+    @XmlElement(required = true)
+    protected BigDecimal tarifa;
 
-  @XmlElement(required = true)
-  protected BigDecimal baseImponible;
+    @XmlElement(required = true)
+    protected BigDecimal baseImponible;
 
-  @XmlElement(required = true)
-  protected BigDecimal valor;
+    @XmlElement(required = true)
+    protected BigDecimal valor;
 
-  protected BigDecimal valorDevolucionIva;
+    protected BigDecimal valorDevolucionIva;
 
-  /**
-   * Gets the value of the codigo property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getCodigo() {
-    return codigo;
-  }
+    /**
+     * Gets the value of the codigo property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getCodigo() {
+        return codigo;
+    }
 
-  /**
-   * Sets the value of the codigo property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setCodigo(String value) {
-    this.codigo = value;
-  }
+    /**
+     * Sets the value of the codigo property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setCodigo(String value) {
+        this.codigo = value;
+    }
 
-  /**
-   * Gets the value of the codigoPorcentaje property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getCodigoPorcentaje() {
-    return codigoPorcentaje;
-  }
+    /**
+     * Gets the value of the codigoPorcentaje property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getCodigoPorcentaje() {
+        return codigoPorcentaje;
+    }
 
-  /**
-   * Sets the value of the codigoPorcentaje property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setCodigoPorcentaje(String value) {
-    this.codigoPorcentaje = value;
-  }
+    /**
+     * Sets the value of the codigoPorcentaje property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setCodigoPorcentaje(String value) {
+        this.codigoPorcentaje = value;
+    }
 
-  /**
-   * Gets the value of the tarifa property.
-   *
-   * @return possible object is {@link BigDecimal }
-   */
-  public BigDecimal getTarifa() {
-    return tarifa;
-  }
+    /**
+     * Gets the value of the tarifa property.
+     *
+     * @return possible object is {@link BigDecimal }
+     */
+    public BigDecimal getTarifa() {
+        return tarifa;
+    }
 
-  /**
-   * Sets the value of the tarifa property.
-   *
-   * @param value allowed object is {@link BigDecimal }
-   */
-  public void setTarifa(BigDecimal value) {
-    this.tarifa = value;
-  }
+    /**
+     * Sets the value of the tarifa property.
+     *
+     * @param value allowed object is {@link BigDecimal }
+     */
+    public void setTarifa(BigDecimal value) {
+        this.tarifa = value;
+    }
 
-  /**
-   * Gets the value of the baseImponible property.
-   *
-   * @return possible object is {@link BigDecimal }
-   */
-  public BigDecimal getBaseImponible() {
-    return baseImponible;
-  }
+    /**
+     * Gets the value of the baseImponible property.
+     *
+     * @return possible object is {@link BigDecimal }
+     */
+    public BigDecimal getBaseImponible() {
+        return baseImponible;
+    }
 
-  /**
-   * Sets the value of the baseImponible property.
-   *
-   * @param value allowed object is {@link BigDecimal }
-   */
-  public void setBaseImponible(BigDecimal value) {
-    this.baseImponible = value;
-  }
+    /**
+     * Sets the value of the baseImponible property.
+     *
+     * @param value allowed object is {@link BigDecimal }
+     */
+    public void setBaseImponible(BigDecimal value) {
+        this.baseImponible = value;
+    }
 
-  /**
-   * Gets the value of the valor property.
-   *
-   * @return possible object is {@link BigDecimal }
-   */
-  public BigDecimal getValor() {
-    return valor;
-  }
+    /**
+     * Gets the value of the valor property.
+     *
+     * @return possible object is {@link BigDecimal }
+     */
+    public BigDecimal getValor() {
+        return valor;
+    }
 
-  /**
-   * Sets the value of the valor property.
-   *
-   * @param value allowed object is {@link BigDecimal }
-   */
-  public void setValor(BigDecimal value) {
-    this.valor = value;
-  }
+    /**
+     * Sets the value of the valor property.
+     *
+     * @param value allowed object is {@link BigDecimal }
+     */
+    public void setValor(BigDecimal value) {
+        this.valor = value;
+    }
 
-  /**
-   * Gets the value of the valorDevolucionIva property.
-   *
-   * @return possible object is {@link BigDecimal }
-   */
-  public BigDecimal getValorDevolucionIva() {
-    return valorDevolucionIva;
-  }
+    /**
+     * Gets the value of the valorDevolucionIva property.
+     *
+     * @return possible object is {@link BigDecimal }
+     */
+    public BigDecimal getValorDevolucionIva() {
+        return valorDevolucionIva;
+    }
 
-  /**
-   * Sets the value of the valorDevolucionIva property.
-   *
-   * @param value allowed object is {@link BigDecimal }
-   */
-  public void setValorDevolucionIva(BigDecimal value) {
-    this.valorDevolucionIva = value;
-  }
+    /**
+     * Sets the value of the valorDevolucionIva property.
+     *
+     * @param value allowed object is {@link BigDecimal }
+     */
+    public void setValorDevolucionIva(BigDecimal value) {
+        this.valorDevolucionIva = value;
+    }
 }

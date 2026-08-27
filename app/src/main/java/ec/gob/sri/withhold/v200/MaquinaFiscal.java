@@ -36,70 +36,70 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "maquinaFiscal",
-    propOrder = {"marca", "modelo", "serie"})
+        name = "maquinaFiscal",
+        propOrder = {"marca", "modelo", "serie"})
 public class MaquinaFiscal {
 
-  @XmlElement(required = true)
-  protected String marca;
+    @XmlElement(required = true)
+    protected String marca;
 
-  @XmlElement(required = true)
-  protected String modelo;
+    @XmlElement(required = true)
+    protected String modelo;
 
-  @XmlElement(required = true)
-  protected String serie;
+    @XmlElement(required = true)
+    protected String serie;
 
-  /**
-   * Gets the value of the marca property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getMarca() {
-    return marca;
-  }
+    /**
+     * Gets the value of the marca property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getMarca() {
+        return marca;
+    }
 
-  /**
-   * Sets the value of the marca property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setMarca(String value) {
-    this.marca = value;
-  }
+    /**
+     * Sets the value of the marca property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setMarca(String value) {
+        this.marca = value;
+    }
 
-  /**
-   * Gets the value of the modelo property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getModelo() {
-    return modelo;
-  }
+    /**
+     * Gets the value of the modelo property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getModelo() {
+        return modelo;
+    }
 
-  /**
-   * Sets the value of the modelo property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setModelo(String value) {
-    this.modelo = value;
-  }
+    /**
+     * Sets the value of the modelo property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setModelo(String value) {
+        this.modelo = value;
+    }
 
-  /**
-   * Gets the value of the serie property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getSerie() {
-    return serie;
-  }
+    /**
+     * Gets the value of the serie property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getSerie() {
+        return serie;
+    }
 
-  /**
-   * Sets the value of the serie property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setSerie(String value) {
-    this.serie = value;
-  }
+    /**
+     * Sets the value of the serie property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setSerie(String value) {
+        this.serie = value;
+    }
 }

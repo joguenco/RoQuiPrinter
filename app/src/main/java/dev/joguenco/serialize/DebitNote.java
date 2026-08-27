@@ -8,22 +8,22 @@ import java.io.File;
 
 public class DebitNote {
 
-  private final String pathXmlFile;
+    private final String pathXmlFile;
 
-  public DebitNote(String pathXmlFile) {
-    this.pathXmlFile = pathXmlFile;
-  }
-
-  public NotaDebito xmlToObject() {
-    File file = new File(pathXmlFile);
-
-    try {
-      JAXBContext jaxbContext = JAXBContext.newInstance(NotaDebito.class);
-      Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-
-      return (NotaDebito) jaxbUnmarshaller.unmarshal(file);
-    } catch (JAXBException e) {
-      throw new RuntimeException(e);
+    public DebitNote(String pathXmlFile) {
+        this.pathXmlFile = pathXmlFile;
     }
-  }
+
+    public NotaDebito xmlToObject() {
+        File file = new File(pathXmlFile);
+
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(NotaDebito.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+            return (NotaDebito) jaxbUnmarshaller.unmarshal(file);
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

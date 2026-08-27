@@ -41,159 +41,159 @@ import java.math.BigDecimal;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "retencion",
-    propOrder = {
-      "codigo",
-      "codigoRetencion",
-      "baseImponible",
-      "porcentajeRetener",
-      "valorRetenido",
-      "dividendos",
-      "compraCajBanano"
-    })
+        name = "retencion",
+        propOrder = {
+            "codigo",
+            "codigoRetencion",
+            "baseImponible",
+            "porcentajeRetener",
+            "valorRetenido",
+            "dividendos",
+            "compraCajBanano"
+        })
 public class Retencion {
 
-  @XmlElement(required = true)
-  protected String codigo;
+    @XmlElement(required = true)
+    protected String codigo;
 
-  @XmlElement(required = true)
-  protected String codigoRetencion;
+    @XmlElement(required = true)
+    protected String codigoRetencion;
 
-  @XmlElement(required = true)
-  protected BigDecimal baseImponible;
+    @XmlElement(required = true)
+    protected BigDecimal baseImponible;
 
-  @XmlElement(required = true)
-  protected BigDecimal porcentajeRetener;
+    @XmlElement(required = true)
+    protected BigDecimal porcentajeRetener;
 
-  @XmlElement(required = true)
-  protected BigDecimal valorRetenido;
+    @XmlElement(required = true)
+    protected BigDecimal valorRetenido;
 
-  protected Dividendos dividendos;
-  protected CompraCajBanano compraCajBanano;
+    protected Dividendos dividendos;
+    protected CompraCajBanano compraCajBanano;
 
-  /**
-   * Gets the value of the codigo property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getCodigo() {
-    return codigo;
-  }
+    /**
+     * Gets the value of the codigo property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getCodigo() {
+        return codigo;
+    }
 
-  /**
-   * Sets the value of the codigo property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setCodigo(String value) {
-    this.codigo = value;
-  }
+    /**
+     * Sets the value of the codigo property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setCodigo(String value) {
+        this.codigo = value;
+    }
 
-  /**
-   * Gets the value of the codigoRetencion property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getCodigoRetencion() {
-    return codigoRetencion;
-  }
+    /**
+     * Gets the value of the codigoRetencion property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getCodigoRetencion() {
+        return codigoRetencion;
+    }
 
-  /**
-   * Sets the value of the codigoRetencion property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setCodigoRetencion(String value) {
-    this.codigoRetencion = value;
-  }
+    /**
+     * Sets the value of the codigoRetencion property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setCodigoRetencion(String value) {
+        this.codigoRetencion = value;
+    }
 
-  /**
-   * Gets the value of the baseImponible property.
-   *
-   * @return possible object is {@link BigDecimal }
-   */
-  public BigDecimal getBaseImponible() {
-    return baseImponible;
-  }
+    /**
+     * Gets the value of the baseImponible property.
+     *
+     * @return possible object is {@link BigDecimal }
+     */
+    public BigDecimal getBaseImponible() {
+        return baseImponible;
+    }
 
-  /**
-   * Sets the value of the baseImponible property.
-   *
-   * @param value allowed object is {@link BigDecimal }
-   */
-  public void setBaseImponible(BigDecimal value) {
-    this.baseImponible = value;
-  }
+    /**
+     * Sets the value of the baseImponible property.
+     *
+     * @param value allowed object is {@link BigDecimal }
+     */
+    public void setBaseImponible(BigDecimal value) {
+        this.baseImponible = value;
+    }
 
-  /**
-   * Gets the value of the porcentajeRetener property.
-   *
-   * @return possible object is {@link BigDecimal }
-   */
-  public BigDecimal getPorcentajeRetener() {
-    return porcentajeRetener;
-  }
+    /**
+     * Gets the value of the porcentajeRetener property.
+     *
+     * @return possible object is {@link BigDecimal }
+     */
+    public BigDecimal getPorcentajeRetener() {
+        return porcentajeRetener;
+    }
 
-  /**
-   * Sets the value of the porcentajeRetener property.
-   *
-   * @param value allowed object is {@link BigDecimal }
-   */
-  public void setPorcentajeRetener(BigDecimal value) {
-    this.porcentajeRetener = value;
-  }
+    /**
+     * Sets the value of the porcentajeRetener property.
+     *
+     * @param value allowed object is {@link BigDecimal }
+     */
+    public void setPorcentajeRetener(BigDecimal value) {
+        this.porcentajeRetener = value;
+    }
 
-  /**
-   * Gets the value of the valorRetenido property.
-   *
-   * @return possible object is {@link BigDecimal }
-   */
-  public BigDecimal getValorRetenido() {
-    return valorRetenido;
-  }
+    /**
+     * Gets the value of the valorRetenido property.
+     *
+     * @return possible object is {@link BigDecimal }
+     */
+    public BigDecimal getValorRetenido() {
+        return valorRetenido;
+    }
 
-  /**
-   * Sets the value of the valorRetenido property.
-   *
-   * @param value allowed object is {@link BigDecimal }
-   */
-  public void setValorRetenido(BigDecimal value) {
-    this.valorRetenido = value;
-  }
+    /**
+     * Sets the value of the valorRetenido property.
+     *
+     * @param value allowed object is {@link BigDecimal }
+     */
+    public void setValorRetenido(BigDecimal value) {
+        this.valorRetenido = value;
+    }
 
-  /**
-   * Gets the value of the dividendos property.
-   *
-   * @return possible object is {@link Dividendos }
-   */
-  public Dividendos getDividendos() {
-    return dividendos;
-  }
+    /**
+     * Gets the value of the dividendos property.
+     *
+     * @return possible object is {@link Dividendos }
+     */
+    public Dividendos getDividendos() {
+        return dividendos;
+    }
 
-  /**
-   * Sets the value of the dividendos property.
-   *
-   * @param value allowed object is {@link Dividendos }
-   */
-  public void setDividendos(Dividendos value) {
-    this.dividendos = value;
-  }
+    /**
+     * Sets the value of the dividendos property.
+     *
+     * @param value allowed object is {@link Dividendos }
+     */
+    public void setDividendos(Dividendos value) {
+        this.dividendos = value;
+    }
 
-  /**
-   * Gets the value of the compraCajBanano property.
-   *
-   * @return possible object is {@link CompraCajBanano }
-   */
-  public CompraCajBanano getCompraCajBanano() {
-    return compraCajBanano;
-  }
+    /**
+     * Gets the value of the compraCajBanano property.
+     *
+     * @return possible object is {@link CompraCajBanano }
+     */
+    public CompraCajBanano getCompraCajBanano() {
+        return compraCajBanano;
+    }
 
-  /**
-   * Sets the value of the compraCajBanano property.
-   *
-   * @param value allowed object is {@link CompraCajBanano }
-   */
-  public void setCompraCajBanano(CompraCajBanano value) {
-    this.compraCajBanano = value;
-  }
+    /**
+     * Sets the value of the compraCajBanano property.
+     *
+     * @param value allowed object is {@link CompraCajBanano }
+     */
+    public void setCompraCajBanano(CompraCajBanano value) {
+        this.compraCajBanano = value;
+    }
 }

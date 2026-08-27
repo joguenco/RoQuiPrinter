@@ -8,22 +8,22 @@ import java.io.File;
 
 public class DeliveryNote {
 
-  private final String pathXmlFile;
+    private final String pathXmlFile;
 
-  public DeliveryNote(String pathXmlFile) {
-    this.pathXmlFile = pathXmlFile;
-  }
-
-  public GuiaRemision xmlToObject() {
-    File file = new File(pathXmlFile);
-
-    try {
-      JAXBContext jaxbContext = JAXBContext.newInstance(GuiaRemision.class);
-      Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-
-      return (GuiaRemision) jaxbUnmarshaller.unmarshal(file);
-    } catch (JAXBException e) {
-      throw new RuntimeException(e);
+    public DeliveryNote(String pathXmlFile) {
+        this.pathXmlFile = pathXmlFile;
     }
-  }
+
+    public GuiaRemision xmlToObject() {
+        File file = new File(pathXmlFile);
+
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(GuiaRemision.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+            return (GuiaRemision) jaxbUnmarshaller.unmarshal(file);
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

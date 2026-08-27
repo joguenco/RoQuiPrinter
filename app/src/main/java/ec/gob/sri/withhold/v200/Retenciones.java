@@ -34,32 +34,32 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "retenciones",
-    propOrder = {"retencion"})
+        name = "retenciones",
+        propOrder = {"retencion"})
 public class Retenciones {
 
-  @XmlElement(required = true)
-  protected List<Retencion> retencion;
+    @XmlElement(required = true)
+    protected List<Retencion> retencion;
 
-  /**
-   * Gets the value of the retencion property.
-   *
-   * <p>This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the retencion property.
-   *
-   * <p>For example, to add a new item, do as follows:
-   *
-   * <pre>
-   *    getRetencion().add(newItem);
-   * </pre>
-   *
-   * <p>Objects of the following type(s) are allowed in the list {@link Retencion }
-   */
-  public List<Retencion> getRetencion() {
-    if (retencion == null) {
-      retencion = new ArrayList<Retencion>();
+    /**
+     * Gets the value of the retencion property.
+     *
+     * <p>This accessor method returns a reference to the live list, not a snapshot. Therefore any
+     * modification you make to the returned list will be present inside the JAXB object. This is
+     * why there is not a <CODE>set</CODE> method for the retencion property.
+     *
+     * <p>For example, to add a new item, do as follows:
+     *
+     * <pre>
+     *    getRetencion().add(newItem);
+     * </pre>
+     *
+     * <p>Objects of the following type(s) are allowed in the list {@link Retencion }
+     */
+    public List<Retencion> getRetencion() {
+        if (retencion == null) {
+            retencion = new ArrayList<Retencion>();
+        }
+        return this.retencion;
     }
-    return this.retencion;
-  }
 }

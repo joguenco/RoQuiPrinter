@@ -8,22 +8,22 @@ import java.io.File;
 
 public class CreditNote {
 
-  private final String pathXmlFile;
+    private final String pathXmlFile;
 
-  public CreditNote(String pathXmlFile) {
-    this.pathXmlFile = pathXmlFile;
-  }
-
-  public NotaCredito xmlToObject() {
-    File file = new File(pathXmlFile);
-
-    try {
-      JAXBContext jaxbContext = JAXBContext.newInstance(NotaCredito.class);
-      Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-
-      return (NotaCredito) jaxbUnmarshaller.unmarshal(file);
-    } catch (JAXBException e) {
-      throw new RuntimeException(e);
+    public CreditNote(String pathXmlFile) {
+        this.pathXmlFile = pathXmlFile;
     }
-  }
+
+    public NotaCredito xmlToObject() {
+        File file = new File(pathXmlFile);
+
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(NotaCredito.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+            return (NotaCredito) jaxbUnmarshaller.unmarshal(file);
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

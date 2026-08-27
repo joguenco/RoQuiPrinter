@@ -15,8 +15,7 @@ plugins {
 
 spotless {
     java {
-        // Choose a formatter, e.g., Google Java Format
-//        googleJavaFormat()
+        googleJavaFormat().aosp()
 
         // Optionally, add other steps
         formatAnnotations()

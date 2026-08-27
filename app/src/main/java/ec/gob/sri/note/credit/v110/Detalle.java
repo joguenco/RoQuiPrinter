@@ -34,28 +34,28 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "detalle",
-    propOrder = {"motivoModificacion"})
+        name = "detalle",
+        propOrder = {"motivoModificacion"})
 public class Detalle {
 
-  @XmlElement(required = true)
-  protected String motivoModificacion;
+    @XmlElement(required = true)
+    protected String motivoModificacion;
 
-  /**
-   * Gets the value of the motivoModificacion property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getMotivoModificacion() {
-    return motivoModificacion;
-  }
+    /**
+     * Gets the value of the motivoModificacion property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getMotivoModificacion() {
+        return motivoModificacion;
+    }
 
-  /**
-   * Sets the value of the motivoModificacion property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setMotivoModificacion(String value) {
-    this.motivoModificacion = value;
-  }
+    /**
+     * Sets the value of the motivoModificacion property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setMotivoModificacion(String value) {
+        this.motivoModificacion = value;
+    }
 }

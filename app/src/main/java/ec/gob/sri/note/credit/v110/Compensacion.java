@@ -37,70 +37,70 @@ import java.math.BigDecimal;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "compensacion",
-    propOrder = {"codigo", "tarifa", "valor"})
+        name = "compensacion",
+        propOrder = {"codigo", "tarifa", "valor"})
 public class Compensacion {
 
-  @XmlElement(required = true)
-  protected String codigo;
+    @XmlElement(required = true)
+    protected String codigo;
 
-  @XmlElement(required = true)
-  protected BigDecimal tarifa;
+    @XmlElement(required = true)
+    protected BigDecimal tarifa;
 
-  @XmlElement(required = true)
-  protected BigDecimal valor;
+    @XmlElement(required = true)
+    protected BigDecimal valor;
 
-  /**
-   * Gets the value of the codigo property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getCodigo() {
-    return codigo;
-  }
+    /**
+     * Gets the value of the codigo property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getCodigo() {
+        return codigo;
+    }
 
-  /**
-   * Sets the value of the codigo property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setCodigo(String value) {
-    this.codigo = value;
-  }
+    /**
+     * Sets the value of the codigo property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setCodigo(String value) {
+        this.codigo = value;
+    }
 
-  /**
-   * Gets the value of the tarifa property.
-   *
-   * @return possible object is {@link BigDecimal }
-   */
-  public BigDecimal getTarifa() {
-    return tarifa;
-  }
+    /**
+     * Gets the value of the tarifa property.
+     *
+     * @return possible object is {@link BigDecimal }
+     */
+    public BigDecimal getTarifa() {
+        return tarifa;
+    }
 
-  /**
-   * Sets the value of the tarifa property.
-   *
-   * @param value allowed object is {@link BigDecimal }
-   */
-  public void setTarifa(BigDecimal value) {
-    this.tarifa = value;
-  }
+    /**
+     * Sets the value of the tarifa property.
+     *
+     * @param value allowed object is {@link BigDecimal }
+     */
+    public void setTarifa(BigDecimal value) {
+        this.tarifa = value;
+    }
 
-  /**
-   * Gets the value of the valor property.
-   *
-   * @return possible object is {@link BigDecimal }
-   */
-  public BigDecimal getValor() {
-    return valor;
-  }
+    /**
+     * Gets the value of the valor property.
+     *
+     * @return possible object is {@link BigDecimal }
+     */
+    public BigDecimal getValor() {
+        return valor;
+    }
 
-  /**
-   * Sets the value of the valor property.
-   *
-   * @param value allowed object is {@link BigDecimal }
-   */
-  public void setValor(BigDecimal value) {
-    this.valor = value;
-  }
+    /**
+     * Sets the value of the valor property.
+     *
+     * @param value allowed object is {@link BigDecimal }
+     */
+    public void setValor(BigDecimal value) {
+        this.valor = value;
+    }
 }

@@ -9,242 +9,264 @@ import lombok.Getter;
 
 public class InvoiceTemplate {
 
-  @Getter private Factura factura;
-  private List<AdditionalInformation> infoAdicional;
-  private List<PayMethod> payMethod;
+    @Getter private Factura factura;
+    private List<AdditionalInformation> infoAdicional;
+    private List<PayMethod> payMethod;
 
-  public InvoiceTemplate(Factura factura) {
-    this.factura = factura;
-  }
+    public InvoiceTemplate(Factura factura) {
+        this.factura = factura;
+    }
 
-  public List<DetailsReport> getDetallesAdiciones() {
-    List<DetailsReport> detallesAdiciones = new ArrayList<>();
+    public List<DetailsReport> getDetallesAdiciones() {
+        List<DetailsReport> detallesAdiciones = new ArrayList<>();
 
-    for (Factura.Detalles.Detalle det : getFactura().getDetalles().getDetalle()) {
-      DetailsReport detAd = new DetailsReport();
-      detAd.setCodigoPrincipal(det.getCodigoPrincipal());
-      detAd.setCodigoAuxiliar(det.getCodigoAuxiliar());
-      detAd.setDescripcion(det.getDescripcion());
-      detAd.setCantidad(det.getCantidad().toPlainString());
-      detAd.setPrecioTotalSinImpuesto(det.getPrecioTotalSinImpuesto().toString());
-      detAd.setPrecioUnitario(det.getPrecioUnitario());
-      detAd.setPrecioSinSubsidio(det.getPrecioSinSubsidio());
-      if (det.getDescuento() != null) {
-        detAd.setDescuento(det.getDescuento().toString());
-      }
-      int i = 0;
-      if (det.getDetallesAdicionales() != null
-          && det.getDetallesAdicionales().getDetAdicional() != null
-          && !det.getDetallesAdicionales().getDetAdicional().isEmpty()) {
-        for (Factura.Detalles.Detalle.DetallesAdicionales.DetAdicional detAdicional :
-            det.getDetallesAdicionales().getDetAdicional()) {
-          if (i == 0) {
-            detAd.setDetalle1(detAdicional.getNombre());
-          }
-          if (i == 1) {
-            detAd.setDetalle2(detAdicional.getNombre());
-          }
-          if (i == 2) {
-            detAd.setDetalle3(detAdicional.getNombre());
-          }
-          i++;
+        for (Factura.Detalles.Detalle det : getFactura().getDetalles().getDetalle()) {
+            DetailsReport detAd = new DetailsReport();
+            detAd.setCodigoPrincipal(det.getCodigoPrincipal());
+            detAd.setCodigoAuxiliar(det.getCodigoAuxiliar());
+            detAd.setDescripcion(det.getDescripcion());
+            detAd.setCantidad(det.getCantidad().toPlainString());
+            detAd.setPrecioTotalSinImpuesto(det.getPrecioTotalSinImpuesto().toString());
+            detAd.setPrecioUnitario(det.getPrecioUnitario());
+            detAd.setPrecioSinSubsidio(det.getPrecioSinSubsidio());
+            if (det.getDescuento() != null) {
+                detAd.setDescuento(det.getDescuento().toString());
+            }
+            int i = 0;
+            if (det.getDetallesAdicionales() != null
+                    && det.getDetallesAdicionales().getDetAdicional() != null
+                    && !det.getDetallesAdicionales().getDetAdicional().isEmpty()) {
+                for (Factura.Detalles.Detalle.DetallesAdicionales.DetAdicional detAdicional :
+                        det.getDetallesAdicionales().getDetAdicional()) {
+                    if (i == 0) {
+                        detAd.setDetalle1(detAdicional.getNombre());
+                    }
+                    if (i == 1) {
+                        detAd.setDetalle2(detAdicional.getNombre());
+                    }
+                    if (i == 2) {
+                        detAd.setDetalle3(detAdicional.getNombre());
+                    }
+                    i++;
+                }
+            }
+            detAd.setInfoAdicional(getInfoAdicional());
+
+            if (getPayMethod() != null) {
+                detAd.setFormasPago(getPayMethod());
+            }
+            detAd.setTotalesComprobante(getTotalReceipts());
+            detallesAdiciones.add(detAd);
         }
-      }
-      detAd.setInfoAdicional(getInfoAdicional());
-
-      if (getPayMethod() != null) {
-        detAd.setFormasPago(getPayMethod());
-      }
-      detAd.setTotalesComprobante(getTotalReceipts());
-      detallesAdiciones.add(detAd);
-    }
-    return detallesAdiciones;
-  }
-
-  public List<TotalReceipts> getTotalReceipts() {
-    List<TotalReceipts> totalReceipts = new ArrayList<>();
-    BigDecimal importeTotal = BigDecimal.ZERO.setScale(2);
-    BigDecimal compensaciones = BigDecimal.ZERO.setScale(2);
-    BigDecimal oneHundred = new BigDecimal(100);
-    TotalReceipt tc = getTotales(this.factura.getInfoFactura());
-
-    for (TaxIvaNotZero iva : tc.getIvaDistintoCero()) {
-      totalReceipts.add(
-          new TotalReceipts("SUBTOTAL " + iva.getTarifa() + "%", iva.getSubtotal(), false));
+        return detallesAdiciones;
     }
 
-    totalReceipts.add(new TotalReceipts("SUBTOTAL IVA 0%", tc.getSubtotal0(), false));
-    totalReceipts.add(
-        new TotalReceipts("SUBTOTAL NO OBJETO IVA", tc.getSubtotalNoSujetoIva(), false));
-    totalReceipts.add(new TotalReceipts("SUBTOTAL EXENTO IVA", tc.getSubtotalExentoIVA(), false));
-    totalReceipts.add(
-        new TotalReceipts(
-            "SUBTOTAL SIN IMPUESTOS", this.factura.getInfoFactura().getTotalSinImpuestos(), false));
-    totalReceipts.add(
-        new TotalReceipts("DESCUENTO", this.factura.getInfoFactura().getTotalDescuento(), false));
-    totalReceipts.add(new TotalReceipts("ICE", tc.getTotalIce(), false));
+    public List<TotalReceipts> getTotalReceipts() {
+        List<TotalReceipts> totalReceipts = new ArrayList<>();
+        BigDecimal importeTotal = BigDecimal.ZERO.setScale(2);
+        BigDecimal compensaciones = BigDecimal.ZERO.setScale(2);
+        BigDecimal oneHundred = new BigDecimal(100);
+        TotalReceipt tc = getTotales(this.factura.getInfoFactura());
 
-    for (TaxIvaNotZero iva : tc.getIvaDistintoCero()) {
-      if (iva.getValor().compareTo(BigDecimal.ZERO) > 0) {
-        totalReceipts.add(new TotalReceipts("IVA " + iva.getTarifa() + "%", iva.getValor(), false));
-      } else {
-        totalReceipts.add(new TotalReceipts("IVA ", iva.getValor(), false));
-      }
-    }
-
-    totalReceipts.add(
-        new TotalReceipts("PROPINA", this.factura.getInfoFactura().getPropina(), false));
-    if (this.factura.getInfoFactura().getCompensaciones() != null) {
-      for (var compensacion : this.factura.getInfoFactura().getCompensaciones().getCompensacion()) {
-        compensaciones = compensaciones.add(compensacion.getValor());
-      }
-      importeTotal = this.factura.getInfoFactura().getImporteTotal().add(compensaciones);
-    }
-    if (!compensaciones.equals(BigDecimal.ZERO.setScale(2))) {
-      totalReceipts.add(new TotalReceipts("VALOR TOTAL", importeTotal, false));
-      for (var compensacion : this.factura.getInfoFactura().getCompensaciones().getCompensacion()) {
-        if (!compensacion.getValor().equals(BigDecimal.ZERO.setScale(2))) {
-          String detalleCompensacion = "";
-          totalReceipts.add(
-              new TotalReceipts("(-) " + detalleCompensacion, compensacion.getValor(), true));
+        for (TaxIvaNotZero iva : tc.getIvaDistintoCero()) {
+            totalReceipts.add(
+                    new TotalReceipts(
+                            "SUBTOTAL " + iva.getTarifa() + "%", iva.getSubtotal(), false));
         }
-      }
-      totalReceipts.add(
-          new TotalReceipts(
-              "VALOR A PAGAR", this.factura.getInfoFactura().getImporteTotal(), false));
-    } else {
-      totalReceipts.add(
-          new TotalReceipts("VALOR TOTAL", this.factura.getInfoFactura().getImporteTotal(), false));
-    }
-    return totalReceipts;
-  }
 
-  public List<AdditionalInformation> getInfoAdicional() {
-    if (getFactura().getInfoAdicional() != null) {
-      this.infoAdicional = new ArrayList();
-      if ((getFactura().getInfoAdicional().getCampoAdicional() != null)
-          && (!this.factura.getInfoAdicional().getCampoAdicional().isEmpty())) {
-        for (Factura.InfoAdicional.CampoAdicional ca :
-            getFactura().getInfoAdicional().getCampoAdicional()) {
-          this.infoAdicional.add(new AdditionalInformation(ca.getValue(), ca.getNombre()));
+        totalReceipts.add(new TotalReceipts("SUBTOTAL IVA 0%", tc.getSubtotal0(), false));
+        totalReceipts.add(
+                new TotalReceipts("SUBTOTAL NO OBJETO IVA", tc.getSubtotalNoSujetoIva(), false));
+        totalReceipts.add(
+                new TotalReceipts("SUBTOTAL EXENTO IVA", tc.getSubtotalExentoIVA(), false));
+        totalReceipts.add(
+                new TotalReceipts(
+                        "SUBTOTAL SIN IMPUESTOS",
+                        this.factura.getInfoFactura().getTotalSinImpuestos(),
+                        false));
+        totalReceipts.add(
+                new TotalReceipts(
+                        "DESCUENTO", this.factura.getInfoFactura().getTotalDescuento(), false));
+        totalReceipts.add(new TotalReceipts("ICE", tc.getTotalIce(), false));
+
+        for (TaxIvaNotZero iva : tc.getIvaDistintoCero()) {
+            if (iva.getValor().compareTo(BigDecimal.ZERO) > 0) {
+                totalReceipts.add(
+                        new TotalReceipts("IVA " + iva.getTarifa() + "%", iva.getValor(), false));
+            } else {
+                totalReceipts.add(new TotalReceipts("IVA ", iva.getValor(), false));
+            }
         }
-      }
-    }
-    return this.infoAdicional;
-  }
 
-  private TotalReceipt getTotales(Factura.InfoFactura infoFactura) {
-    List<TaxIvaNotZero> ivaDiferenteCero = new ArrayList<>();
-
-    BigDecimal totalIva = new BigDecimal(0.0D);
-    BigDecimal totalIva0 = new BigDecimal(0.0D);
-    BigDecimal totalExentoIVA = new BigDecimal(0.0D);
-
-    BigDecimal totalICE = new BigDecimal(0.0D);
-    BigDecimal totalIRBPNR = new BigDecimal(0.0D);
-    BigDecimal totalSinImpuesto = new BigDecimal(0.0D);
-    TotalReceipt tc = new TotalReceipt();
-    for (Factura.InfoFactura.TotalConImpuestos.TotalImpuesto ti :
-        infoFactura.getTotalConImpuestos().getTotalImpuesto()) {
-      Integer cod = Integer.valueOf(ti.getCodigo());
-
-      if (TypeTaxEnum.IVA.getCode() == cod.intValue() && ti.getValor().doubleValue() > 0.0D) {
-        if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_DIFERENCIADO.getCode())) {
-          TaxIvaNotZero iva =
-              new TaxIvaNotZero(
-                  ti.getBaseImponible(), ti.getTarifa().setScale(0).toString(), ti.getValor());
-          ivaDiferenteCero.add(iva);
-        } else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_12.getCode())) {
-          TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), "12", ti.getValor());
-          ivaDiferenteCero.add(iva);
-        } else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_13.getCode())) {
-          TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), "13", ti.getValor());
-          ivaDiferenteCero.add(iva);
-        } else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_15.getCode())) {
-          TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), "15", ti.getValor());
-          ivaDiferenteCero.add(iva);
-        } else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_5.getCode())) {
-          TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), "5", ti.getValor());
-          ivaDiferenteCero.add(iva);
+        totalReceipts.add(
+                new TotalReceipts("PROPINA", this.factura.getInfoFactura().getPropina(), false));
+        if (this.factura.getInfoFactura().getCompensaciones() != null) {
+            for (var compensacion :
+                    this.factura.getInfoFactura().getCompensaciones().getCompensacion()) {
+                compensaciones = compensaciones.add(compensacion.getValor());
+            }
+            importeTotal = this.factura.getInfoFactura().getImporteTotal().add(compensaciones);
+        }
+        if (!compensaciones.equals(BigDecimal.ZERO.setScale(2))) {
+            totalReceipts.add(new TotalReceipts("VALOR TOTAL", importeTotal, false));
+            for (var compensacion :
+                    this.factura.getInfoFactura().getCompensaciones().getCompensacion()) {
+                if (!compensacion.getValor().equals(BigDecimal.ZERO.setScale(2))) {
+                    String detalleCompensacion = "";
+                    totalReceipts.add(
+                            new TotalReceipts(
+                                    "(-) " + detalleCompensacion, compensacion.getValor(), true));
+                }
+            }
+            totalReceipts.add(
+                    new TotalReceipts(
+                            "VALOR A PAGAR",
+                            this.factura.getInfoFactura().getImporteTotal(),
+                            false));
         } else {
-          String codigoPorcentaje = "e";
-          TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), codigoPorcentaje, ti.getValor());
-          ivaDiferenteCero.add(iva);
+            totalReceipts.add(
+                    new TotalReceipts(
+                            "VALOR TOTAL", this.factura.getInfoFactura().getImporteTotal(), false));
         }
-      }
-
-      if (TypeTaxEnum.IVA.getCode() == cod.intValue()
-          && TypeTaxIvaEnum.IVA_VENTA_0.getCode().equals(ti.getCodigoPorcentaje())) {
-        totalIva0 = totalIva0.add(ti.getBaseImponible());
-      }
-      if (TypeTaxEnum.IVA.getCode() == cod.intValue()
-          && TypeTaxIvaEnum.IVA_NO_OBJETO.getCode().equals(ti.getCodigoPorcentaje())) {
-        totalSinImpuesto = totalSinImpuesto.add(ti.getBaseImponible());
-      }
-      if (TypeTaxEnum.IVA.getCode() == cod.intValue()
-          && TypeTaxIvaEnum.IVA_EXCENTO.getCode().equals(ti.getCodigoPorcentaje())) {
-        totalExentoIVA = totalExentoIVA.add(ti.getBaseImponible());
-      }
-      if (TypeTaxEnum.ICE.getCode() == cod.intValue()) {
-        totalICE = totalICE.add(ti.getValor());
-      }
-      if (TypeTaxEnum.IRBPNR.getCode() == cod.intValue()) {
-        totalIRBPNR = totalIRBPNR.add(ti.getValor());
-      }
+        return totalReceipts;
     }
-    if (ivaDiferenteCero.isEmpty()) {
-      ivaDiferenteCero.add(LlenaIvaDiferenteCero());
-    }
-    tc.setIvaDistintoCero(ivaDiferenteCero);
-    tc.setSubtotal0(totalIva0);
-    tc.setTotalIce(totalICE);
-    tc.setSubtotal(totalIva0.add(totalIva).add(totalSinImpuesto).add(totalExentoIVA));
-    tc.setSubtotalExentoIVA(totalExentoIVA);
-    tc.setTotalIRBPNR(totalIRBPNR);
-    tc.setSubtotalNoSujetoIva(totalSinImpuesto);
-    return tc;
-  }
 
-  private TaxIvaNotZero LlenaIvaDiferenteCero() {
-    BigDecimal valor = BigDecimal.ZERO.setScale(2);
-    String percentageIva = defaultIVA();
-    return new TaxIvaNotZero(valor, percentageIva, valor);
-  }
-
-  private String defaultIVA() {
-    return "IVA";
-  }
-
-  public void setInfoAdicional(List<AdditionalInformation> infoAdicional) {
-    this.infoAdicional = infoAdicional;
-  }
-
-  public List<PayMethod> getPayMethod() {
-    if (getFactura().getInfoFactura().getPagos() != null) {
-      this.payMethod = new ArrayList();
-      if ((getFactura().getInfoFactura().getPagos().getPago() != null)
-          && (!this.factura.getInfoFactura().getPagos().getPago().isEmpty())) {
-        for (var pa : getFactura().getInfoFactura().getPagos().getPago()) {
-          this.payMethod.add(
-              new PayMethod(
-                  getNamePayMethod(pa.getFormaPago()), pa.getTotal().setScale(2).toString()));
+    public List<AdditionalInformation> getInfoAdicional() {
+        if (getFactura().getInfoAdicional() != null) {
+            this.infoAdicional = new ArrayList();
+            if ((getFactura().getInfoAdicional().getCampoAdicional() != null)
+                    && (!this.factura.getInfoAdicional().getCampoAdicional().isEmpty())) {
+                for (Factura.InfoAdicional.CampoAdicional ca :
+                        getFactura().getInfoAdicional().getCampoAdicional()) {
+                    this.infoAdicional.add(
+                            new AdditionalInformation(ca.getValue(), ca.getNombre()));
+                }
+            }
         }
-      }
+        return this.infoAdicional;
     }
-    return this.payMethod;
-  }
 
-  private String getNamePayMethod(String code) {
-    return switch (code) {
-      case "01" -> "Sin utilización del sistema financiero";
-      case "15" -> "Compensación de deudas";
-      case "16" -> "Tarjeta de débito";
-      case "17" -> "Dinero electrónico";
-      case "18" -> "Tarjeta prepago";
-      case "19" -> "Tarjeta de crédito";
-      case "20" -> "Otros con utilización del sistema financiero";
-      case "21" -> "Endoso de títulos";
-      default -> code + " No definido";
-    };
-  }
+    private TotalReceipt getTotales(Factura.InfoFactura infoFactura) {
+        List<TaxIvaNotZero> ivaDiferenteCero = new ArrayList<>();
+
+        BigDecimal totalIva = new BigDecimal(0.0D);
+        BigDecimal totalIva0 = new BigDecimal(0.0D);
+        BigDecimal totalExentoIVA = new BigDecimal(0.0D);
+
+        BigDecimal totalICE = new BigDecimal(0.0D);
+        BigDecimal totalIRBPNR = new BigDecimal(0.0D);
+        BigDecimal totalSinImpuesto = new BigDecimal(0.0D);
+        TotalReceipt tc = new TotalReceipt();
+        for (Factura.InfoFactura.TotalConImpuestos.TotalImpuesto ti :
+                infoFactura.getTotalConImpuestos().getTotalImpuesto()) {
+            Integer cod = Integer.valueOf(ti.getCodigo());
+
+            if (TypeTaxEnum.IVA.getCode() == cod.intValue() && ti.getValor().doubleValue() > 0.0D) {
+                if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_DIFERENCIADO.getCode())) {
+                    TaxIvaNotZero iva =
+                            new TaxIvaNotZero(
+                                    ti.getBaseImponible(),
+                                    ti.getTarifa().setScale(0).toString(),
+                                    ti.getValor());
+                    ivaDiferenteCero.add(iva);
+                } else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_12.getCode())) {
+                    TaxIvaNotZero iva =
+                            new TaxIvaNotZero(ti.getBaseImponible(), "12", ti.getValor());
+                    ivaDiferenteCero.add(iva);
+                } else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_13.getCode())) {
+                    TaxIvaNotZero iva =
+                            new TaxIvaNotZero(ti.getBaseImponible(), "13", ti.getValor());
+                    ivaDiferenteCero.add(iva);
+                } else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_15.getCode())) {
+                    TaxIvaNotZero iva =
+                            new TaxIvaNotZero(ti.getBaseImponible(), "15", ti.getValor());
+                    ivaDiferenteCero.add(iva);
+                } else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_5.getCode())) {
+                    TaxIvaNotZero iva =
+                            new TaxIvaNotZero(ti.getBaseImponible(), "5", ti.getValor());
+                    ivaDiferenteCero.add(iva);
+                } else {
+                    String codigoPorcentaje = "e";
+                    TaxIvaNotZero iva =
+                            new TaxIvaNotZero(
+                                    ti.getBaseImponible(), codigoPorcentaje, ti.getValor());
+                    ivaDiferenteCero.add(iva);
+                }
+            }
+
+            if (TypeTaxEnum.IVA.getCode() == cod.intValue()
+                    && TypeTaxIvaEnum.IVA_VENTA_0.getCode().equals(ti.getCodigoPorcentaje())) {
+                totalIva0 = totalIva0.add(ti.getBaseImponible());
+            }
+            if (TypeTaxEnum.IVA.getCode() == cod.intValue()
+                    && TypeTaxIvaEnum.IVA_NO_OBJETO.getCode().equals(ti.getCodigoPorcentaje())) {
+                totalSinImpuesto = totalSinImpuesto.add(ti.getBaseImponible());
+            }
+            if (TypeTaxEnum.IVA.getCode() == cod.intValue()
+                    && TypeTaxIvaEnum.IVA_EXCENTO.getCode().equals(ti.getCodigoPorcentaje())) {
+                totalExentoIVA = totalExentoIVA.add(ti.getBaseImponible());
+            }
+            if (TypeTaxEnum.ICE.getCode() == cod.intValue()) {
+                totalICE = totalICE.add(ti.getValor());
+            }
+            if (TypeTaxEnum.IRBPNR.getCode() == cod.intValue()) {
+                totalIRBPNR = totalIRBPNR.add(ti.getValor());
+            }
+        }
+        if (ivaDiferenteCero.isEmpty()) {
+            ivaDiferenteCero.add(LlenaIvaDiferenteCero());
+        }
+        tc.setIvaDistintoCero(ivaDiferenteCero);
+        tc.setSubtotal0(totalIva0);
+        tc.setTotalIce(totalICE);
+        tc.setSubtotal(totalIva0.add(totalIva).add(totalSinImpuesto).add(totalExentoIVA));
+        tc.setSubtotalExentoIVA(totalExentoIVA);
+        tc.setTotalIRBPNR(totalIRBPNR);
+        tc.setSubtotalNoSujetoIva(totalSinImpuesto);
+        return tc;
+    }
+
+    private TaxIvaNotZero LlenaIvaDiferenteCero() {
+        BigDecimal valor = BigDecimal.ZERO.setScale(2);
+        String percentageIva = defaultIVA();
+        return new TaxIvaNotZero(valor, percentageIva, valor);
+    }
+
+    private String defaultIVA() {
+        return "IVA";
+    }
+
+    public void setInfoAdicional(List<AdditionalInformation> infoAdicional) {
+        this.infoAdicional = infoAdicional;
+    }
+
+    public List<PayMethod> getPayMethod() {
+        if (getFactura().getInfoFactura().getPagos() != null) {
+            this.payMethod = new ArrayList();
+            if ((getFactura().getInfoFactura().getPagos().getPago() != null)
+                    && (!this.factura.getInfoFactura().getPagos().getPago().isEmpty())) {
+                for (var pa : getFactura().getInfoFactura().getPagos().getPago()) {
+                    this.payMethod.add(
+                            new PayMethod(
+                                    getNamePayMethod(pa.getFormaPago()),
+                                    pa.getTotal().setScale(2).toString()));
+                }
+            }
+        }
+        return this.payMethod;
+    }
+
+    private String getNamePayMethod(String code) {
+        return switch (code) {
+            case "01" -> "Sin utilización del sistema financiero";
+            case "15" -> "Compensación de deudas";
+            case "16" -> "Tarjeta de débito";
+            case "17" -> "Dinero electrónico";
+            case "18" -> "Tarjeta prepago";
+            case "19" -> "Tarjeta de crédito";
+            case "20" -> "Otros con utilización del sistema financiero";
+            case "21" -> "Endoso de títulos";
+            default -> code + " No definido";
+        };
+    }
 }

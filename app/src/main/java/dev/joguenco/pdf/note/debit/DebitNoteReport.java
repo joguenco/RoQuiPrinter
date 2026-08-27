@@ -4,12 +4,11 @@ import dev.joguenco.serialize.DebitNote;
 import dev.joguenco.util.ReportUtil;
 import ec.gob.sri.note.debit.v100.InfoTributaria;
 import ec.gob.sri.note.debit.v100.NotaDebito;
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class DebitNoteReport {
     String pathXmlFile;
@@ -17,7 +16,8 @@ public class DebitNoteReport {
     String pathLogo;
     String pdfOutFolder;
 
-    public DebitNoteReport(String pathXmlFile, String reportFolder, String pathLogo, String pdfOutFolder) {
+    public DebitNoteReport(
+            String pathXmlFile, String reportFolder, String pathLogo, String pdfOutFolder) {
         this.pathXmlFile = pathXmlFile;
         this.reportFolder = reportFolder;
         this.pathLogo = pathLogo;
@@ -36,17 +36,29 @@ public class DebitNoteReport {
                 this.reportFolder + File.separator + "notaDebito.jasper", rep, numAut, dateAut);
     }
 
-    public Boolean generateReport(String urlReporte, DebitNoteTemplate rep, String numAut, String fechaAut) {
+    public Boolean generateReport(
+            String urlReporte, DebitNoteTemplate rep, String numAut, String fechaAut) {
         FileInputStream is = null;
         try {
             JRBeanCollectionDataSource jRBeanCollectionDataSource =
                     new JRBeanCollectionDataSource(rep.getDetallesAdiciones());
             is = new FileInputStream(urlReporte);
 
-            JasperPrint reporte_view = JasperFillManager.fillReport(is,
-                    obtenerMapaParametrosReportes(getParametersInfoTriobutaria(rep.getNotaDebito().getInfoTributaria(), numAut, fechaAut), obtenerInfoND(rep.getNotaDebito().getInfoNotaDebito())), (JRDataSource)jRBeanCollectionDataSource);
+            JasperPrint reporte_view =
+                    JasperFillManager.fillReport(
+                            is,
+                            obtenerMapaParametrosReportes(
+                                    getParametersInfoTriobutaria(
+                                            rep.getNotaDebito().getInfoTributaria(),
+                                            numAut,
+                                            fechaAut),
+                                    obtenerInfoND(rep.getNotaDebito().getInfoNotaDebito())),
+                            (JRDataSource) jRBeanCollectionDataSource);
 
-            ReportUtil.savePdfReport(reporte_view, rep.getNotaDebito().getInfoTributaria().getClaveAcceso(), pdfOutFolder);
+            ReportUtil.savePdfReport(
+                    reporte_view,
+                    rep.getNotaDebito().getInfoTributaria().getClaveAcceso(),
+                    pdfOutFolder);
         } catch (FileNotFoundException | JRException ex) {
             System.out.println(ex.getMessage());
             return false;

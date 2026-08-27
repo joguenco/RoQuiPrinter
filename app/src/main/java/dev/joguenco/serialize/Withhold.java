@@ -8,22 +8,22 @@ import java.io.File;
 
 public class Withhold {
 
-  private final String pathXmlFile;
+    private final String pathXmlFile;
 
-  public Withhold(String pathXmlFile) {
-    this.pathXmlFile = pathXmlFile;
-  }
-
-  public ComprobanteRetencion xmlToObject() {
-    File file = new File(pathXmlFile);
-
-    try {
-      JAXBContext jaxbContext = JAXBContext.newInstance(ComprobanteRetencion.class);
-      Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-
-      return (ComprobanteRetencion) jaxbUnmarshaller.unmarshal(file);
-    } catch (JAXBException e) {
-      throw new RuntimeException(e);
+    public Withhold(String pathXmlFile) {
+        this.pathXmlFile = pathXmlFile;
     }
-  }
+
+    public ComprobanteRetencion xmlToObject() {
+        File file = new File(pathXmlFile);
+
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(ComprobanteRetencion.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+            return (ComprobanteRetencion) jaxbUnmarshaller.unmarshal(file);
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

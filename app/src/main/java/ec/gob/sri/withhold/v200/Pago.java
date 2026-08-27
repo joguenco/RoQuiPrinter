@@ -34,49 +34,49 @@ import java.math.BigDecimal;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "pago",
-    propOrder = {"formaPago", "total"})
+        name = "pago",
+        propOrder = {"formaPago", "total"})
 public class Pago {
 
-  @XmlElement(required = true)
-  protected String formaPago;
+    @XmlElement(required = true)
+    protected String formaPago;
 
-  @XmlElement(required = true)
-  protected BigDecimal total;
+    @XmlElement(required = true)
+    protected BigDecimal total;
 
-  /**
-   * Gets the value of the formaPago property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getFormaPago() {
-    return formaPago;
-  }
+    /**
+     * Gets the value of the formaPago property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getFormaPago() {
+        return formaPago;
+    }
 
-  /**
-   * Sets the value of the formaPago property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setFormaPago(String value) {
-    this.formaPago = value;
-  }
+    /**
+     * Sets the value of the formaPago property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setFormaPago(String value) {
+        this.formaPago = value;
+    }
 
-  /**
-   * Gets the value of the total property.
-   *
-   * @return possible object is {@link BigDecimal }
-   */
-  public BigDecimal getTotal() {
-    return total;
-  }
+    /**
+     * Gets the value of the total property.
+     *
+     * @return possible object is {@link BigDecimal }
+     */
+    public BigDecimal getTotal() {
+        return total;
+    }
 
-  /**
-   * Sets the value of the total property.
-   *
-   * @param value allowed object is {@link BigDecimal }
-   */
-  public void setTotal(BigDecimal value) {
-    this.total = value;
-  }
+    /**
+     * Sets the value of the total property.
+     *
+     * @param value allowed object is {@link BigDecimal }
+     */
+    public void setTotal(BigDecimal value) {
+        this.total = value;
+    }
 }

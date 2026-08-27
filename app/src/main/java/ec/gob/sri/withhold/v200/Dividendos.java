@@ -35,70 +35,70 @@ import java.math.BigDecimal;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "dividendos",
-    propOrder = {"fechaPagoDiv", "imRentaSoc", "ejerFisUtDiv"})
+        name = "dividendos",
+        propOrder = {"fechaPagoDiv", "imRentaSoc", "ejerFisUtDiv"})
 public class Dividendos {
 
-  @XmlElement(required = true)
-  protected String fechaPagoDiv;
+    @XmlElement(required = true)
+    protected String fechaPagoDiv;
 
-  @XmlElement(required = true)
-  protected BigDecimal imRentaSoc;
+    @XmlElement(required = true)
+    protected BigDecimal imRentaSoc;
 
-  @XmlElement(required = true)
-  protected String ejerFisUtDiv;
+    @XmlElement(required = true)
+    protected String ejerFisUtDiv;
 
-  /**
-   * Gets the value of the fechaPagoDiv property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getFechaPagoDiv() {
-    return fechaPagoDiv;
-  }
+    /**
+     * Gets the value of the fechaPagoDiv property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getFechaPagoDiv() {
+        return fechaPagoDiv;
+    }
 
-  /**
-   * Sets the value of the fechaPagoDiv property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setFechaPagoDiv(String value) {
-    this.fechaPagoDiv = value;
-  }
+    /**
+     * Sets the value of the fechaPagoDiv property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setFechaPagoDiv(String value) {
+        this.fechaPagoDiv = value;
+    }
 
-  /**
-   * Gets the value of the imRentaSoc property.
-   *
-   * @return possible object is {@link BigDecimal }
-   */
-  public BigDecimal getImRentaSoc() {
-    return imRentaSoc;
-  }
+    /**
+     * Gets the value of the imRentaSoc property.
+     *
+     * @return possible object is {@link BigDecimal }
+     */
+    public BigDecimal getImRentaSoc() {
+        return imRentaSoc;
+    }
 
-  /**
-   * Sets the value of the imRentaSoc property.
-   *
-   * @param value allowed object is {@link BigDecimal }
-   */
-  public void setImRentaSoc(BigDecimal value) {
-    this.imRentaSoc = value;
-  }
+    /**
+     * Sets the value of the imRentaSoc property.
+     *
+     * @param value allowed object is {@link BigDecimal }
+     */
+    public void setImRentaSoc(BigDecimal value) {
+        this.imRentaSoc = value;
+    }
 
-  /**
-   * Gets the value of the ejerFisUtDiv property.
-   *
-   * @return possible object is {@link String }
-   */
-  public String getEjerFisUtDiv() {
-    return ejerFisUtDiv;
-  }
+    /**
+     * Gets the value of the ejerFisUtDiv property.
+     *
+     * @return possible object is {@link String }
+     */
+    public String getEjerFisUtDiv() {
+        return ejerFisUtDiv;
+    }
 
-  /**
-   * Sets the value of the ejerFisUtDiv property.
-   *
-   * @param value allowed object is {@link String }
-   */
-  public void setEjerFisUtDiv(String value) {
-    this.ejerFisUtDiv = value;
-  }
+    /**
+     * Sets the value of the ejerFisUtDiv property.
+     *
+     * @param value allowed object is {@link String }
+     */
+    public void setEjerFisUtDiv(String value) {
+        this.ejerFisUtDiv = value;
+    }
 }

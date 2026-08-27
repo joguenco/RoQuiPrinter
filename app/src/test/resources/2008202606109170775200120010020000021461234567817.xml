@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<guiaRemision id="comprobante" version="1.1.0">
+    <infoTributaria>
+        <ambiente>2</ambiente>
+        <tipoEmision>1</tipoEmision>
+        <razonSocial>Jorge Luis</razonSocial>
+        <nombreComercial>joguenco.dev</nombreComercial>
+        <ruc>9999999999001</ruc>
+        <claveAcceso>2008202606999999999900120010020000021361234567819</claveAcceso>
+        <codDoc>06</codDoc>
+        <estab>001</estab>
+        <ptoEmi>002</ptoEmi>
+        <secuencial>000002136</secuencial>
+        <dirMatriz>AV. AGUSTIN</dirMatriz>
+        <agenteRetencion>1</agenteRetencion>
+    </infoTributaria>
+    <infoGuiaRemision>
+        <dirEstablecimiento>AV. AGUSTIN</dirEstablecimiento>
+        <dirPartida>AV. AGUSTIN</dirPartida>
+        <razonSocialTransportista>FERNANDO</razonSocialTransportista>
+        <tipoIdentificacionTransportista>06</tipoIdentificacionTransportista>
+        <rucTransportista>1009999991</rucTransportista>
+        <obligadoContabilidad>SI</obligadoContabilidad>
+        <fechaIniTransporte>20/08/2026</fechaIniTransporte>
+        <fechaFinTransporte>25/08/2026</fechaFinTransporte>
+        <placa>AAA 090</placa>
+    </infoGuiaRemision>
+    <destinatarios>
+        <destinatario>
+            <identificacionDestinatario>1234567891001</identificacionDestinatario>
+            <razonSocialDestinatario>CONSTRUCTORA S.A.</razonSocialDestinatario>
+            <dirDestinatario>AV. PARIS</dirDestinatario>
+            <motivoTraslado>Venta de productos</motivoTraslado>
+            <codDocSustento>01</codDocSustento>
+            <numDocSustento>001-003-003066666</numDocSustento>
+            <numAutDocSustento>2008202601109123456789120010030030666611234567811</numAutDocSustento>
+            <fechaEmisionDocSustento>20/08/2026</fechaEmisionDocSustento>
+            <detalles>
+                <detalle>
+                    <codigoInterno>2970</codigoInterno>
+                    <descripcion>SERVICIO DE GESTION AMBIENTAL DE ACEITES USADOS Y ENVASES RECOIL</descripcion>
+                    <cantidad>55.00</cantidad>
+                </detalle>
+                <detalle>
+                    <codigoInterno>3875</codigoInterno>
+                    <descripcion>AC. PROQUIMSA HIDRAULICO ISO 68 AMBAR TANQUE x 55 GLS.</descripcion>
+                    <cantidad>1.00</cantidad>
+                </detalle>
+            </detalles>
+        </destinatario>
+        <destinatario>
+            <identificacionDestinatario>1700000001001</identificacionDestinatario>
+            <razonSocialDestinatario>SAGAL</razonSocialDestinatario>
+            <dirDestinatario>AV. TOACAZO</dirDestinatario>
+            <motivoTraslado>Venta de productos</motivoTraslado>
+            <codDocSustento>01</codDocSustento>
+            <numDocSustento>001-003-003016666</numDocSustento>
+            <numAutDocSustento>2008202601109170000000010010030030166661234567815</numAutDocSustento>
+            <fechaEmisionDocSustento>20/08/2026</fechaEmisionDocSustento>
+            <detalles>
+                <detalle>
+                    <codigoInterno>2970</codigoInterno>
+                    <descripcion>SERVICIO DE GESTION AMBIENTAL DE ACEITES USADOS Y ENVASES RECOIL</descripcion>
+                    <cantidad>275.00</cantidad>
+                </detalle>
+                <detalle>
+                    <codigoInterno>3761</codigoInterno>
+                    <descripcion>AC. PROQUIMSA MOTOR SAE 40 SG TANQUE</descripcion>
+                    <cantidad>5.00</cantidad>
+                </detalle>
+            </detalles>
+        </destinatario>
+        <destinatario>
+            <identificacionDestinatario>1766666666001</identificacionDestinatario>
+            <razonSocialDestinatario>VELASCO CHALUISA DEISY LORENA</razonSocialDestinatario>
+            <dirDestinatario>PANAMERICANA NORTE KM 12 1/2</dirDestinatario>
+            <motivoTraslado>Venta de productos</motivoTraslado>
+            <codDocSustento>01</codDocSustento>
+            <numDocSustento>001-003-003036663</numDocSustento>
+            <numAutDocSustento>2008202601109176666666660010030030366631234567810</numAutDocSustento>
+            <fechaEmisionDocSustento>20/08/2026</fechaEmisionDocSustento>
+            <detalles>
+                <detalle>
+                    <codigoInterno>369</codigoInterno>
+                    <descripcion>GRASA PROQUIMSA NUREX COPAS (CALCIUM) CNC</descripcion>
+                    <cantidad>16.00</cantidad>
+                </detalle>
+            </detalles>
+        </destinatario>
+        <destinatario>
+            <identificacionDestinatario>1703333333001</identificacionDestinatario>
+            <razonSocialDestinatario>LUZ</razonSocialDestinatario>
+            <dirDestinatario>GRAL. GANGOTENA</dirDestinatario>
+            <motivoTraslado>Venta de productos</motivoTraslado>
+            <codDocSustento>01</codDocSustento>
+            <numDocSustento>001-003-003016664</numDocSustento>
+            <numAutDocSustento>2008202601109170333333330010030030166641234567813</numAutDocSustento>
+            <fechaEmisionDocSustento>20/08/2026</fechaEmisionDocSustento>
+            <detalles>
+                <detalle>
+                    <codigoInterno>2970</codigoInterno>
+                    <descripcion>SERVICIO DE GESTION AMBIENTAL DE ACEITES USADOS Y ENVASES RECOIL</descripcion>
+                    <cantidad>30.00</cantidad>
+                </detalle>
+                <detalle>
+                    <codigoInterno>3874</codigoInterno>
+                    <descripcion>AC. PROQUIMSA HIDRAULICO ISO 68 AMBAR CANECA x 5 GLS.</descripcion>
+                    <cantidad>6.00</cantidad>
+                </detalle>
+            </detalles>
+        </destinatario>
+        <destinatario>
+            <identificacionDestinatario>0509999999001</identificacionDestinatario>
+            <razonSocialDestinatario>FREDY</razonSocialDestinatario>
+            <dirDestinatario>JUAN Y JUAN</dirDestinatario>
+            <motivoTraslado>Venta de productos</motivoTraslado>
+            <codDocSustento>01</codDocSustento>
+            <numDocSustento>001-003-003016663</numDocSustento>
+            <numAutDocSustento>2008202601109999999999990010030030166631234567811</numAutDocSustento>
+            <fechaEmisionDocSustento>20/08/2026</fechaEmisionDocSustento>
+            <detalles>
+                <detalle>
+                    <codigoInterno>3875</codigoInterno>
+                    <descripcion>AC. PROQUIMSA HIDRAULICO ISO 68 AMBAR TANQUE x 55 GLS.</descripcion>
+                    <cantidad>1.00</cantidad>
+                </detalle>
+                <detalle>
+                    <codigoInterno>2970</codigoInterno>
+                    <descripcion>SERVICIO DE GESTION AMBIENTAL DE ACEITES USADOS Y ENVASES RECOIL</descripcion>
+                    <cantidad>55.00</cantidad>
+                </detalle>
+            </detalles>
+        </destinatario>
+        <destinatario>
+            <identificacionDestinatario>1711111111001</identificacionDestinatario>
+            <razonSocialDestinatario>AÑASCO TINAJERO JANETH ALEXANDRA</razonSocialDestinatario>
+            <dirDestinatario>AV. MARISCAL SUCRE S-1791 Y TACASO</dirDestinatario>
+            <motivoTraslado>Venta de productos</motivoTraslado>
+            <codDocSustento>01</codDocSustento>
+            <numDocSustento>001-003-003036666</numDocSustento>
+            <numAutDocSustento>2008202601109179999999990010030030366661234567811</numAutDocSustento>
+            <fechaEmisionDocSustento>20/08/2026</fechaEmisionDocSustento>
+            <detalles>
+                <detalle>
+                    <codigoInterno>1548</codigoInterno>
+                    <descripcion>LUBRISTONE LIMPIAPARABRISAS SACHET (CJ. x300u)</descripcion>
+                    <cantidad>500.00</cantidad>
+                </detalle>
+            </detalles>
+        </destinatario>
+        <destinatario>
+            <identificacionDestinatario>1702222222001</identificacionDestinatario>
+            <razonSocialDestinatario>EUGENIO</razonSocialDestinatario>
+            <dirDestinatario>PANAMERICANA NORTE</dirDestinatario>
+            <motivoTraslado>Venta de productos</motivoTraslado>
+            <codDocSustento>01</codDocSustento>
+            <numDocSustento>001-003-003006667</numDocSustento>
+            <numAutDocSustento>2008202601109179999999990010030030066671234567815</numAutDocSustento>
+            <fechaEmisionDocSustento>20/08/2026</fechaEmisionDocSustento>
+            <detalles>
+                <detalle>
+                    <codigoInterno>926</codigoInterno>
+                    <descripcion>AC. LUBRAL SUPER RACING SAE 20W50 SL GL.</descripcion>
+                    <cantidad>12.00</cantidad>
+                </detalle>
+                <detalle>
+                    <codigoInterno>1298</codigoInterno>
+                    <descripcion>LUBRISTONE REFRIG. / RAD. ROJO 50/50 GL.</descripcion>
+                    <cantidad>18.00</cantidad>
+                </detalle>
+                <detalle>
+                    <codigoInterno>1297</codigoInterno>
+                    <descripcion>LUBRISTONE REFRIG. / RAD. VERDE 50/50 GL.</descripcion>
+                    <cantidad>54.00</cantidad>
+                </detalle>
+                <detalle>
+                    <codigoInterno>1298</codigoInterno>
+                    <descripcion>LUBRISTONE REFRIG. / RAD. ROJO 50/50 GL.</descripcion>
+                    <cantidad>6.00</cantidad>
+                </detalle>
+                <detalle>
+                    <codigoInterno>523</codigoInterno>
+                    <descripcion>GE - MT15M (21402) - TRATAMIENTO DE ACEITE 15oz.</descripcion>
+                    <cantidad>12.00</cantidad>
+                </detalle>
+            </detalles>
+        </destinatario>
+        <destinatario>
+            <identificacionDestinatario>1000000009001</identificacionDestinatario>
+            <razonSocialDestinatario>ROBERTO</razonSocialDestinatario>
+            <dirDestinatario>CALLE PRINCIPAL</dirDestinatario>
+            <motivoTraslado>Venta de productos</motivoTraslado>
+            <codDocSustento>01</codDocSustento>
+            <numDocSustento>001-003-003016669</numDocSustento>
+            <numAutDocSustento>2008202601109179999999990010030030166691234567814</numAutDocSustento>
+            <fechaEmisionDocSustento>20/08/2026</fechaEmisionDocSustento>
+            <detalles>
+                <detalle>
+                    <codigoInterno>3921</codigoInterno>
+                    <descripcion>AC. MAVERICK SAE 10W-30 API SN GALON SEMI-SYNTHETIC</descripcion>
+                    <cantidad>16.00</cantidad>
+                </detalle>
+                <detalle>
+                    <codigoInterno>3703</codigoInterno>
+                    <descripcion>AC. MAVERICK SAE 15W-40 API CI-4/SL GALON</descripcion>
+                    <cantidad>24.00</cantidad>
+                </detalle>
+                <detalle>
+                    <codigoInterno>3922</codigoInterno>
+                    <descripcion>AC. MAVERICK SAE 20W-50 API SN GALON SEMI-SYNTHETIC</descripcion>
+                    <cantidad>16.00</cantidad>
+                </detalle>
+                <detalle>
+                    <codigoInterno>3926</codigoInterno>
+                    <descripcion>GRASA PROQUIMSA CHASIS AZUL TANQUE</descripcion>
+                    <cantidad>3.00</cantidad>
+                </detalle>
+                <detalle>
+                    <codigoInterno>3922</codigoInterno>
+                    <descripcion>AC. MAVERICK SAE 20W-50 API SN GALON SEMI-SYNTHETIC</descripcion>
+                    <cantidad>4.00</cantidad>
+                </detalle>
+            </detalles>
+        </destinatario>
+        <destinatario>
+            <identificacionDestinatario>1777777777001</identificacionDestinatario>
+            <razonSocialDestinatario>SIMBA S.A.</razonSocialDestinatario>
+            <dirDestinatario>JUAN Y PABLO</dirDestinatario>
+            <motivoTraslado>Venta de productos</motivoTraslado>
+            <codDocSustento>01</codDocSustento>
+            <numDocSustento>001-003-023016670</numDocSustento>
+            <numAutDocSustento>2008202601109179999999990010230030166701234567815</numAutDocSustento>
+            <fechaEmisionDocSustento>20/08/2026</fechaEmisionDocSustento>
+            <detalles>
+                <detalle>
+                    <codigoInterno>382</codigoInterno>
+                    <descripcion>GRASA PROQUIMSA NUREX RODAMIENTOS (SODIUM) CANECA</descripcion>
+                    <cantidad>16.00</cantidad>
+                </detalle>
+            </detalles>
+        </destinatario>
+        <destinatario>
+            <identificacionDestinatario>1788888888001</identificacionDestinatario>
+            <razonSocialDestinatario>GERMAN</razonSocialDestinatario>
+            <dirDestinatario>AV. OCCIDENTAL</dirDestinatario>
+            <motivoTraslado>Venta de productos</motivoTraslado>
+            <codDocSustento>01</codDocSustento>
+            <numDocSustento>001-003-003316671</numDocSustento>
+            <numAutDocSustento>2008202601109179999999990010030033166711234567813</numAutDocSustento>
+            <fechaEmisionDocSustento>20/08/2026</fechaEmisionDocSustento>
+            <detalles>
+                <detalle>
+                    <codigoInterno>1298</codigoInterno>
+                    <descripcion>LUBRISTONE REFRIG. / RAD. ROJO 50/50 GL.</descripcion>
+                    <cantidad>18.00</cantidad>
+                </detalle>
+                <detalle>
+                    <codigoInterno>1297</codigoInterno>
+                    <descripcion>LUBRISTONE REFRIG. / RAD. VERDE 50/50 GL.</descripcion>
+                    <cantidad>48.00</cantidad>
+                </detalle>
+                <detalle>
+                    <codigoInterno>1298</codigoInterno>
+                    <descripcion>LUBRISTONE REFRIG. / RAD. ROJO 50/50 GL.</descripcion>
+                    <cantidad>12.00</cantidad>
+                </detalle>
+            </detalles>
+        </destinatario>
+        <destinatario>
+            <identificacionDestinatario>0505555550001</identificacionDestinatario>
+            <razonSocialDestinatario>JOSELITO</razonSocialDestinatario>
+            <dirDestinatario>EL CONDADO</dirDestinatario>
+            <motivoTraslado>Venta de productos</motivoTraslado>
+            <codDocSustento>01</codDocSustento>
+            <numDocSustento>001-003-003016673</numDocSustento>
+            <fechaEmisionDocSustento>20/08/2026</fechaEmisionDocSustento>
+            <detalles>
+                <detalle>
+                    <codigoInterno>3762</codigoInterno>
+                    <descripcion>AC. PROQUIMSA HIDRAULICO ISO 68 ROJO CANECA x 5 GLS.</descripcion>
+                    <cantidad>2.00</cantidad>
+                </detalle>
+                <detalle>
+                    <codigoInterno>2970</codigoInterno>
+                    <descripcion>SERVICIO DE GESTION AMBIENTAL DE ACEITES USADOS Y ENVASES RECOIL</descripcion>
+                    <cantidad>10.00</cantidad>
+                </detalle>
+            </detalles>
+        </destinatario>
+    </destinatarios>
+</guiaRemision>

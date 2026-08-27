@@ -50,183 +50,183 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(
-    name = "",
-    propOrder = {"totalImpuesto"})
+        name = "",
+        propOrder = {"totalImpuesto"})
 @XmlRootElement(name = "totalConImpuestos")
 public class TotalConImpuestos {
 
-  @XmlElement(required = true)
-  protected List<TotalConImpuestos.TotalImpuesto> totalImpuesto;
-
-  /**
-   * Gets the value of the totalImpuesto property.
-   *
-   * <p>This accessor method returns a reference to the live list, not a snapshot. Therefore any
-   * modification you make to the returned list will be present inside the JAXB object. This is why
-   * there is not a <CODE>set</CODE> method for the totalImpuesto property.
-   *
-   * <p>For example, to add a new item, do as follows:
-   *
-   * <pre>
-   *    getTotalImpuesto().add(newItem);
-   * </pre>
-   *
-   * <p>Objects of the following type(s) are allowed in the list {@link
-   * TotalConImpuestos.TotalImpuesto }
-   */
-  public List<TotalConImpuestos.TotalImpuesto> getTotalImpuesto() {
-    if (totalImpuesto == null) {
-      totalImpuesto = new ArrayList<TotalConImpuestos.TotalImpuesto>();
-    }
-    return this.totalImpuesto;
-  }
-
-  /**
-   * Java class for anonymous complex type.
-   *
-   * <p>The following schema fragment specifies the expected content contained within this class.
-   *
-   * <pre>
-   * &lt;complexType&gt;
-   *   &lt;complexContent&gt;
-   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
-   *       &lt;sequence&gt;
-   *         &lt;element name="codigo" type="{}codigo"/&gt;
-   *         &lt;element name="codigoPorcentaje" type="{}codigoPorcentaje"/&gt;
-   *         &lt;element name="baseImponible" type="{}baseImponible"/&gt;
-   *         &lt;element name="valor" type="{}valor"/&gt;
-   *         &lt;element name="valorDevolucionIva" type="{}valorDevolucionIva" minOccurs="0"/&gt;
-   *       &lt;/sequence&gt;
-   *     &lt;/restriction&gt;
-   *   &lt;/complexContent&gt;
-   * &lt;/complexType&gt;
-   * </pre>
-   */
-  @XmlAccessorType(XmlAccessType.FIELD)
-  @XmlType(
-      name = "",
-      propOrder = {
-        "codigo",
-        "codigoPorcentaje",
-        "tarifa",
-        "baseImponible",
-        "valor",
-        "valorDevolucionIva"
-      })
-  public static class TotalImpuesto {
-
     @XmlElement(required = true)
-    protected String codigo;
-
-    @XmlElement(required = true)
-    protected String codigoPorcentaje;
-
-    @XmlElement(required = true)
-    protected BigDecimal baseImponible;
-
-    protected BigDecimal tarifa;
-
-    @XmlElement(required = true)
-    protected BigDecimal valor;
-
-    protected BigDecimal valorDevolucionIva;
+    protected List<TotalConImpuestos.TotalImpuesto> totalImpuesto;
 
     /**
-     * Gets the value of the codigo property.
+     * Gets the value of the totalImpuesto property.
      *
-     * @return possible object is {@link String }
-     */
-    public String getCodigo() {
-      return codigo;
-    }
-
-    /**
-     * Sets the value of the codigo property.
+     * <p>This accessor method returns a reference to the live list, not a snapshot. Therefore any
+     * modification you make to the returned list will be present inside the JAXB object. This is
+     * why there is not a <CODE>set</CODE> method for the totalImpuesto property.
      *
-     * @param value allowed object is {@link String }
+     * <p>For example, to add a new item, do as follows:
+     *
+     * <pre>
+     *    getTotalImpuesto().add(newItem);
+     * </pre>
+     *
+     * <p>Objects of the following type(s) are allowed in the list {@link
+     * TotalConImpuestos.TotalImpuesto }
      */
-    public void setCodigo(String value) {
-      this.codigo = value;
+    public List<TotalConImpuestos.TotalImpuesto> getTotalImpuesto() {
+        if (totalImpuesto == null) {
+            totalImpuesto = new ArrayList<TotalConImpuestos.TotalImpuesto>();
+        }
+        return this.totalImpuesto;
     }
 
     /**
-     * Gets the value of the codigoPorcentaje property.
+     * Java class for anonymous complex type.
      *
-     * @return possible object is {@link String }
-     */
-    public String getCodigoPorcentaje() {
-      return codigoPorcentaje;
-    }
-
-    /**
-     * Sets the value of the codigoPorcentaje property.
+     * <p>The following schema fragment specifies the expected content contained within this class.
      *
-     * @param value allowed object is {@link String }
+     * <pre>
+     * &lt;complexType&gt;
+     *   &lt;complexContent&gt;
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+     *       &lt;sequence&gt;
+     *         &lt;element name="codigo" type="{}codigo"/&gt;
+     *         &lt;element name="codigoPorcentaje" type="{}codigoPorcentaje"/&gt;
+     *         &lt;element name="baseImponible" type="{}baseImponible"/&gt;
+     *         &lt;element name="valor" type="{}valor"/&gt;
+     *         &lt;element name="valorDevolucionIva" type="{}valorDevolucionIva" minOccurs="0"/&gt;
+     *       &lt;/sequence&gt;
+     *     &lt;/restriction&gt;
+     *   &lt;/complexContent&gt;
+     * &lt;/complexType&gt;
+     * </pre>
      */
-    public void setCodigoPorcentaje(String value) {
-      this.codigoPorcentaje = value;
-    }
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(
+            name = "",
+            propOrder = {
+                "codigo",
+                "codigoPorcentaje",
+                "tarifa",
+                "baseImponible",
+                "valor",
+                "valorDevolucionIva"
+            })
+    public static class TotalImpuesto {
 
-    /**
-     * Gets the value of the baseImponible property.
-     *
-     * @return possible object is {@link BigDecimal }
-     */
-    public BigDecimal getBaseImponible() {
-      return baseImponible;
-    }
+        @XmlElement(required = true)
+        protected String codigo;
 
-    public BigDecimal getTarifa() {
-      return tarifa;
-    }
+        @XmlElement(required = true)
+        protected String codigoPorcentaje;
 
-    public void setTarifa(BigDecimal tarifa) {
-      this.tarifa = tarifa;
-    }
+        @XmlElement(required = true)
+        protected BigDecimal baseImponible;
 
-    /**
-     * Sets the value of the baseImponible property.
-     *
-     * @param value allowed object is {@link BigDecimal }
-     */
-    public void setBaseImponible(BigDecimal value) {
-      this.baseImponible = value;
-    }
+        protected BigDecimal tarifa;
 
-    /**
-     * Gets the value of the valor property.
-     *
-     * @return possible object is {@link BigDecimal }
-     */
-    public BigDecimal getValor() {
-      return valor;
-    }
+        @XmlElement(required = true)
+        protected BigDecimal valor;
 
-    /**
-     * Sets the value of the valor property.
-     *
-     * @param value allowed object is {@link BigDecimal }
-     */
-    public void setValor(BigDecimal value) {
-      this.valor = value;
-    }
+        protected BigDecimal valorDevolucionIva;
 
-    /**
-     * Gets the value of the valorDevolucionIva property.
-     *
-     * @return possible object is {@link BigDecimal }
-     */
-    public BigDecimal getValorDevolucionIva() {
-      return valorDevolucionIva;
-    }
+        /**
+         * Gets the value of the codigo property.
+         *
+         * @return possible object is {@link String }
+         */
+        public String getCodigo() {
+            return codigo;
+        }
 
-    /**
-     * Sets the value of the valorDevolucionIva property.
-     *
-     * @param value allowed object is {@link BigDecimal }
-     */
-    public void setValorDevolucionIva(BigDecimal value) {
-      this.valorDevolucionIva = value;
+        /**
+         * Sets the value of the codigo property.
+         *
+         * @param value allowed object is {@link String }
+         */
+        public void setCodigo(String value) {
+            this.codigo = value;
+        }
+
+        /**
+         * Gets the value of the codigoPorcentaje property.
+         *
+         * @return possible object is {@link String }
+         */
+        public String getCodigoPorcentaje() {
+            return codigoPorcentaje;
+        }
+
+        /**
+         * Sets the value of the codigoPorcentaje property.
+         *
+         * @param value allowed object is {@link String }
+         */
+        public void setCodigoPorcentaje(String value) {
+            this.codigoPorcentaje = value;
+        }
+
+        /**
+         * Gets the value of the baseImponible property.
+         *
+         * @return possible object is {@link BigDecimal }
+         */
+        public BigDecimal getBaseImponible() {
+            return baseImponible;
+        }
+
+        public BigDecimal getTarifa() {
+            return tarifa;
+        }
+
+        public void setTarifa(BigDecimal tarifa) {
+            this.tarifa = tarifa;
+        }
+
+        /**
+         * Sets the value of the baseImponible property.
+         *
+         * @param value allowed object is {@link BigDecimal }
+         */
+        public void setBaseImponible(BigDecimal value) {
+            this.baseImponible = value;
+        }
+
+        /**
+         * Gets the value of the valor property.
+         *
+         * @return possible object is {@link BigDecimal }
+         */
+        public BigDecimal getValor() {
+            return valor;
+        }
+
+        /**
+         * Sets the value of the valor property.
+         *
+         * @param value allowed object is {@link BigDecimal }
+         */
+        public void setValor(BigDecimal value) {
+            this.valor = value;
+        }
+
+        /**
+         * Gets the value of the valorDevolucionIva property.
+         *
+         * @return possible object is {@link BigDecimal }
+         */
+        public BigDecimal getValorDevolucionIva() {
+            return valorDevolucionIva;
+        }
+
+        /**
+         * Sets the value of the valorDevolucionIva property.
+         *
+         * @param value allowed object is {@link BigDecimal }
+         */
+        public void setValorDevolucionIva(BigDecimal value) {
+            this.valorDevolucionIva = value;
+        }
     }
-  }
 }

@@ -2,16 +2,14 @@ package dev.joguenco.pdf.liquidation;
 
 import dev.joguenco.pdf.*;
 import ec.gob.sri.liquidation.v110.LiquidacionCompra;
-import lombok.Getter;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
 
 public class LiquidationTemplate {
 
-    @Getter
-    private LiquidacionCompra liquidacion;
+    @Getter private LiquidacionCompra liquidacion;
     private List<AdditionalInformation> infoAdicional;
     private List<PayMethod> payMethod;
 
@@ -38,8 +36,8 @@ public class LiquidationTemplate {
             if (det.getDetallesAdicionales() != null
                     && det.getDetallesAdicionales().getDetAdicional() != null
                     && !det.getDetallesAdicionales().getDetAdicional().isEmpty()) {
-                for (LiquidacionCompra.Detalles.Detalle.DetallesAdicionales.DetAdicional detAdicional :
-                        det.getDetallesAdicionales().getDetAdicional()) {
+                for (LiquidacionCompra.Detalles.Detalle.DetallesAdicionales.DetAdicional
+                        detAdicional : det.getDetallesAdicionales().getDetAdicional()) {
                     if (i == 0) {
                         detAd.setDetalle1(detAdicional.getNombre());
                     }
@@ -72,31 +70,41 @@ public class LiquidationTemplate {
 
         for (TaxIvaNotZero iva : tc.getIvaDistintoCero()) {
             totalReceipts.add(
-                    new TotalReceipts("SUBTOTAL " + iva.getTarifa() + "%", iva.getSubtotal(), false));
+                    new TotalReceipts(
+                            "SUBTOTAL " + iva.getTarifa() + "%", iva.getSubtotal(), false));
         }
 
         totalReceipts.add(new TotalReceipts("SUBTOTAL IVA 0%", tc.getSubtotal0(), false));
         totalReceipts.add(
                 new TotalReceipts("SUBTOTAL NO OBJETO IVA", tc.getSubtotalNoSujetoIva(), false));
-        totalReceipts.add(new TotalReceipts("SUBTOTAL EXENTO IVA", tc.getSubtotalExentoIVA(), false));
+        totalReceipts.add(
+                new TotalReceipts("SUBTOTAL EXENTO IVA", tc.getSubtotalExentoIVA(), false));
         totalReceipts.add(
                 new TotalReceipts(
-                        "SUBTOTAL SIN IMPUESTOS", this.liquidacion.getInfoLiquidacionCompra().getTotalSinImpuestos(), false));
+                        "SUBTOTAL SIN IMPUESTOS",
+                        this.liquidacion.getInfoLiquidacionCompra().getTotalSinImpuestos(),
+                        false));
         totalReceipts.add(
-                new TotalReceipts("DESCUENTO", this.liquidacion.getInfoLiquidacionCompra().getTotalDescuento(), false));
+                new TotalReceipts(
+                        "DESCUENTO",
+                        this.liquidacion.getInfoLiquidacionCompra().getTotalDescuento(),
+                        false));
         totalReceipts.add(new TotalReceipts("ICE", tc.getTotalIce(), false));
 
         for (TaxIvaNotZero iva : tc.getIvaDistintoCero()) {
             if (iva.getValor().compareTo(BigDecimal.ZERO) > 0) {
-                totalReceipts.add(new TotalReceipts("IVA " + iva.getTarifa() + "%", iva.getValor(), false));
+                totalReceipts.add(
+                        new TotalReceipts("IVA " + iva.getTarifa() + "%", iva.getValor(), false));
             } else {
                 totalReceipts.add(new TotalReceipts("IVA ", iva.getValor(), false));
             }
         }
 
         totalReceipts.add(
-                new TotalReceipts("VALOR TOTAL", this.liquidacion.getInfoLiquidacionCompra().getImporteTotal(), false)
-        );
+                new TotalReceipts(
+                        "VALOR TOTAL",
+                        this.liquidacion.getInfoLiquidacionCompra().getImporteTotal(),
+                        false));
 
         return totalReceipts;
     }
@@ -108,7 +116,8 @@ public class LiquidationTemplate {
                     && (!this.liquidacion.getInfoAdicional().getCampoAdicional().isEmpty())) {
                 for (LiquidacionCompra.InfoAdicional.CampoAdicional ca :
                         getLiquidacion().getInfoAdicional().getCampoAdicional()) {
-                    this.infoAdicional.add(new AdditionalInformation(ca.getValue(), ca.getNombre()));
+                    this.infoAdicional.add(
+                            new AdditionalInformation(ca.getValue(), ca.getNombre()));
                 }
             }
         }
@@ -134,23 +143,31 @@ public class LiquidationTemplate {
                 if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_DIFERENCIADO.getCode())) {
                     TaxIvaNotZero iva =
                             new TaxIvaNotZero(
-                                    ti.getBaseImponible(), ti.getTarifa().setScale(0).toString(), ti.getValor());
+                                    ti.getBaseImponible(),
+                                    ti.getTarifa().setScale(0).toString(),
+                                    ti.getValor());
                     ivaDiferenteCero.add(iva);
                 } else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_12.getCode())) {
-                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), "12", ti.getValor());
+                    TaxIvaNotZero iva =
+                            new TaxIvaNotZero(ti.getBaseImponible(), "12", ti.getValor());
                     ivaDiferenteCero.add(iva);
                 } else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_13.getCode())) {
-                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), "13", ti.getValor());
+                    TaxIvaNotZero iva =
+                            new TaxIvaNotZero(ti.getBaseImponible(), "13", ti.getValor());
                     ivaDiferenteCero.add(iva);
                 } else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_15.getCode())) {
-                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), "15", ti.getValor());
+                    TaxIvaNotZero iva =
+                            new TaxIvaNotZero(ti.getBaseImponible(), "15", ti.getValor());
                     ivaDiferenteCero.add(iva);
                 } else if (ti.getCodigoPorcentaje().equals(TypeTaxIvaEnum.IVA_VENTA_5.getCode())) {
-                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), "5", ti.getValor());
+                    TaxIvaNotZero iva =
+                            new TaxIvaNotZero(ti.getBaseImponible(), "5", ti.getValor());
                     ivaDiferenteCero.add(iva);
                 } else {
                     String codigoPorcentaje = "e";
-                    TaxIvaNotZero iva = new TaxIvaNotZero(ti.getBaseImponible(), codigoPorcentaje, ti.getValor());
+                    TaxIvaNotZero iva =
+                            new TaxIvaNotZero(
+                                    ti.getBaseImponible(), codigoPorcentaje, ti.getValor());
                     ivaDiferenteCero.add(iva);
                 }
             }
@@ -205,11 +222,16 @@ public class LiquidationTemplate {
         if (getLiquidacion().getInfoLiquidacionCompra().getPagos() != null) {
             this.payMethod = new ArrayList();
             if ((getLiquidacion().getInfoLiquidacionCompra().getPagos().getPago() != null)
-                    && (!this.liquidacion.getInfoLiquidacionCompra().getPagos().getPago().isEmpty())) {
+                    && (!this.liquidacion
+                            .getInfoLiquidacionCompra()
+                            .getPagos()
+                            .getPago()
+                            .isEmpty())) {
                 for (var pa : getLiquidacion().getInfoLiquidacionCompra().getPagos().getPago()) {
                     this.payMethod.add(
                             new PayMethod(
-                                    getNamePayMethod(pa.getFormaPago()), pa.getTotal().setScale(2).toString()));
+                                    getNamePayMethod(pa.getFormaPago()),
+                                    pa.getTotal().setScale(2).toString()));
                 }
             }
         }

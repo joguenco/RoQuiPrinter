@@ -30,14 +30,14 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlType(name = "obligadoContabilidad")
 @XmlEnum
 public enum ObligadoContabilidad {
-  SI,
-  NO;
+    SI,
+    NO;
 
-  public String value() {
-    return name();
-  }
+    public String value() {
+        return name();
+    }
 
-  public static ObligadoContabilidad fromValue(String v) {
-    return valueOf(v);
-  }
+    public static ObligadoContabilidad fromValue(String v) {
+        return valueOf(v);
+    }
 }
