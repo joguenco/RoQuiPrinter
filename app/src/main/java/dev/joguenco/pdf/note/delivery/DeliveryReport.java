@@ -42,7 +42,10 @@ public class DeliveryReport {
 
     private Boolean generateReport(DeliveryTemplate rep, String numAut, String dateAut) {
         return generateReport(
-                this.reportFolder + File.separator + "factura.jasper", rep, numAut, dateAut);
+                this.reportFolder + File.separator + "guiaRemisionFinal.jasper",
+                rep,
+                numAut,
+                dateAut);
     }
 
     private Boolean generateReport(
@@ -138,7 +141,7 @@ public class DeliveryReport {
         Map param = new HashMap();
         param.put("DIR_SUCURSAL", igr.getDirEstablecimiento());
         param.put("CONT_ESPECIAL", igr.getContribuyenteEspecial());
-        param.put("LLEVA_CONTABILIDAD", igr.getObligadoContabilidad());
+        param.put("LLEVA_CONTABILIDAD", igr.getObligadoContabilidad().toString());
         param.put("FECHA_INI_TRANSPORTE", igr.getFechaIniTransporte());
         param.put("FECHA_FIN_TRANSPORTE", igr.getFechaFinTransporte());
         param.put("RUC_TRANSPORTISTA", igr.getRucTransportista());

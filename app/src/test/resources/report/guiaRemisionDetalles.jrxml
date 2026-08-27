@@ -97,13 +97,6 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{codigoPrincipal}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="381" y="0" width="93" height="15" uuid="8d19fc40-1a48-491e-8871-9c2c98c1d456"/>
-				<textElement verticalAlignment="Middle">
-					<font size="7"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{codigoAuxiliar}]]></textFieldExpression>
-			</textField>
 			<line>
 				<reportElement x="380" y="1" width="1" height="13" uuid="8a394332-65c7-45b9-9d13-dd6ff393c803"/>
 			</line>
