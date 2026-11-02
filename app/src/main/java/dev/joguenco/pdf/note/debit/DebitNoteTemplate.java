@@ -11,7 +11,7 @@ public class DebitNoteTemplate {
 
     @Getter private NotaDebito notaDebito;
     private List<AdditionalInformation> infoAdicional;
-    private List<PayMethod> payMethod;
+    private List<PaymentMethod> payMethod;
 
     public DebitNoteTemplate(NotaDebito notaDebito) {
         this.notaDebito = notaDebito;
@@ -45,7 +45,7 @@ public class DebitNoteTemplate {
         return this.infoAdicional;
     }
 
-    public List<PayMethod> getFormasPago() {
+    public List<PaymentMethod> getFormasPago() {
         if (getNotaDebito().getInfoNotaDebito().getPagos() != null) {
             this.payMethod = new ArrayList<>();
             if (getNotaDebito().getInfoNotaDebito().getPagos().getFirst().getPago() != null
@@ -57,8 +57,8 @@ public class DebitNoteTemplate {
                             .isEmpty())
                 for (var pa : getNotaDebito().getInfoNotaDebito().getPagos().getFirst().getPago())
                     this.payMethod.add(
-                            new PayMethod(
-                                    getNamePayMethod(pa.getFormaPago()),
+                            new PaymentMethod(
+                                    PaymentMethod.getName(pa.getFormaPago()),
                                     pa.getTotal().setScale(2).toString()));
         }
         return this.payMethod;
@@ -174,19 +174,5 @@ public class DebitNoteTemplate {
 
     private String defaultIVA() {
         return "IVA";
-    }
-
-    private String getNamePayMethod(String code) {
-        return switch (code) {
-            case "01" -> "Sin utilización del sistema financiero";
-            case "15" -> "Compensación de deudas";
-            case "16" -> "Tarjeta de débito";
-            case "17" -> "Dinero electrónico";
-            case "18" -> "Tarjeta prepago";
-            case "19" -> "Tarjeta de crédito";
-            case "20" -> "Otros con utilización del sistema financiero";
-            case "21" -> "Endoso de títulos";
-            default -> code + " No definido";
-        };
     }
 }

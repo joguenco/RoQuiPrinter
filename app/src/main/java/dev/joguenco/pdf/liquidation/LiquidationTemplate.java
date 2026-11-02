@@ -1,6 +1,7 @@
 package dev.joguenco.pdf.liquidation;
 
 import dev.joguenco.pdf.*;
+import dev.joguenco.pdf.PaymentMethod;
 import ec.gob.sri.liquidation.v110.LiquidacionCompra;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public class LiquidationTemplate {
 
     @Getter private LiquidacionCompra liquidacion;
     private List<AdditionalInformation> infoAdicional;
-    private List<PayMethod> payMethod;
+    private List<PaymentMethod> payMethod;
 
     public LiquidationTemplate(LiquidacionCompra liquidacion) {
         this.liquidacion = liquidacion;
@@ -218,7 +219,7 @@ public class LiquidationTemplate {
         this.infoAdicional = infoAdicional;
     }
 
-    public List<PayMethod> getPayMethod() {
+    public List<PaymentMethod> getPayMethod() {
         if (getLiquidacion().getInfoLiquidacionCompra().getPagos() != null) {
             this.payMethod = new ArrayList();
             if ((getLiquidacion().getInfoLiquidacionCompra().getPagos().getPago() != null)
@@ -229,26 +230,12 @@ public class LiquidationTemplate {
                             .isEmpty())) {
                 for (var pa : getLiquidacion().getInfoLiquidacionCompra().getPagos().getPago()) {
                     this.payMethod.add(
-                            new PayMethod(
-                                    getNamePayMethod(pa.getFormaPago()),
+                            new PaymentMethod(
+                                    PaymentMethod.getName(pa.getFormaPago()),
                                     pa.getTotal().setScale(2).toString()));
                 }
             }
         }
         return this.payMethod;
-    }
-
-    private String getNamePayMethod(String code) {
-        return switch (code) {
-            case "01" -> "Sin utilización del sistema financiero";
-            case "15" -> "Compensación de deudas";
-            case "16" -> "Tarjeta de débito";
-            case "17" -> "Dinero electrónico";
-            case "18" -> "Tarjeta prepago";
-            case "19" -> "Tarjeta de crédito";
-            case "20" -> "Otros con utilización del sistema financiero";
-            case "21" -> "Endoso de títulos";
-            default -> code + " No definido";
-        };
     }
 }
