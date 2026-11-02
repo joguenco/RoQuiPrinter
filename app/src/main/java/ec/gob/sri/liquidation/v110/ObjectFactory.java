@@ -8,6 +8,7 @@
 
 package ec.gob.sri.liquidation.v110;
 
+import ec.gob.sri.InfoTributaria;
 import jakarta.xml.bind.annotation.XmlRegistry;
 
 /**

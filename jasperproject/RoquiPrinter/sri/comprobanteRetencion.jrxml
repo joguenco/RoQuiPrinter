@@ -20,7 +20,7 @@
 	<parameter name="FECHA_EMISION" class="java.lang.Object"/>
 	<parameter name="GUIA" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["/home/marco/NetBeansProjects/comprobantes-elctronicos-cliente/resources/reportes/"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["/resources/reports/"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="MARCA_AGUA" class="java.io.InputStream"/>
 	<parameter name="NUM_FACT" class="java.lang.String"/>

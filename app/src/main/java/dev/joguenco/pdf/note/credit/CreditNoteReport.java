@@ -1,9 +1,9 @@
 package dev.joguenco.pdf.note.credit;
 
+import dev.joguenco.pdf.Information;
 import dev.joguenco.pdf.TypeTaxEnum;
 import dev.joguenco.serialize.CreditNote;
 import dev.joguenco.util.ReportUtil;
-import ec.gob.sri.note.credit.v110.InfoTributaria;
 import ec.gob.sri.note.credit.v110.NotaCredito;
 import ec.gob.sri.note.credit.v110.TotalConImpuestos;
 import java.io.*;
@@ -51,12 +51,15 @@ public class CreditNoteReport {
             JasperPrint reporte_view =
                     JasperFillManager.fillReport(
                             is,
-                            obtenerMapaParametrosReportes(
-                                    getParametersInfoTriobutaria(
+                            Information.getMapParameters(
+                                    Information.getParameters(
                                             rep.getNotaCredito().getInfoTributaria(),
                                             numAut,
-                                            fechaAut),
-                                    getInfoCN(rep.getNotaCredito().getInfoNotaCredito(), rep)),
+                                            fechaAut,
+                                            pathLogo,
+                                            reportFolder),
+                                    getCreditNoteInformation(
+                                            rep.getNotaCredito().getInfoNotaCredito(), rep)),
                             (JRDataSource) jRBeanCollectionDataSource);
             ReportUtil.savePdfReport(
                     reporte_view,
@@ -77,55 +80,7 @@ public class CreditNoteReport {
         return true;
     }
 
-    private Map<String, Object> obtenerMapaParametrosReportes(
-            Map<String, Object> mapa1, Map<String, Object> mapa2) {
-        mapa1.putAll(mapa2);
-        return mapa1;
-    }
-
-    public Map<String, Object> getParametersInfoTriobutaria(
-            InfoTributaria infoTributaria, String numAut, String fechaAut) {
-        Map param = new HashMap();
-        param.put("RUC", infoTributaria.getRuc());
-        param.put("CLAVE_ACC", infoTributaria.getClaveAcceso());
-        param.put("RAZON_SOCIAL", infoTributaria.getRazonSocial());
-        param.put("DIR_MATRIZ", infoTributaria.getDirMatriz());
-        param.put("AGENTE_RETENCION", infoTributaria.getAgenteRetencion());
-        param.put("REGIMEN_RIMPE", infoTributaria.getContribuyenteRimpe());
-        try {
-            param.put("LOGO", new FileInputStream(pathLogo));
-        } catch (FileNotFoundException ex) {
-            System.out.println("Error " + ex.getMessage());
-        }
-
-        param.put("SUBREPORT_DIR", reportFolder + File.separator);
-        param.put("SUBREPORT_PAGOS", reportFolder + File.separator);
-        param.put("SUBREPORT_TOTALES", reportFolder + File.separator);
-        if (infoTributaria.getTipoEmision().equals("1")) {
-            param.put("TIPO_EMISION", "Normal");
-        } else {
-            param.put("TIPO_EMISION", "Indisponibilidad del Sistema");
-        }
-        param.put("NUM_AUT", numAut);
-        param.put("FECHA_AUT", fechaAut);
-        param.put("MARCA_AGUA", "");
-        param.put(
-                "NUM_FACT",
-                infoTributaria.getEstab()
-                        + "-"
-                        + infoTributaria.getPtoEmi()
-                        + "-"
-                        + infoTributaria.getSecuencial());
-        if (infoTributaria.getAmbiente().equals("1")) {
-            param.put("AMBIENTE", "Pruebas");
-        } else {
-            param.put("AMBIENTE", "Producción");
-        }
-        param.put("NOM_COMERCIAL", infoTributaria.getNombreComercial());
-        return param;
-    }
-
-    private Map<String, Object> getInfoCN(
+    private Map<String, Object> getCreditNoteInformation(
             NotaCredito.InfoNotaCredito infoCN, CreditNoteTemplate nc) {
         Map<String, Object> param = new HashMap<>();
         param.put("DIR_SUCURSAL", infoCN.getDirEstablecimiento());

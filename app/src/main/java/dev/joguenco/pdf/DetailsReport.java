@@ -36,7 +36,7 @@ public class DetailsReport {
 
     @Getter @Setter private List<AdditionalInformation> infoAdicional;
 
-    @Getter @Setter private List<PayMethod> formasPago;
+    @Getter @Setter private List<PaymentMethod> formasPago;
 
     @Getter @Setter private List<TotalReceipts> totalesComprobante;
 

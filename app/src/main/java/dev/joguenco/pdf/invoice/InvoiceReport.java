@@ -1,9 +1,9 @@
 package dev.joguenco.pdf.invoice;
 
+import dev.joguenco.pdf.Information;
 import dev.joguenco.serialize.Invoice;
 import dev.joguenco.util.ReportUtil;
 import ec.gob.sri.invoice.v210.Factura;
-import ec.gob.sri.invoice.v210.InfoTributaria;
 import java.io.*;
 import java.util.*;
 import net.sf.jasperreports.engine.*;
@@ -44,10 +44,14 @@ public class InvoiceReport {
             JasperPrint reportView =
                     JasperFillManager.fillReport(
                             is,
-                            obtenerMapaParametrosReportes(
-                                    getParametersInfoTriobutaria(
-                                            rep.getFactura().getInfoTributaria(), numAut, dateAut),
-                                    getInfoFactura(rep.getFactura().getInfoFactura())),
+                            Information.getMapParameters(
+                                    Information.getParameters(
+                                            rep.getFactura().getInfoTributaria(),
+                                            numAut,
+                                            dateAut,
+                                            pathLogo,
+                                            reportFolder),
+                                    getInvoiceInformation(rep.getFactura().getInfoFactura())),
                             dataSource);
             ReportUtil.savePdfReport(
                     reportView,
@@ -68,56 +72,7 @@ public class InvoiceReport {
         return true;
     }
 
-    public Map<String, Object> getParametersInfoTriobutaria(
-            InfoTributaria infoTributaria, String numAut, String fechaAut) {
-        Map param = new HashMap();
-        param.put("RUC", infoTributaria.getRuc());
-        param.put("CLAVE_ACC", infoTributaria.getClaveAcceso());
-        param.put("RAZON_SOCIAL", infoTributaria.getRazonSocial());
-        param.put("DIR_MATRIZ", infoTributaria.getDirMatriz());
-        param.put("AGENTE_RETENCION", infoTributaria.getAgenteRetencion());
-        param.put("REGIMEN_RIMPE", infoTributaria.getContribuyenteRimpe());
-        try {
-            param.put("LOGO", new FileInputStream(pathLogo));
-        } catch (FileNotFoundException ex) {
-            System.out.println("Error " + ex.getMessage());
-        }
-        //        param.put("SUBREPORT_DIR", "./resources/reportes/");
-
-        param.put("SUBREPORT_DIR", reportFolder + File.separator);
-        param.put("SUBREPORT_PAGOS", reportFolder + File.separator);
-        param.put("SUBREPORT_TOTALES", reportFolder + File.separator);
-        if (infoTributaria.getTipoEmision().equals("1")) {
-            param.put("TIPO_EMISION", "Normal");
-        } else {
-            param.put("TIPO_EMISION", "Indisponibilidad del Sistema");
-        }
-        param.put("NUM_AUT", numAut);
-        param.put("FECHA_AUT", fechaAut);
-        param.put("MARCA_AGUA", "");
-        param.put(
-                "NUM_FACT",
-                infoTributaria.getEstab()
-                        + "-"
-                        + infoTributaria.getPtoEmi()
-                        + "-"
-                        + infoTributaria.getSecuencial());
-        if (infoTributaria.getAmbiente().equals("1")) {
-            param.put("AMBIENTE", "Pruebas");
-        } else {
-            param.put("AMBIENTE", "Producción");
-        }
-        param.put("NOM_COMERCIAL", infoTributaria.getNombreComercial());
-        return param;
-    }
-
-    private Map<String, Object> obtenerMapaParametrosReportes(
-            Map<String, Object> mapa1, Map<String, Object> mapa2) {
-        mapa1.putAll(mapa2);
-        return mapa1;
-    }
-
-    private Map<String, Object> getInfoFactura(Factura.InfoFactura infoFactura) {
+    private Map<String, Object> getInvoiceInformation(Factura.InfoFactura infoFactura) {
         Map<String, Object> param = new HashMap<>();
         param.put("DIR_SUCURSAL", infoFactura.getDirEstablecimiento());
         param.put("CONT_ESPECIAL", infoFactura.getContribuyenteEspecial());

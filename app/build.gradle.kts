@@ -8,8 +8,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
-    id("io.freefair.lombok") version "8.4"
-    id("com.diffplug.spotless") version "7.0.4"
+    id("io.freefair.lombok") version "9.8.3"
+    id("com.diffplug.spotless") version "8.11.0"
     id("maven-publish")
 }
 
@@ -28,7 +28,7 @@ spotless {
         targetExclude("build/**")
     }
 }
-version = "2.0.0"
+version = "2.0.1"
 group = "dev.joguenco.printer"
 
 repositories {
@@ -37,12 +37,12 @@ repositories {
 }
 
 dependencies {
-    implementation("com.sun.xml.ws:jaxws-rt:4.0.1")
+    implementation("com.sun.xml.ws:jaxws-rt:4.0.5")
     implementation("net.sf.jasperreports:jasperreports:6.21.5")
     implementation("net.sf.barcode4j:barcode4j:2.1")
     implementation("org.apache.xmlgraphics:batik-all:1.18")
     implementation("com.github.librepdf:openpdf:1.3.30")
-    compileOnly("org.projectlombok:lombok:1.18.30")
+    compileOnly("org.projectlombok:lombok:1.18.48")
 
     // Use JUnit Jupiter for testing.
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.3")

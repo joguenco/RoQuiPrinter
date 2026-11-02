@@ -19,7 +19,7 @@
 	<parameter name="FECHA_EMISION" class="java.lang.String"/>
 	<parameter name="GUIA" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["/home/marco/NetBeansProjects/comprobantes-elctronicos-cliente/resources/reportes/"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["/resources/reports/"]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_PAGOS" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="SUBREPORT_TOTALES" class="java.lang.String" isForPrompting="false"/>
