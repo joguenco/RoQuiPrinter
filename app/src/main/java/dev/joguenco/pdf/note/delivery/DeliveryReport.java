@@ -58,14 +58,14 @@ public class DeliveryReport {
             JasperPrint reporte_view =
                     JasperFillManager.fillReport(
                             is,
-                            obtenerMapaParametrosReportes(
+                            Information.getMapParameters(
                                     Information.getParameters(
                                             rep.getGuiaRemision().getInfoTributaria(),
                                             numAut,
                                             dateAut,
                                             pathLogo,
                                             reportFolder),
-                                    obtenerInfoGR(
+                                    getDeliveryInformation(
                                             rep.getGuiaRemision().getInfoGuiaRemision(),
                                             rep.getGuiaRemision())),
                             dataSource);
@@ -89,13 +89,7 @@ public class DeliveryReport {
         return true;
     }
 
-    private Map<String, Object> obtenerMapaParametrosReportes(
-            Map<String, Object> mapa1, Map<String, Object> mapa2) {
-        mapa1.putAll(mapa2);
-        return mapa1;
-    }
-
-    private Map<String, Object> obtenerInfoGR(
+    private Map<String, Object> getDeliveryInformation(
             GuiaRemision.InfoGuiaRemision igr, GuiaRemision guiaRemision) {
         Map param = new HashMap();
         param.put("DIR_SUCURSAL", igr.getDirEstablecimiento());

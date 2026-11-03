@@ -51,14 +51,15 @@ public class CreditNoteReport {
             JasperPrint reporte_view =
                     JasperFillManager.fillReport(
                             is,
-                            obtenerMapaParametrosReportes(
+                            Information.getMapParameters(
                                     Information.getParameters(
                                             rep.getNotaCredito().getInfoTributaria(),
                                             numAut,
                                             fechaAut,
                                             pathLogo,
                                             reportFolder),
-                                    getInfoCN(rep.getNotaCredito().getInfoNotaCredito(), rep)),
+                                    getCreditNoteInformation(
+                                            rep.getNotaCredito().getInfoNotaCredito(), rep)),
                             (JRDataSource) jRBeanCollectionDataSource);
             ReportUtil.savePdfReport(
                     reporte_view,
@@ -79,13 +80,7 @@ public class CreditNoteReport {
         return true;
     }
 
-    private Map<String, Object> obtenerMapaParametrosReportes(
-            Map<String, Object> mapa1, Map<String, Object> mapa2) {
-        mapa1.putAll(mapa2);
-        return mapa1;
-    }
-
-    private Map<String, Object> getInfoCN(
+    private Map<String, Object> getCreditNoteInformation(
             NotaCredito.InfoNotaCredito infoCN, CreditNoteTemplate nc) {
         Map<String, Object> param = new HashMap<>();
         param.put("DIR_SUCURSAL", infoCN.getDirEstablecimiento());

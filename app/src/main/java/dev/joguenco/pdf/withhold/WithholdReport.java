@@ -48,14 +48,15 @@ public class WithholdReport {
             JasperPrint reportView =
                     JasperFillManager.fillReport(
                             is,
-                            obtenerMapaParametrosReportes(
+                            Information.getMapParameters(
                                     Information.getParameters(
                                             rep.getRetencion().getInfoTributaria(),
                                             numAut,
                                             dateAut,
                                             pathLogo,
                                             reportFolder),
-                                    getInfoRetencion(rep.getRetencion().getInfoCompRetencion())),
+                                    getWithholdInformation(
+                                            rep.getRetencion().getInfoCompRetencion())),
                             dataSource);
             ReportUtil.savePdfReport(
                     reportView,
@@ -76,13 +77,7 @@ public class WithholdReport {
         return true;
     }
 
-    private Map<String, Object> obtenerMapaParametrosReportes(
-            Map<String, Object> mapa1, Map<String, Object> mapa2) {
-        mapa1.putAll(mapa2);
-        return mapa1;
-    }
-
-    private Map<String, Object> getInfoRetencion(
+    private Map<String, Object> getWithholdInformation(
             ComprobanteRetencion.InfoCompRetencion infoRetencion) {
         Map<String, Object> param = new HashMap<>();
         param.put("DIR_SUCURSAL", infoRetencion.getDirEstablecimiento());

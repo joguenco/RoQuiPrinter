@@ -44,14 +44,14 @@ public class InvoiceReport {
             JasperPrint reportView =
                     JasperFillManager.fillReport(
                             is,
-                            obtenerMapaParametrosReportes(
+                            Information.getMapParameters(
                                     Information.getParameters(
                                             rep.getFactura().getInfoTributaria(),
                                             numAut,
                                             dateAut,
                                             pathLogo,
                                             reportFolder),
-                                    getInfoFactura(rep.getFactura().getInfoFactura())),
+                                    getInvoiceInformation(rep.getFactura().getInfoFactura())),
                             dataSource);
             ReportUtil.savePdfReport(
                     reportView,
@@ -72,13 +72,7 @@ public class InvoiceReport {
         return true;
     }
 
-    private Map<String, Object> obtenerMapaParametrosReportes(
-            Map<String, Object> mapa1, Map<String, Object> mapa2) {
-        mapa1.putAll(mapa2);
-        return mapa1;
-    }
-
-    private Map<String, Object> getInfoFactura(Factura.InfoFactura infoFactura) {
+    private Map<String, Object> getInvoiceInformation(Factura.InfoFactura infoFactura) {
         Map<String, Object> param = new HashMap<>();
         param.put("DIR_SUCURSAL", infoFactura.getDirEstablecimiento());
         param.put("CONT_ESPECIAL", infoFactura.getContribuyenteEspecial());

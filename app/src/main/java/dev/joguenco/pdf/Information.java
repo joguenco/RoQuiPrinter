@@ -54,4 +54,10 @@ public class Information {
         param.put("NOM_COMERCIAL", infoTributaria.getNombreComercial());
         return param;
     }
+
+    public static Map<String, Object> getMapParameters(
+            Map<String, Object> map1, Map<String, Object> map2) {
+        map1.putAll(map2);
+        return map1;
+    }
 }

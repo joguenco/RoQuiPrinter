@@ -45,14 +45,14 @@ public class LiquidationReport {
             JasperPrint reportView =
                     JasperFillManager.fillReport(
                             is,
-                            obtenerMapaParametrosReportes(
+                            Information.getMapParameters(
                                     Information.getParameters(
                                             rep.getLiquidacion().getInfoTributaria(),
                                             numAut,
                                             dateAut,
                                             pathLogo,
                                             reportFolder),
-                                    getInfoLiquidation(
+                                    getLiquidationInformation(
                                             rep.getLiquidacion().getInfoLiquidacionCompra())),
                             dataSource);
             ReportUtil.savePdfReport(
@@ -74,13 +74,7 @@ public class LiquidationReport {
         return true;
     }
 
-    private Map<String, Object> obtenerMapaParametrosReportes(
-            Map<String, Object> mapa1, Map<String, Object> mapa2) {
-        mapa1.putAll(mapa2);
-        return mapa1;
-    }
-
-    private Map<String, Object> getInfoLiquidation(
+    private Map<String, Object> getLiquidationInformation(
             LiquidacionCompra.InfoLiquidacionCompra infoLiquidacion) {
         Map<String, Object> param = new HashMap<>();
         param.put("DIR_SUCURSAL", infoLiquidacion.getDirEstablecimiento());
