@@ -8,6 +8,7 @@
 
 package ec.gob.sri.invoice.v210;
 
+import ec.gob.sri.InfoTributaria;
 import jakarta.xml.bind.annotation.XmlRegistry;
 
 /**

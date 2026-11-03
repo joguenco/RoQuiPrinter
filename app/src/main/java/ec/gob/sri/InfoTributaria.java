@@ -3,10 +3,10 @@
 // Implementation, v2.3.1
 // See <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a>
 // Any modifications to this file will be lost upon recompilation of the source schema.
-// Generated on: 2023.09.25 at 10:39:13 PM ECT
+// Generated on: 2023.09.25 at 09:10:46 PM ECT
 //
 
-package ec.gob.sri.note.delivery.v110;
+package ec.gob.sri;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
