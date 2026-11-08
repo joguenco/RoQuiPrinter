@@ -28,20 +28,24 @@ spotless {
         targetExclude("build/**")
     }
 }
-version = "2.0.1"
+version = "3.0.0"
 group = "dev.joguenco.printer"
 
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+    // Required by jasperreports-pdf, which depends on the Jaspersoft-patched version of OpenPDF.
+    maven {
+        url = uri("https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/")
+    }
 }
 
 dependencies {
     implementation("com.sun.xml.ws:jaxws-rt:4.0.5")
-    implementation("net.sf.jasperreports:jasperreports:6.21.5")
-    implementation("net.sf.barcode4j:barcode4j:2.1")
-    implementation("org.apache.xmlgraphics:batik-all:1.18")
-    implementation("com.github.librepdf:openpdf:1.3.30")
+    implementation("net.sf.jasperreports:jasperreports:7.1.1")
+    // Since JasperReports 7, PDF export and Barcode4J support live in separate modules.
+    implementation("net.sf.jasperreports:jasperreports-pdf:7.1.1")
+    implementation("net.sf.jasperreports:jasperreports-barcode4j:7.1.1")
     compileOnly("org.projectlombok:lombok:1.18.48")
 
     // Use JUnit Jupiter for testing.
