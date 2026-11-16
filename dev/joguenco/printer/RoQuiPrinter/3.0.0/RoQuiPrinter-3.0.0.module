@@ -1,0 +1,90 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "dev.joguenco.printer",
+    "module": "RoQuiPrinter",
+    "version": "3.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.8.2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "RoQuiPrinter-3.0.0.jar",
+          "url": "RoQuiPrinter-3.0.0.jar",
+          "size": 186030,
+          "sha512": "09f830a243145bf34876e76eb2764d0db23015d98377ed8306c5d47e35ace7854ca8a1c66946d8dc1d6fc7f690649ef54e143d96f7b114c8c63f131653383d9a",
+          "sha256": "e17789a3c23e353d99cb579a1a2bdc5f868c8f656abe1c0370ed4b04b70dae17",
+          "sha1": "c8775238f08f7441138e7ebadf1775693e6d8f4e",
+          "md5": "d77edacbef8b28164cb5b6443cb7426c"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.sun.xml.ws",
+          "module": "jaxws-rt",
+          "version": {
+            "requires": "4.0.5"
+          }
+        },
+        {
+          "group": "net.sf.jasperreports",
+          "module": "jasperreports",
+          "version": {
+            "requires": "7.1.1"
+          }
+        },
+        {
+          "group": "net.sf.jasperreports",
+          "module": "jasperreports-pdf",
+          "version": {
+            "requires": "7.1.1"
+          }
+        },
+        {
+          "group": "net.sf.jasperreports",
+          "module": "jasperreports-barcode4j",
+          "version": {
+            "requires": "7.1.1"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "RoQuiPrinter-3.0.0.jar",
+          "url": "RoQuiPrinter-3.0.0.jar",
+          "size": 186030,
+          "sha512": "09f830a243145bf34876e76eb2764d0db23015d98377ed8306c5d47e35ace7854ca8a1c66946d8dc1d6fc7f690649ef54e143d96f7b114c8c63f131653383d9a",
+          "sha256": "e17789a3c23e353d99cb579a1a2bdc5f868c8f656abe1c0370ed4b04b70dae17",
+          "sha1": "c8775238f08f7441138e7ebadf1775693e6d8f4e",
+          "md5": "d77edacbef8b28164cb5b6443cb7426c"
+        }
+      ]
+    }
+  ]
+}
